@@ -29,16 +29,7 @@ public class Record {
 	public Record(){
 		//constructor with no arguments
 	}
-	//constructor with no user passed in
-	public Record(String dateTime,String dateOfServices,int providerNumber,int memberNumber,int serviceCode,String comments){
-		this.date = dateTime;
-		//this.time = time;
-		this.dateOfServices = dateOfServices;
-		this.providerNumber = providerNumber;
-		this.memberNumber = memberNumber;
-		this.serviceCode = serviceCode;
-		this.comments = comments;
-	}
+	
 	
 	// generates the bill report record 
 	public void createRecord(){
@@ -51,6 +42,7 @@ public class Record {
 		record.add(String.valueOf(this.serviceCode));
 		record.add(this.comments);
 		records.put(user.getName(),record );
+		
 		
 	}
 	
