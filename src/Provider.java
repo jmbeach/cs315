@@ -10,7 +10,7 @@ public class Provider extends User {
 	private String state;
 	private String zipCode;
 	private float moneyEarned;
-	ArrayList<String> servicesProvided;
+	ArrayList<String> servicesProvided = new ArrayList<String>();
 
 	public Provider(String name, int number, String address, String city, String state, String zipCode){
 		this.name = name;
@@ -20,7 +20,6 @@ public class Provider extends User {
 		this.state = state;
 		this.zipCode = zipCode; 
 		moneyEarned = 0;
-		ArrayList<String> servicesProvided = new ArrayList<String>();
 	}
 	public Provider(){
 		//provider constructor with no arguments given
@@ -31,7 +30,7 @@ public class Provider extends User {
 	}
 	
 	public void addServices(String serv){
-		this.servicesProvided.add(serv);
+		servicesProvided.add(serv);
 	}
 	
 	public ArrayList<String> getServices(){
