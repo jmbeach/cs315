@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 
 public class Provider extends User {
 	
@@ -7,6 +9,8 @@ public class Provider extends User {
 	private String city;
 	private String state;
 	private String zipCode;
+	private float moneyEarned;
+	ArrayList<String> servicesProvided;
 
 	public Provider(String name, int number, String address, String city, String state, String zipCode){
 		this.name = name;
@@ -15,7 +19,8 @@ public class Provider extends User {
 		this.city = city;
 		this.state = state;
 		this.zipCode = zipCode; 
-		
+		moneyEarned = 0;
+		ArrayList<String> servicesProvided = new ArrayList<String>();
 	}
 	public Provider(){
 		//provider constructor with no arguments given
@@ -23,6 +28,22 @@ public class Provider extends User {
 
 	public String getName() { //Returns the User's Name
 		return name;
+	}
+	
+	public void addServices(String serv){
+		this.servicesProvided.add(serv);
+	}
+	
+	public ArrayList<String> getServices(){
+		return servicesProvided;
+	}
+	
+	public void addMoneyEarned(float money){
+		moneyEarned += money;
+	}
+	
+	public float getMoneyEarned(){
+		return moneyEarned;
 	}
 
 	public void setName(String name) { //Sets the User's Name
