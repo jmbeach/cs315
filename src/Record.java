@@ -1,47 +1,77 @@
 
 public class Record {
-	private String date;
-	private String time;
-	private String dateOfServices;
-	private String providerNumber;
-	private String memberNumber;
-	private String serviceCode;
-	private String comments;
-	private Member user;
+	public String date;
+	public String time;
+	public String dateOfServices;
+	public int providerNumber;
+	public int memberNumber;
+	public int serviceCode;
+	public String comments;
+	public Member user;
 	
+	// constructor
+	public Record(String date,String time,String dateOfServices,int providerNumber,int memberNumber,int serviceCode,String comments){
+		this.date = date;
+		this.time = time;
+		this.dateOfServices = dateOfServices;
+		this.providerNumber = providerNumber;
+		this.memberNumber = memberNumber;
+		this.serviceCode = serviceCode;
+		this.comments = comments;
+		//this.user = user;
+	}
 	
+	public Record(){
+		//constructor with no arguments
+	}
+	
+	// generates the bill report record 
+	public void createRecord(){
+		
+	}
+	
+		
+	// sets the date and time for the record
 	public void setDateTime(String newDate, String newTime){
 		date = newDate;
 		time = newTime;
 	}
 	
+	// sets the date of services provided for the record
 	public void setDateProvided(String providedDate){
 		dateOfServices = providedDate;
 		
 	}
 	
-	public void setPNumber(String provider){
+	// sets the provider number for the record
+	public void setPNumber(int provider){
 		providerNumber = provider;
 	}
 	
-	public void setUNumber(String member){
+	// sets the member number for the record
+	public void setUNumber(int member){
 		memberNumber = member;
 	}
 	
-	public void setServiceCode(String code){
+	// sets the service code of the services provided
+	public void setServiceCode(int code){
 		serviceCode = code;
 	}
 	
+	// sets the comments for the record
 	public void setComments(String notes){
 		comments = notes;
 	}
 	
+	
+	// sets the selected user to the member object that is passed in
 	public void selectUser(Member person){
 		user = person;
 	}
 	
+	// loads the selected user, and sets the member number
 	public void loadUser() {
-		
+		memberNumber = user.getNumber();
 	}
 	
 }
