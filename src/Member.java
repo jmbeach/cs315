@@ -3,7 +3,7 @@
  * Dillon Wastrack 
  */
 
-public class Member {
+public class Member extends User {
 
 	private String name;
 	private int number;
