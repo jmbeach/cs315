@@ -1,15 +1,18 @@
 public class ProviderReport extends Report {
+	private Provider person;
+	
+	    // constructor with no parameters
+	public ProviderReport(Provider person){
+		super();
+		this.person = person;
+	}
+	
 	public void generateReport(int memberNumber) {
     }
-    
-    // constructor with no parameters
-	public ProviderReport(){
-		super();
-	}
 	
     //returns the provider number
     public int getPNumber(){
-        return providerNumber;
+        return person.getNumber();
 
     }
     
