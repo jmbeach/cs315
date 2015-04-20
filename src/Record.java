@@ -3,27 +3,27 @@ import java.util.HashMap;
 
 
 public class Record {
-	public String date;
-	public String time;
-	public String dateOfServices;
-	public int providerNumber;
-	public int memberNumber;
-	public int serviceCode;
-	public String comments;
-	public Member user;
-	public static HashMap<String, ArrayList<String>> records = new HashMap<String, ArrayList<String>>();
+	protected String date;
+	protected String time;
+	protected String dateOfServices;
+	protected int providerNumber;
+	protected int memberNumber;
+	protected int serviceCode;
+	protected String comments;
+	protected Member user;
+	protected static HashMap<String, ArrayList<String>> records = new HashMap<String, ArrayList<String>>();
 	
 	// constructor
 	public Record(String dateTime,String dateOfServices,int providerNumber,int memberNumber,int serviceCode,String comments, Member user){
 		this.date = dateTime;
-		//this.time = time;
+		
 		this.dateOfServices = dateOfServices;
 		this.providerNumber = providerNumber;
 		this.memberNumber = memberNumber;
 		this.serviceCode = serviceCode;
 		this.comments = comments;
 		this.user = user;
-		this.user = user;
+		
 	}
 	
 	public Record(){

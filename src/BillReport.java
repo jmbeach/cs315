@@ -24,7 +24,7 @@ public class BillReport extends Record {
 	
 	// returns the current date and time that the bill report was created
 	public String getDateTime(){
-		return date + " " + time;
+		return date;
 	}
 	
 	// returns the provider number
