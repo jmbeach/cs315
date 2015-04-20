@@ -41,12 +41,51 @@ public class Record {
 		record.add(String.valueOf(this.memberNumber));
 		record.add(String.valueOf(this.serviceCode));
 		record.add(this.comments);
+		if (records.containsKey(user.getName())){
+			
+		}
 		records.put(user.getName(),record );
 		
 		
 	}
 	
 		
+	public String getDate() {
+		return date;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public String getDateOfServices() {
+		return dateOfServices;
+	}
+
+	public int getProviderNumber() {
+		return providerNumber;
+	}
+
+	public int getMemberNumber() {
+		return memberNumber;
+	}
+
+	public int getServiceCode() {
+		return serviceCode;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+
+	public Member getUser() {
+		return user;
+	}
+
+	public static HashMap<String, ArrayList<String>> getRecords() {
+		return records;
+	}
+
 	// sets the date and time for the record
 	public void setDateTime(String newDate, String newTime){
 		date = newDate;
@@ -92,9 +131,12 @@ public class Record {
 	}
 	
 	public static void main(String[] args) {
-		Member user = new Member("Anus Randy",123456,"123 douche avenue","Buttzville","Alasska","69696");
+		Member user = new Member("Billy Butthole",123456,"123 douche avenue","Buttzville","Alasska","69696");
+		Member user1 = new Member("Billy Butthole",123656,"122 butt","Buttzville","Alasska","69796");
 		Record r1 = new Record("12-12-1987 12:12:34","10-15-1976", 123456, 345678, 113343,"boner",user);
+		Record r2 = new Record("12-12-1996 12:15:34","10-15-1979", 123356, 342678, 113143,"ass",user1);
 		r1.createRecord();
+		r2.createRecord();
 		System.out.println(records);
 	}
 	

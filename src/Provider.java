@@ -57,7 +57,7 @@ public class Provider {
 		return zipCode;
 	}
 
-	public void setZip_Code(String zipCode) { //sets the user's zip code
+	public void setzipCode(String zipCode) { //sets the user's zip code
 		this.zipCode = zipCode;
 	}
 
