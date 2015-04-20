@@ -1,15 +1,18 @@
 public class ProviderReport extends Report {
+	private Provider person;
+	
 	public void generateReport(int memberNumber) {
     }
     
     // constructor with no parameters
-	public ProviderReport(){
+	public ProviderReport(Provider person){
 		super();
+		this.person = person;
 	}
 	
     //returns the provider number
     public int getPNumber(){
-        return providerNumber;
+        return person.getNumber();
 
     }
     
@@ -32,7 +35,7 @@ public class ProviderReport extends Report {
 	public void displayRecord(){
 		System.out.println(getDateTime() + "\n" + getDateProvided() + "\n" + getPNumber() + "\n" + "\n" + getServiceCode() + "\n" + getComments() + "\n" );
 	}
-	// 335434 0- 888
+	// 335434 0- 888 - 1010
 	
 }
 
