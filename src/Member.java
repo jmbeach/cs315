@@ -27,7 +27,7 @@ public class Member {
 	}
 
 	public void setName(String name) { //Sets the User's Name
-		name = name;
+		this.name = name;
 	}
 
 	public int getNumber() { //Returns the user's 9 digit member number
@@ -35,7 +35,7 @@ public class Member {
 	}
 
 	public void setNumber(int number) { //Sets the user's 9 digit member number
-		number = number;
+		this.number = number;
 	}
 
 	public String getAddress() { //returns the user's address
@@ -43,7 +43,7 @@ public class Member {
 	}
 
 	public void setAddress(String address) { //sets the user's address
-		address = address;
+		this.address = address;
 	}
 
 	public String getCity() { //returns the user's city
@@ -51,15 +51,15 @@ public class Member {
 	}
 
 	public void setCity(String city) { //sets the user's city
-		city = city;
+		this.city = city;
 	}
 
 	public String getzipCode() { //returns the user's zip code
 		return zipCode;
 	}
 
-	public void setZip_Code(String zip_Code) { //sets the user's zip code
-		zipCode = zip_Code;
+	public void setZip_Code(String zipCode) { //sets the user's zip code
+		this.zipCode = zipCode;
 	}
 
 	public String getState() { //returns the user's state
