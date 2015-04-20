@@ -11,7 +11,7 @@ public class Record {
 	protected int serviceCode;
 	protected String comments;
 	protected Member user;
-	protected static ArrayList<ArrayList> serviceRecords = new ArrayList<ArrayList>();
+	protected static ArrayList<ArrayList> serviceRecords = new ArrayList<ArrayList>(); //ArrayList of all records, each record is another ArrayList inside the Master ArrayList
 	
 	// constructor
 	public Record(String dateTime,String dateOfServices,int providerNumber,int memberNumber,int serviceCode,String comments, Member user){
@@ -129,7 +129,7 @@ public class Record {
 		memberNumber = user.getNumber();
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) { //testing purposes, delete later
 		Member user = new Member("Billy Butthole",123456,"123 douche avenue","Buttzville","Alasska","69696");
 		Member user1 = new Member("Billy Butthole",123656,"122 butt","Buttzville","Alasska","69796");
 		Record r1 = new Record("12-12-1987 12:12:34","10-15-1976", 123456, 345678, 113343,"boner",user);
