@@ -9,33 +9,30 @@ public class ProviderReport extends Report {
 	
     //returns the provider number
     public int getPNumber(){
-        //return providerNumber;
-    	return 5; // delete after test
+        return providerNumber;
+
     }
     
     //returns service
     public int getServiceCode(){
-        //return serviceProvided;
-    	return 5;// delete after test
+        return serviceProvided;
     }
     
     //return current date and time
     public String getDateProvided(){
-        //return dateOfServices;
-    	return "hello"; // delete after test
+        return dateOfServices;
     }
     
     // returns the comments
 	public String getComments(){
-		//return comments;
-		return "hello"; // delete after test
+		return comments;
 	}
     
 	// submits the provider report record
 	public void displayRecord(){
-		//System.out.println(getDateTime() + "\n" + getDateProvided() + "\n" + getPNumber() + "\n" + "\n" + getServiceCode() + "\n" + getComments() + "\n" );
+		System.out.println(getDateTime() + "\n" + getDateProvided() + "\n" + getPNumber() + "\n" + "\n" + getServiceCode() + "\n" + getComments() + "\n" );
 	}
-	//test 23
+	// 335434 0- 888
 	
 }
 
