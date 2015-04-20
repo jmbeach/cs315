@@ -2,8 +2,8 @@
 public class BillReport extends Record {
 	
 	// constructor
-	public BillReport(String date,String time,String dateOfServices,int providerNumber,int memberNumber,int serviceCode,String comments){
-		super( date, time, dateOfServices, providerNumber, memberNumber, serviceCode, comments);
+	public BillReport(String date,String time,String dateOfServices,int providerNumber,int memberNumber,int serviceCode,String comments,Member user){
+		super( date, time, dateOfServices, providerNumber, memberNumber, serviceCode, comments,user);
 	}
 	
 	// constructor with no parameters

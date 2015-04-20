@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 public class Record {
 	public String date;
@@ -8,9 +11,10 @@ public class Record {
 	public int serviceCode;
 	public String comments;
 	public Member user;
+	public static HashMap records = new HashMap();
 	
 	// constructor
-	public Record(String date,String time,String dateOfServices,int providerNumber,int memberNumber,int serviceCode,String comments){
+	public Record(String date,String time,String dateOfServices,int providerNumber,int memberNumber,int serviceCode,String comments, Member user){
 		this.date = date;
 		this.time = time;
 		this.dateOfServices = dateOfServices;
@@ -18,6 +22,7 @@ public class Record {
 		this.memberNumber = memberNumber;
 		this.serviceCode = serviceCode;
 		this.comments = comments;
+		this.user = user;
 		//this.user = user;
 	}
 	
@@ -27,6 +32,15 @@ public class Record {
 	
 	// generates the bill report record 
 	public void createRecord(){
+		ArrayList<String> record = new ArrayList<String>();
+		record.add(date);
+		record.add(time);
+		record.add(dateOfServices);
+		record.add(String.valueOf(providerNumber));
+		record.add(String.valueOf(memberNumber));
+		record.add(String.valueOf(serviceCode));
+		record.add(comments);
+		records.put(user.getName(),record );
 		
 	}
 	
@@ -67,6 +81,7 @@ public class Record {
 	// sets the selected user to the member object that is passed in
 	public void selectUser(Member person){
 		user = person;
+		
 	}
 	
 	// loads the selected user, and sets the member number
