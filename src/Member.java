@@ -21,6 +21,9 @@ public class Member {
 		this.zipCode = zipCode; 
 		
 	}
+	public Member(){
+		//Member constructor with no arguments
+	}
 
 	public String getName() { //Returns the User's Name
 		return name;

@@ -17,6 +17,9 @@ public class Provider {
 		this.zipCode = zipCode; 
 		
 	}
+	public Provider(){
+		//provider constructor with no arguments given
+	}
 
 	public String getName() { //Returns the User's Name
 		return name;
