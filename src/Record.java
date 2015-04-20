@@ -11,7 +11,7 @@ public class Record {
 	public int serviceCode;
 	public String comments;
 	public Member user;
-	public static HashMap records = new HashMap();
+	public static HashMap<String, ArrayList<String>> records = new HashMap<String, ArrayList<String>>();
 	
 	// constructor
 	public Record(String date,String time,String dateOfServices,int providerNumber,int memberNumber,int serviceCode,String comments, Member user){
