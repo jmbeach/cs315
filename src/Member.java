@@ -60,11 +60,16 @@ public class Member {
 
 	public void setZip_Code(String zip_Code) { //sets the user's zip code
 		zipCode = zip_Code;
-
-	public Member(String name, int number, String address)
-	{
-		
 	}
+
+	public String getState() { //returns the user's state
+		return state;
+	}
+
+	public void setState(String state) { //sets the user's state
+		this.state = state;
+	}
+
 	
 }
 
