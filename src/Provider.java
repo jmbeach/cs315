@@ -1,5 +1,5 @@
 
-public class Provider {
+public class Provider extends User {
 	
 	private String name;
 	private int number;
