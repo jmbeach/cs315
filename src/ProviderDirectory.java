@@ -17,5 +17,5 @@ public class ProviderDirectory {
 		System.out.println("Yoga Session"+", "+ "800085"+", "+ "54.69");
 	}
 	
-	// test
+	
 }
