@@ -14,32 +14,42 @@ public class Record {
 	public static HashMap<String, ArrayList<String>> records = new HashMap<String, ArrayList<String>>();
 	
 	// constructor
-	public Record(String date,String time,String dateOfServices,int providerNumber,int memberNumber,int serviceCode,String comments, Member user){
-		this.date = date;
-		this.time = time;
+	public Record(String dateTime,String dateOfServices,int providerNumber,int memberNumber,int serviceCode,String comments, Member user){
+		this.date = dateTime;
+		//this.time = time;
 		this.dateOfServices = dateOfServices;
 		this.providerNumber = providerNumber;
 		this.memberNumber = memberNumber;
 		this.serviceCode = serviceCode;
 		this.comments = comments;
 		this.user = user;
-		//this.user = user;
+		this.user = user;
 	}
 	
 	public Record(){
 		//constructor with no arguments
 	}
+	//constructor with no user passed in
+	public Record(String dateTime,String dateOfServices,int providerNumber,int memberNumber,int serviceCode,String comments){
+		this.date = dateTime;
+		//this.time = time;
+		this.dateOfServices = dateOfServices;
+		this.providerNumber = providerNumber;
+		this.memberNumber = memberNumber;
+		this.serviceCode = serviceCode;
+		this.comments = comments;
+	}
 	
 	// generates the bill report record 
 	public void createRecord(){
 		ArrayList<String> record = new ArrayList<String>();
-		record.add(date);
-		record.add(time);
-		record.add(dateOfServices);
-		record.add(String.valueOf(providerNumber));
-		record.add(String.valueOf(memberNumber));
-		record.add(String.valueOf(serviceCode));
-		record.add(comments);
+		record.add(this.date);
+		//record.add(this.time);
+		record.add(this.dateOfServices);
+		record.add(String.valueOf(this.providerNumber));
+		record.add(String.valueOf(this.memberNumber));
+		record.add(String.valueOf(this.serviceCode));
+		record.add(this.comments);
 		records.put(user.getName(),record );
 		
 	}
@@ -89,4 +99,12 @@ public class Record {
 		memberNumber = user.getNumber();
 	}
 	
+	public static void main(String[] args) {
+		Member user = new Member("Anus Randy",123456,"123 douche avenue","Buttzville","Alasska","69696");
+		Record r1 = new Record("12-12-1987 12:12:34","10-15-1976", 123456, 345678, 113343,"boner",user);
+		r1.createRecord();
+		System.out.println(records);
+	}
+	
 }
+
