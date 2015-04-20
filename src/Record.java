@@ -11,7 +11,7 @@ public class Record {
 	protected int serviceCode;
 	protected String comments;
 	protected Member user;
-	protected static HashMap<String, ArrayList<String>> records = new HashMap<String, ArrayList<String>>();
+	protected static ArrayList<ArrayList> serviceRecords = new ArrayList<ArrayList>();
 	
 	// constructor
 	public Record(String dateTime,String dateOfServices,int providerNumber,int memberNumber,int serviceCode,String comments, Member user){
@@ -34,6 +34,7 @@ public class Record {
 	// generates the bill report record 
 	public void createRecord(){
 		ArrayList<String> record = new ArrayList<String>();
+		record.add(user.getName());
 		record.add(this.date);
 		//record.add(this.time);
 		record.add(this.dateOfServices);
@@ -41,10 +42,8 @@ public class Record {
 		record.add(String.valueOf(this.memberNumber));
 		record.add(String.valueOf(this.serviceCode));
 		record.add(this.comments);
-		if (records.containsKey(user.getName())){
-			
-		}
-		records.put(user.getName(),record );
+		serviceRecords.add(record);
+		
 		
 		
 	}
@@ -82,14 +81,14 @@ public class Record {
 		return user;
 	}
 
-	public static HashMap<String, ArrayList<String>> getRecords() {
-		return records;
+	public static Object getRecords() {
+		return serviceRecords;
 	}
 
 	// sets the date and time for the record
-	public void setDateTime(String newDate, String newTime){
+	public void setDateTime(String newDate){
 		date = newDate;
-		time = newTime;
+		
 	}
 	
 	// sets the date of services provided for the record
@@ -137,7 +136,7 @@ public class Record {
 		Record r2 = new Record("12-12-1996 12:15:34","10-15-1979", 123356, 342678, 113143,"ass",user1);
 		r1.createRecord();
 		r2.createRecord();
-		System.out.println(records);
+		System.out.println(serviceRecords);
 	}
 	
 }
