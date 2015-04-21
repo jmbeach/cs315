@@ -63,7 +63,18 @@ public class Main {
 	 *            the user's input at the main-menu
 	 */
 	public static void handleMainMenuChoice(String choice) {
-		MainMenuChoice menuChoice = MainMenuChoice.valueOf(choice);
+		MainMenuChoice menuChoice;
+		try {
+			menuChoice = MainMenuChoice.valueOf(choice);
+		} catch (Exception e) {
+			// The user did not input any of the options we listed
+			System.out.println("Your choice was invalid. Please try again.");
+			// Wait for the user to try again
+			String choiceAttempt = _co.readLine();
+			// Call this method recursively until a listed choice is input
+			handleMainMenuChoice(choiceAttempt);
+			return;
+		}
 		switch (menuChoice) {
 		case signin:
 			displaySigninMenu();
@@ -74,12 +85,6 @@ public class Main {
 			// end the program
 			return;
 		default:
-			// The user did not input any of the options we listed
-			System.out.println("Your choice was invalid. Please try again.");
-			// Wait for the user to try again
-			String choiceAttempt = _co.readLine();
-			// Call this method recursively until a listed choice is input
-			handleMainMenuChoice(choiceAttempt);
 		}
 	}
 
@@ -107,7 +112,15 @@ public class Main {
 	 *            The user's command line input from the sign-in menu
 	 */
 	public static void handleSigninChoice(String signInChoice) {
-		SigninChoice choice = SigninChoice.valueOf(signInChoice);
+		SigninChoice choice;
+		try {
+			choice = SigninChoice.valueOf(signInChoice);
+		} catch (Exception e) {
+			// The user didn't type in a valid option
+			println("\tYour input is invalid.");
+			displaySigninMenu();
+			return;
+		}
 		switch (choice) {
 		case member:
 			// handle member sign in
@@ -146,9 +159,6 @@ public class Main {
 			displayMainMenu();
 			break;
 		default:
-			// The user didn't type in a valid option
-			println("\tYour input is invalid.");
-			displaySigninMenu();
 			break;
 		}
 
