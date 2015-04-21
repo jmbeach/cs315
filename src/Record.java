@@ -30,6 +30,20 @@ public class Record {
 		//constructor with no arguments
 	}
 	
+	public double calculateFee(int servCode){
+		if (servCode == 6666665){
+			return 50.45;
+		}else if (servCode == 4519568){
+			return 12.99;
+		}else if (servCode == 102865){
+			return 21.45;
+		}else if (servCode == 551947){
+			return 349.99;
+		}else if (servCode == 80085){
+			return 54.69;
+		}
+		return 0.00;
+	}
 	
 	// generates the bill report record 
 	public void createRecord(){
