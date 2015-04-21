@@ -143,15 +143,15 @@ public class Record {
 		memberNumber = user.getNumber();
 	}
 	
-	public static void main(String[] args) { //testing purposes, delete later
-		Member user = new Member("Billy Butthole",123456,"123 douche avenue","Buttzville","Alasska","69696");
-		Member user1 = new Member("Billy Butthole",123656,"122 butt","Buttzville","Alasska","69796");
-		Record r1 = new Record("12-12-1987 12:12:34","10-15-1976", 123456, 345678, 113343,"boner",user);
-		Record r2 = new Record("12-12-1996 12:15:34","10-15-1979", 123356, 342678, 113143,"ass",user1);
-		r1.createRecord();
-		r2.createRecord();
-		System.out.println(serviceRecords);
-	}
+	//public static void main(String[] args) { //testing purposes, delete later
+		//Member user = new Member("Billy Butthole",123456,"123 douche avenue","Buttzville","Alasska","69696");
+		//Member user1 = new Member("Billy Butthole",123656,"122 butt","Buttzville","Alasska","69796");
+		//Record r1 = new Record("12-12-1987 12:12:34","10-15-1976", 123456, 345678, 113343,"boner",user);
+		//Record r2 = new Record("12-12-1996 12:15:34","10-15-1979", 123356, 342678, 113143,"ass",user1);
+		//r1.createRecord();
+		//r2.createRecord();
+		//System.out.println(serviceRecords);
+	//}
 	
 }
 
