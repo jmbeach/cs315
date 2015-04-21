@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 
-public class Provider extends User {
+public class Provider extends verifyUser {
 	
 	private String name;
 	private int number;
