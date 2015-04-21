@@ -15,11 +15,21 @@ public class MemberReport extends Database {
 	}
 	
 	public void generateReport() {
+		System.out.println(person.getName());
+		System.out.println(person.getNumber());
+		System.out.println(person.getAddress());
+		System.out.println(person.getCity());
+		System.out.println(person.getState());
+		System.out.println(person.getzipCode());
+		System.out.println();
+		System.out.println("Services Received:");
+		System.out.println();
 		ArrayList<Record> memberRecords = new ArrayList<Record>();
 		memberRecords = person.getServicesReceived();
 		for (int i=0; i<memberRecords.size();i++){
 			currentRecord = memberRecords.get(i);
 			displayRecord();
+			System.out.println();
 		}
     }
 	
