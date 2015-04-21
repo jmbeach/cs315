@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-
+// written by Matt Williams
 public class Database {
 	
 	ArrayList<Member> members = new ArrayList<Member>();
