@@ -2,7 +2,7 @@
  * CS315 Assignment 4, MemberReport class
  * Author: Hannah Hoover
  */
-public class MemberReport extends Report {
+public class MemberReport extends Record {
 	private Member person;
 	
 	    // constructor with no parameters
@@ -16,7 +16,7 @@ public class MemberReport extends Report {
 	
     //returns the member number
     public int getPNumber(){
-        return person.getNumber();
+        return get();
 
     }
     

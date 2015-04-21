@@ -10,7 +10,7 @@ public class Provider extends User {
 	private String state;
 	private String zipCode;
 	private float moneyEarned;
-	ArrayList<String> servicesProvided = new ArrayList<String>();
+	ArrayList<Record> servicesProvided = new ArrayList<Record>();
 
 	public Provider(String name, int number, String address, String city, String state, String zipCode){
 		this.name = name;
@@ -29,11 +29,11 @@ public class Provider extends User {
 		return name;
 	}
 	
-	public void addServices(String serv){
+	public void addServices(Record serv){
 		servicesProvided.add(serv);
 	}
 	
-	public ArrayList<String> getServices(){
+	public ArrayList<Record> getServices(){
 		return servicesProvided;
 	}
 	
