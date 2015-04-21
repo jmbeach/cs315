@@ -3,9 +3,9 @@ import java.util.ArrayList;
 // written by Matt Willams -
 public class Database {
 	
-	ArrayList<Member> members = new ArrayList<Member>();
-	ArrayList<Provider> providers = new ArrayList<Provider>();
-	ArrayList<Record> providerBillRecords = new ArrayList<Record>();
+	static ArrayList<Member> members = new ArrayList<Member>();
+	static ArrayList<Provider> providers = new ArrayList<Provider>();
+	static ArrayList<Record> providerBillRecords = new ArrayList<Record>();
 	
 	public Database(){
 		

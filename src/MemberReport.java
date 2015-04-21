@@ -43,6 +43,15 @@ public class MemberReport extends Database {
 
     }
     
+    public String getProviderName(int number){
+    	for (int i=0; i<Database.providers.size();i++){
+			if (Database.providers.get(i).getNumber() == number){
+				return Database.providers.get(i).getName();
+			}
+		}
+    	return "Invalid Provider Number";
+    }
+    
     //returns service
     public int getServiceCode(){
         return currentRecord.getServiceCode();
@@ -60,7 +69,7 @@ public class MemberReport extends Database {
     
 	// submits the Member report record
 	public void displayRecord(){
-		System.out.println(getDateProvided() + "\n" + getProviderNumber() + "\n" + super.getServiceName(getServiceCode()) );
+		System.out.println(getDateProvided() + "\n" + getProviderName(getProviderNumber()) + "\n" + super.getServiceName(getServiceCode()) );
 	}
 	
 	
