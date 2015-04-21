@@ -1,8 +1,12 @@
-public class ProviderReport extends Report {
-	private Provider person;
+/* 
+ * CS315 Assignment 4, MemberReport class
+ * Author: Hannah Hoover
+ */
+public class MemberReport extends Record {
+	private Member person;
 	
 	    // constructor with no parameters
-	public ProviderReport(Provider person){
+	public MemberReport(Member person){
 		super();
 		this.person = person;
 	}
@@ -10,9 +14,9 @@ public class ProviderReport extends Report {
 	public void generateReport(int memberNumber) {
     }
 	
-    //returns the provider number
+    //returns the member number
     public int getPNumber(){
-        return person.getNumber();
+        return get();
 
     }
     
@@ -31,14 +35,10 @@ public class ProviderReport extends Report {
 		return comments;
 	}
     
-	// submits the provider report record
+	// submits the Member report record
 	public void displayRecord(){
 		System.out.println(getDateTime() + "\n" + getDateProvided() + "\n" + getPNumber() + "\n" + "\n" + getServiceCode() + "\n" + getComments() + "\n" );
 	}
 	// 335434 0- 888 - 1010
 	
 }
-
-
-
-// provider gets report for only their services that are being used. 

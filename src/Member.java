@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /*
  * CS315 Assignment 4, Member class
  * Dillon Wastrack 
@@ -11,6 +13,8 @@ public class Member extends User {
 	private String city;
 	private String state;
 	private String zipCode;
+	private String memberStatus;
+	ArrayList<Record> servicesReceived = new ArrayList<Record>();
 
 	public Member(String name, int number, String address, String city, String state, String zipCode){
 		this.name = name;
@@ -19,12 +23,38 @@ public class Member extends User {
 		this.city = city;
 		this.state = state;
 		this.zipCode = zipCode; 
+		memberStatus = "VALID";
+		
 		
 	}
 	public Member(){
 		//Member constructor with no arguments
 	}
 
+	public void setStatusToValid(){
+		memberStatus = "Valid";
+	}
+	
+	public void setStatusToInvalid(){
+		memberStatus = "InValid";
+	}
+	
+	public void setStatusToSuspended(){
+		memberStatus = "Suspended";
+	}
+	
+	public String getStatus(){
+		return memberStatus;
+	}
+	
+	public void addServiceReceived(Record serv){
+		servicesReceived.add(serv);
+	}
+	
+	public ArrayList<Record> getServicesReceived(){
+		return servicesReceived;
+	}
+	
 	public String getName() { //Returns the User's Name
 		return name;
 	}

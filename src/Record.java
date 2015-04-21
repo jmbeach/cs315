@@ -11,7 +11,7 @@ public class Record {
 	protected int serviceCode;
 	protected String comments;
 	protected Member user;
-	protected static HashMap<String, ArrayList<String>> records = new HashMap<String, ArrayList<String>>();
+	protected static ArrayList<ArrayList> serviceRecords = new ArrayList<ArrayList>(); //ArrayList of all records, each record is another ArrayList inside the Master ArrayList
 	
 	// constructor
 	public Record(String dateTime,String dateOfServices,int providerNumber,int memberNumber,int serviceCode,String comments, Member user){
@@ -30,10 +30,25 @@ public class Record {
 		//constructor with no arguments
 	}
 	
+	public double calculateFee(int servCode){
+		if (servCode == 6666665){
+			return 50.45;
+		}else if (servCode == 4519568){
+			return 12.99;
+		}else if (servCode == 102865){
+			return 21.45;
+		}else if (servCode == 551947){
+			return 349.99;
+		}else if (servCode == 80085){
+			return 54.69;
+		}
+		return 0.00;
+	}
 	
 	// generates the bill report record 
 	public void createRecord(){
 		ArrayList<String> record = new ArrayList<String>();
+		record.add(user.getName());
 		record.add(this.date);
 		//record.add(this.time);
 		record.add(this.dateOfServices);
@@ -41,16 +56,53 @@ public class Record {
 		record.add(String.valueOf(this.memberNumber));
 		record.add(String.valueOf(this.serviceCode));
 		record.add(this.comments);
-		records.put(user.getName(),record );
+		serviceRecords.add(record);
+		
 		
 		
 	}
 	
 		
+	public String getDate() {
+		return date;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public String getDateOfServices() {
+		return dateOfServices;
+	}
+
+	public int getProviderNumber() {
+		return providerNumber;
+	}
+
+	public int getMemberNumber() {
+		return memberNumber;
+	}
+
+	public int getServiceCode() {
+		return serviceCode;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+
+	public Member getUser() {
+		return user;
+	}
+
+	public static Object getRecords() {
+		return serviceRecords;
+	}
+
 	// sets the date and time for the record
-	public void setDateTime(String newDate, String newTime){
+	public void setDateTime(String newDate){
 		date = newDate;
-		time = newTime;
+		
 	}
 	
 	// sets the date of services provided for the record
@@ -91,11 +143,14 @@ public class Record {
 		memberNumber = user.getNumber();
 	}
 	
-	public static void main(String[] args) {
-		Member user = new Member("Anus Randy",123456,"123 douche avenue","Buttzville","Alasska","69696");
+	public static void main(String[] args) { //testing purposes, delete later
+		Member user = new Member("Billy Butthole",123456,"123 douche avenue","Buttzville","Alasska","69696");
+		Member user1 = new Member("Billy Butthole",123656,"122 butt","Buttzville","Alasska","69796");
 		Record r1 = new Record("12-12-1987 12:12:34","10-15-1976", 123456, 345678, 113343,"boner",user);
+		Record r2 = new Record("12-12-1996 12:15:34","10-15-1979", 123356, 342678, 113143,"ass",user1);
 		r1.createRecord();
-		System.out.println(records);
+		r2.createRecord();
+		System.out.println(serviceRecords);
 	}
 	
 }
