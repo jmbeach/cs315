@@ -8,6 +8,7 @@ import java.io.Console;
 public class Main {
 	private static Console _co;
 	private static final int _userNumberLength = 6;
+	private static Database _db = new Database();
 
 	/**
 	 * Starts the ChocAn terminal
@@ -19,17 +20,16 @@ public class Main {
 	public static void main(String[] args) {
 		_co = System.console();
 		// Hard-coded members and providers
-		Database d = new Database();
 		Provider p = new Provider("Octavius", 123456, "345 anus avenue",
 				"Tuscaloosa", "AL", "35404");
-		d.addProvider(p);
 		Member m = new Member("Dillon", 356661, "417 Prince Acres",
 				"Tuscaloosa", "AL", "35404");
 		Member o = new Member("Matt", 236544, "417 Prince Acres", "Tuscaloosa",
 				"AL", "35404");
-		d.addMember(m);
-		d.addMember(o);
-		Member mem = d.getMember(o.getNumber());
+		_db.addMember(m);
+		_db.addMember(o);
+		_db.addProvider(p);
+		// Member mem = d.getMember(o.getNumber());
 		// System.out.println(mem.getName());
 		// System.out.println(d.getProviders());
 		displayMainMenu();
@@ -39,8 +39,7 @@ public class Main {
 	 * Display's ChocAn's main menu
 	 */
 	public static void displayMainMenu() {
-		System.out
-				.println("Welcome to ChocAn!\nMenu:\n\t1) sign-in\n\tn) exit");
+		System.out.println("Welcome to ChocAn!\nMenu:\n\t1) signin\n\tn) exit");
 		// read the user's choice from command line
 		String choice = _co.readLine();
 		handleMainMenuChoice(choice);
@@ -64,11 +63,12 @@ public class Main {
 	 *            the user's input at the main-menu
 	 */
 	public static void handleMainMenuChoice(String choice) {
-		switch (choice) {
-		case "sign-in":
+		MainMenuChoice menuChoice = MainMenuChoice.valueOf(choice);
+		switch (menuChoice) {
+		case signin:
 			displaySigninMenu();
 			break;
-		case "exit":
+		case exit:
 			// Print exit message
 			System.out.println("Bye!");
 			// end the program
@@ -107,8 +107,9 @@ public class Main {
 	 *            The user's command line input from the sign-in menu
 	 */
 	public static void handleSigninChoice(String signInChoice) {
-		switch (signInChoice) {
-		case "member":
+		SigninChoice choice = SigninChoice.valueOf(signInChoice);
+		switch (choice) {
+		case member:
 			// handle member sign in
 			System.out
 					.println("\tSigning in member:\n\t\t Enter member number.");
@@ -124,7 +125,7 @@ public class Main {
 			println("\tFinding member in database...");
 			// TODO: Need to bounce memberNumber off of database here
 			break;
-		case "provider":
+		case provider:
 			// handle provider sign in
 			System.out
 					.println("\tSigning in provider:\n\t\t Enter in provider number. ");
@@ -140,11 +141,11 @@ public class Main {
 			println("\tFinding provider in database...");
 			// TODO: Need to bounce providerNumber off of database here
 			break;
-		case "back":
+		case back:
 			// return back to main menu
 			displayMainMenu();
 			break;
-		case "default":
+		default:
 			// The user didn't type in a valid option
 			println("\tYour input is invalid.");
 			displaySigninMenu();
