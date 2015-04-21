@@ -1,15 +1,15 @@
 import java.util.ArrayList;
 
 public class ProviderReport extends Database {
-	private Member person;
+	private Provider person;
 	private Record currentRecord;
 	private int numOfConsultations;
 	private int totalFees;
 	
 	    // constructor with no parameters
-	public ProviderReport(Member personality){
+	public ProviderReport(Provider p){
 		super();
-		this.person = personality;
+		this.person = p;
 		numOfConsultations = 0;
 		totalFees = 0;
 	}
@@ -20,21 +20,22 @@ public class ProviderReport extends Database {
 		System.out.println(person.getAddress());
 		System.out.println(person.getCity());
 		System.out.println(person.getState());
-		System.out.println(person.getzipCode());
+		System.out.println(person.getZipCode());
 		System.out.println();
 		System.out.println("Services Provided:");
 		System.out.println();
 		ArrayList<Record> providerRecords = new ArrayList<Record>();
-		providerRecords = person.getServicesReceived();
+		providerRecords = person.getServices();
 		for (int i=0; i<providerRecords.size();i++){
 			currentRecord = providerRecords.get(i);
 			displayRecord();
 			System.out.println();
 			numOfConsultations += 1;
-			System.out.println();
-			System.out.println("Number of Consultations: " + numOfConsultations);
-			System.out.println("Total Fee for week: " + "$" + totalFees);
 		}
+		System.out.println();
+		System.out.println("Number of Consultations: " + numOfConsultations);
+		System.out.println("Total Fee for week: " + "$" + totalFees);
+		System.out.println("-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/");
     }
 	
 	public String getDateTime(){
@@ -83,7 +84,7 @@ public class ProviderReport extends Database {
 	// submits the Member report record
 	public void displayRecord(){
 		//System.out.println(getDateProvided() + "\n" + getProviderName(getProviderNumber()) + "\n" + super.getServiceName(getServiceCode()) );
-		System.out.println(getDateOfService() + "\n" + getDateTime() + "\n" + getMemberName(getMemberNumber()) + "\n" + getMemberNumber() + "\n" + getServiceCode() + "\n" + getServiceFee());
+		System.out.println(getDateOfService() + "\n" + getDateTime() + "\n" + getMemberName(getMemberNumber()) + "\n" + getMemberNumber() + "\n" + getServiceCode() + "\n" + "$" + getServiceFee());
 	}
 	
 }

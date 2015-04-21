@@ -39,7 +39,7 @@ public class Record {
 			return 21.45;
 		}else if (servCode == 551947){
 			return 349.99;
-		}else if (servCode == 80085){
+		}else if (servCode == 800085){
 			return 54.69;
 		}
 		return 0.00;
