@@ -8,8 +8,8 @@ public class EFTReport {
 	}
 	
 	public void generateReport(){
-		System.out.println(person.getName());
-		System.out.println(person.getNumber());
-		System.out.println(person.getMoneyEarned());
+		System.out.println("Provider Name: " + person.getName());
+		System.out.println("Provider Number: " +  person.getNumber());
+		System.out.println("Amount to be Paid: " + "$" + person.getMoneyEarned());
 	}
 }

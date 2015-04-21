@@ -16,12 +16,12 @@ public class MemberReport extends Database {
 	}
 	
 	public void generateReport() {
-		System.out.println(person.getName());
-		System.out.println(person.getNumber());
-		System.out.println(person.getAddress());
-		System.out.println(person.getCity());
-		System.out.println(person.getState());
-		System.out.println(person.getzipCode());
+		System.out.println("Member Name: " + person.getName());
+		System.out.println("Member Number: " + person.getNumber());
+		System.out.println("Member Address: " + person.getAddress());
+		System.out.println("Member City: " + person.getCity());
+		System.out.println("Member State: " + person.getState());
+		System.out.println("Member Zip Code: " + person.getzipCode());
 		System.out.println();
 		System.out.println("Services Received:");
 		System.out.println();
@@ -70,7 +70,7 @@ public class MemberReport extends Database {
     
 	// submits the Member report record
 	public void displayRecord(){
-		System.out.println(getDateProvided() + "\n" + getProviderName(getProviderNumber()) + "\n" + super.getServiceName(getServiceCode()) );
+		System.out.println("Date Provided: " + getDateProvided() + "\n" + "Provider Name: " + getProviderName(getProviderNumber()) + "\n" + "Service Name: " + super.getServiceName(getServiceCode()) );
 	}
 	
 }

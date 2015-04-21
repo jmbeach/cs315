@@ -19,12 +19,12 @@ public class ProviderReport extends Database {
 	}
 	
 	public void generateReport() {
-		System.out.println(person.getName());
-		System.out.println(person.getNumber());
-		System.out.println(person.getAddress());
-		System.out.println(person.getCity());
-		System.out.println(person.getState());
-		System.out.println(person.getZipCode());
+		System.out.println("Provider Name: " + person.getName());
+		System.out.println("Provider Number: " + person.getNumber());
+		System.out.println("Provider Address: " + person.getAddress());
+		System.out.println("Provider City: " + person.getCity());
+		System.out.println("Provider State: " + person.getState());
+		System.out.println("Provider Zip Code: " + person.getZipCode());
 		System.out.println();
 		System.out.println("Services Provided:");
 		System.out.println();
@@ -88,7 +88,7 @@ public class ProviderReport extends Database {
 	// submits the Member report record
 	public void displayRecord(){
 		//System.out.println(getDateProvided() + "\n" + getProviderName(getProviderNumber()) + "\n" + super.getServiceName(getServiceCode()) );
-		System.out.println(getDateOfService() + "\n" + getDateTime() + "\n" + getMemberName(getMemberNumber()) + "\n" + getMemberNumber() + "\n" + getServiceCode() + "\n" + "$" + getServiceFee());
+		System.out.println("Date of Service: " + getDateOfService() + "\n" + "Date and Time: " + getDateTime() + "\n" + "Member Name: " + getMemberName(getMemberNumber()) + "\n" + "Member Number: " + getMemberNumber() + "\n" + "Service Code: " + getServiceCode() + "\n" + "Service Fee: " + "$" + getServiceFee());
 	}
 	
 }
