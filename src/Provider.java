@@ -77,11 +77,11 @@ public class Provider extends verifyUser {
 		this.city = city;
 	}
 
-	public String getzipCode() { //returns the user's zip code
+	public String getZipCode() { //returns the user's zip code
 		return zipCode;
 	}
 
-	public void setzipCode(String zipCode) { //sets the user's zip code
+	public void setZipCode(String zipCode) { //sets the user's zip code
 		this.zipCode = zipCode;
 	}
 
