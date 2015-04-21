@@ -44,6 +44,10 @@ public class Provider extends User {
 	public float getMoneyEarned(){
 		return moneyEarned;
 	}
+	
+	public void clearFees(){
+		moneyEarned = 0;
+	}
 
 	public void setName(String name) { //Sets the User's Name
 		this.name = name;
