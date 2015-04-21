@@ -72,9 +72,4 @@ public class MemberReport extends Database {
 		System.out.println(getDateProvided() + "\n" + getProviderName(getProviderNumber()) + "\n" + super.getServiceName(getServiceCode()) );
 	}
 	
-	
-	
-	
-	
-	
 }
