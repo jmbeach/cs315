@@ -1,11 +1,24 @@
 import java.io.Console;
 
+/**
+ * 
+ * @author Team8
+ * 
+ */
 public class Main {
 	private static Console _co;
+	private static final int _userNumberLength = 6;
 
+	/**
+	 * Starts the ChocAn terminal
+	 * 
+	 * @param args
+	 *            There are no command line arguments
+	 */
 	// open console to bin folder and run "java Main"
 	public static void main(String[] args) {
 		_co = System.console();
+		// Hard-coded members and providers
 		Database d = new Database();
 		Provider p = new Provider("Octavius", 123456, "345 anus avenue",
 				"Tuscaloosa", "AL", "35404");
@@ -22,6 +35,9 @@ public class Main {
 		displayMainMenu();
 	}
 
+	/**
+	 * Display's ChocAn's main menu
+	 */
 	public static void displayMainMenu() {
 		System.out
 				.println("Welcome to ChocAn!\nMenu:\n\t1) sign-in\n\tn) exit");
@@ -30,6 +46,9 @@ public class Main {
 		handleMainMenuChoice(choice);
 	}
 
+	/**
+	 * Display's ChocAn's sign-in menu for signing in a member or provider.
+	 */
 	public static void displaySigninMenu() {
 		System.out
 				.println("\tSigning in:\n\tMenu:\n\t\t1) member\n\t\t2) provider\n\t\t3) back");
@@ -38,6 +57,12 @@ public class Main {
 		handleSigninChoice(signInChoice);
 	}
 
+	/**
+	 * Uses the user's input at the Main menu to help navigate through ChocAn.
+	 * 
+	 * @param choice
+	 *            the user's input at the main-menu
+	 */
 	public static void handleMainMenuChoice(String choice) {
 		switch (choice) {
 		case "sign-in":
@@ -58,6 +83,29 @@ public class Main {
 		}
 	}
 
+	/**
+	 * Checks to make sure the passed in user number is the right length. If
+	 * not, displays sign-in menu
+	 * 
+	 * @param strUserNumber
+	 *            the user number read from the command line as a string
+	 */
+	public static void checkUserNumberLength(String strUserNumber) {
+		int numberLength = strUserNumber.trim().length();
+		// if number too short or too long
+		if (numberLength != _userNumberLength) {
+			System.out.println("Member number invalid");
+			displaySigninMenu();
+		}
+	}
+
+	/**
+	 * Uses the user input at the sign-in menu and tries to begin the sign-in
+	 * process.
+	 * 
+	 * @param signInChoice
+	 *            The user's command line input from the sign-in menu
+	 */
 	public static void handleSigninChoice(String signInChoice) {
 		switch (signInChoice) {
 		case "member":
@@ -65,6 +113,7 @@ public class Main {
 			System.out
 					.println("\tSigning in member:\n\t\t Enter member number.");
 			String strMemberNumber = _co.readLine();
+			checkUserNumberLength(strMemberNumber);
 			Integer memberNumber;
 			try {
 				memberNumber = Integer.parseInt(strMemberNumber);
@@ -72,6 +121,7 @@ public class Main {
 				System.out.println("Member number format not valid.");
 				displaySigninMenu();
 			}
+			println("\tFinding member in database...");
 			// TODO: Need to bounce memberNumber off of database here
 			break;
 		case "provider":
@@ -79,6 +129,7 @@ public class Main {
 			System.out
 					.println("\tSigning in provider:\n\t\t Enter in provider number. ");
 			String strProviderNumber = _co.readLine();
+			checkUserNumberLength(strProviderNumber);
 			Integer providerNumber;
 			try {
 				providerNumber = Integer.parseInt(strProviderNumber);
@@ -86,27 +137,23 @@ public class Main {
 				System.out.println("Provider number format not valid.");
 				displaySigninMenu();
 			}
+			println("\tFinding provider in database...");
 			// TODO: Need to bounce providerNumber off of database here
 			break;
 		case "back":
 			// return back to main menu
 			displayMainMenu();
 			break;
+		case "default":
+			// The user didn't type in a valid option
+			println("\tYour input is invalid.");
+			displaySigninMenu();
+			break;
 		}
 
 	}
 
-	public static void handleMemberSignIn() {
-		// handle member sign in
-		System.out.println("\tSigning in member:\n\t\t Enter member number.");
-		String strMemberNumber = _co.readLine();
-		Integer memberNumber;
-		try {
-			memberNumber = Integer.parseInt(strMemberNumber);
-		} catch (Exception e) {
-			System.out.println("Member number format invalid.");
-		}
-		// TODO: Need to bounce memberNumber off of database here
+	private static void println(String message) {
+		System.out.println(message);
 	}
-
 }
