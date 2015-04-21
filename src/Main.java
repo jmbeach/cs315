@@ -30,14 +30,18 @@ public class Main {
 		handleMainMenuChoice(choice);
 	}
 
+	public static void displaySigninMenu() {
+		System.out
+				.println("\tSigning in:\n\tMenu:\n\t\t1) member\n\t\t2) provider\n\t\t3) back");
+		// read in sign-in sub option
+		String signInChoice = _co.readLine();
+		handleSigninChoice(signInChoice);
+	}
+
 	public static void handleMainMenuChoice(String choice) {
 		switch (choice) {
 		case "sign-in":
-			System.out
-					.println("\tSigning in:\n\tMenu:\n\t\t1) member\n\t\t2) provider\n\t\t3) back");
-			// read in sign-in sub option
-			String signInChoice = _co.readLine();
-			handleSigninChoice(signInChoice);
+			displaySigninMenu();
 			break;
 		case "exit":
 			// Print exit message
@@ -60,11 +64,29 @@ public class Main {
 			// handle member sign in
 			System.out
 					.println("\tSigning in member:\n\t\t Enter member number.");
+			String strMemberNumber = _co.readLine();
+			Integer memberNumber;
+			try {
+				memberNumber = Integer.parseInt(strMemberNumber);
+			} catch (Exception e) {
+				System.out.println("Member number format not valid.");
+				displaySigninMenu();
+			}
+			// TODO: Need to bounce memberNumber off of database here
 			break;
 		case "provider":
 			// handle provider sign in
 			System.out
 					.println("\tSigning in provider:\n\t\t Enter in provider number. ");
+			String strProviderNumber = _co.readLine();
+			Integer providerNumber;
+			try {
+				providerNumber = Integer.parseInt(strProviderNumber);
+			} catch (Exception e) {
+				System.out.println("Provider number format not valid.");
+				displaySigninMenu();
+			}
+			// TODO: Need to bounce providerNumber off of database here
 			break;
 		case "back":
 			// return back to main menu
@@ -72,6 +94,19 @@ public class Main {
 			break;
 		}
 
+	}
+
+	public static void handleMemberSignIn() {
+		// handle member sign in
+		System.out.println("\tSigning in member:\n\t\t Enter member number.");
+		String strMemberNumber = _co.readLine();
+		Integer memberNumber;
+		try {
+			memberNumber = Integer.parseInt(strMemberNumber);
+		} catch (Exception e) {
+			System.out.println("Member number format invalid.");
+		}
+		// TODO: Need to bounce memberNumber off of database here
 	}
 
 }
