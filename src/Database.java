@@ -39,6 +39,22 @@ public class Database {
 		return members;
 	}
 	
+	public String getServiceName(int serviceCode){
+		if (serviceCode == 666665){
+			return "Diet Consultation";
+		}else if (serviceCode == 451956){
+			return "Excercise Session";
+		}else if(serviceCode == 102865){
+			return "Massage Session";
+		}else if(serviceCode == 551947){
+			return "Weight-loss Crying Session";
+		}else if(serviceCode == 800085){
+			return "Yoga Session";
+		}
+		return "Incorrect Code";
+		
+	}
+	
 	public Member getMember(int memberNumber){
 		for (int i=0; i<members.size();i++){
 			if (members.get(i).getNumber() == memberNumber){
