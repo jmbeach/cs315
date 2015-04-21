@@ -1,3 +1,5 @@
+// written by Matt Williams
+
 import java.util.ArrayList;
 
 public class ProviderReport extends Database {
@@ -12,6 +14,8 @@ public class ProviderReport extends Database {
 		this.person = p;
 		numOfConsultations = 0;
 		totalFees = 0;
+		generateReport();
+		p.addMoneyEarned(totalFees);
 	}
 	
 	public void generateReport() {

@@ -12,6 +12,7 @@ public class MemberReport extends Database {
 	public MemberReport(Member personality){
 		super();
 		this.person = personality;
+		generateReport();
 	}
 	
 	public void generateReport() {
