@@ -1,0 +1,131 @@
+public static void main(String[] args) {
+		Member m = new Member("Dillon", 356661, "417 Prince Acres",
+				"Tuscaloosa", "AL", "35404");
+		Record r = new Record("date","dateProvided",000001,111111,800085,"none",m);
+		Record r2 = new Record("date2","dateProvided2",000001,111111,800085,"none",m);
+		m.addServiceReceived(r);
+		m.addServiceReceived(r2);
+		System.out.println(m.getServicesReceived());
+		MemberReport test = new MemberReport(m);
+		test.generateReport();
+		//System.out.println(te);
+		//Member o = new Member("Matt", 236544, "417 Prince Acres", "Tuscaloosa",
+			//	"AL", "35404");
+		//super.addMember(m);
+		//super.addMember(o);
+		//Member mem = super.getMember(o.getNumber());
+	}
+	
+	--------------vvv Member Record Advanced vvv---------------------------------------------------------------------
+	
+	public static void main(String[] args) {
+		Provider p = new Provider("Provider 1", 000001, "417 Prince Acres",
+				"Tuscaloosa", "AL", "35404");
+		Provider p2 = new Provider("Provider 2", 666666, "417 Prince Acres",
+				"Tuscaloosa", "AL", "35404");
+		Database data = new Database();
+		data.addProvider(p);
+		data.addProvider(p2);
+		//System.out.println(p.getNumber());
+		//System.out.println(p2.getNumber());
+		
+		Member m = new Member("Dillon", 356661, "417 Prince Acres",
+				"Tuscaloosa", "AL", "35404");
+		Record r = new Record("date","dateProvided",000001,111111,800085,"none",m);
+		Record r2 = new Record("date2","dateProvided2",000001,111111,800085,"none",m);
+		m.addServiceReceived(r);
+		m.addServiceReceived(r2);
+		System.out.println(m.getServicesReceived());
+		MemberReport test = new MemberReport(m);
+		test.generateReport();
+		
+		Member m2 = new Member("Matt", 356661, "Address Here",
+				"Tuscaloosa", "AL", "35404");
+		Record rm = new Record("Matt date","Matt dateProvided",666666,454545,800085,"Comment",m);
+		Record rm2 = new Record("Matt date2","Matt dateProvided2",000001,111111,800085,"none",m);
+		m2.addServiceReceived(rm);
+		m2.addServiceReceived(rm2);
+		System.out.println(m.getServicesReceived());
+		MemberReport testm = new MemberReport(m2);
+		testm.generateReport();
+		
+		Member m3 = new Member("Hannah", 464293, "Help Me",
+				"Tuscaloosa", "AL", "35404");
+		Record rh = new Record("Hannah date","Hannah dateProvided",000001,111111,800085,"none",m);
+		Record rh2 = new Record("Hannah date2","hannah dateProvided2",000001,111111,800085,"none",m);
+		m3.addServiceReceived(rh);
+		m3.addServiceReceived(rh2);
+		System.out.println(m.getServicesReceived());
+		MemberReport test3 = new MemberReport(m3);
+		test3.generateReport();
+	}
+	
+	
+	----------------------vvv Provider Record vvv-------------------------------------------------------------
+	
+	public static void main(String[] args) {
+		Provider p = new Provider("Provider 1", 000001, "417 Prince Acres",
+				"Tuscaloosa", "AL", "35404");
+		Provider p2 = new Provider("Provider 2", 666666, "417 Prince Acres",
+				"Tuscaloosa", "AL", "35404");
+		Database data = new Database();
+		data.addProvider(p);
+		data.addProvider(p2);
+		//System.out.println(p.getNumber());
+		//System.out.println(p2.getNumber());
+		
+		Member m = new Member("Dillon", 356661, "417 Prince Acres",
+				"Tuscaloosa", "AL", "35404");
+		Record r = new Record("date","dateProvided",000001,111111,800085,"none",m);
+		Record r2 = new Record("date2","dateProvided2",000001,111111,800085,"none",m);
+		m.addServiceReceived(r);
+		m.addServiceReceived(r2);
+		System.out.println(m.getServicesReceived());
+		MemberReport test = new MemberReport(m);
+		//test.generateReport();
+		
+		Member m2 = new Member("Matt", 356661, "Address Here",
+				"Tuscaloosa", "AL", "35404");
+		Record rm = new Record("Matt date","Matt dateProvided",666666,454545,800085,"Comment",m);
+		Record rm2 = new Record("Matt date2","Matt dateProvided2",000001,111111,800085,"none",m);
+		m2.addServiceReceived(rm);
+		m2.addServiceReceived(rm2);
+		System.out.println(m.getServicesReceived());
+		MemberReport testm = new MemberReport(m2);
+		//testm.generateReport();
+		
+		Member m3 = new Member("Hannah", 464293, "Help Me",
+				"Tuscaloosa", "AL", "35404");
+		Record rh = new Record("Hannah date","Hannah dateProvided",000001,111111,800085,"none",m);
+		Record rh2 = new Record("Hannah date2","hannah dateProvided2",000001,111111,800085,"none",m);
+		m3.addServiceReceived(rh);
+		m3.addServiceReceived(rh2);
+		System.out.println(m.getServicesReceived());
+		MemberReport test3 = new MemberReport(m3);
+		//test3.generateReport();
+		System.out.println("-----------------------------");
+		p.addServices(r);
+		p.addServices(r2);
+		p.addServices(rm);
+		p2.addServices(rm2);
+		p.addServices(rh);
+		p.addServices(rh2);
+		data.addMember(m);
+		data.addMember(m2);
+		data.addMember(m3);
+		data.addBillRecord(r);
+		data.addBillRecord(r2);
+		data.addBillRecord(rm);
+		data.addBillRecord(rm2);
+		data.addBillRecord(rh);
+		data.addBillRecord(rh2);
+		ProviderReport providerTest = new ProviderReport(p);
+		//providerTest.generateReport();
+		ProviderReport providerTest2 = new ProviderReport(p2);
+		//providerTest2.generateReport();
+		System.out.println();
+		EFTReport testEFT = new EFTReport(p);
+		System.out.println();
+		EFTReport testEFT2 = new EFTReport(p2);
+		
+		WeeklyReport testWeekReport = new WeeklyReport();
