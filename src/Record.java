@@ -22,7 +22,16 @@ public class Record implements Serializable {
 																						// inside
 																						// the
 																						// Master
-																						// ArrayList
+	/**
+	 * constructor for the record class with parameters																					// ArrayList
+	 * @param dateTime
+	 * @param dateOfServices
+	 * @param providerNumber
+	 * @param memberNumber
+	 * @param serviceCode
+	 * @param comments
+	 * @param user
+	 */
 
 	// constructor
 	public Record(String dateTime, String dateOfServices, int providerNumber,
@@ -37,11 +46,17 @@ public class Record implements Serializable {
 		this.user = user;
 
 	}
-
+	/**
+	 * constructor for the record class without parameters
+	 */
 	public Record() {
 		// constructor with no arguments
 	}
-
+	/**
+	 * calculateFee: calculates fees for different services based on their code
+	 * @param servCode
+	 * @return
+	 */
 	public double calculateFee(int servCode) {
 		if (servCode == 6666665) {
 			return 50.45;
@@ -56,6 +71,9 @@ public class Record implements Serializable {
 		}
 		return 0.00;
 	}
+	/**
+	 * createRecord: creates a record for the info passed in
+	 */
 
 	// generates the bill report record
 	public void createRecord() {
@@ -71,80 +89,147 @@ public class Record implements Serializable {
 		serviceRecords.add(record);
 
 	}
+	/**
+	 * getDate: returns the date
+	 * @return
+	 */
 
 	public String getDate() {
 		return date;
 	}
 
+	/**
+	 * getTime: returns the time.
+	 * @return
+	 */
 	public String getTime() {
 		return time;
 	}
+	/**
+	 * getDateOfServices: returns the date of services
+	 * @return
+	 */
 
 	public String getDateOfServices() {
 		return dateOfServices;
 	}
+	/**
+	 * getProviderNumber: returns the provider number
+	 * @return
+	 */
 
 	public int getProviderNumber() {
 		return providerNumber;
 	}
+	/**
+	 * getMemberNumber: returns the member number
+	 * @return
+	 */
 
 	public int getMemberNumber() {
 		return memberNumber;
 	}
+	/**
+	 * getServiceCode: returns the service code
+	 * @return
+	 */
 
 	public int getServiceCode() {
 		return serviceCode;
 	}
+	/**
+	 * getComments: returns the comments of the record
+	 * @return
+	 */
 
 	public String getComments() {
 		return comments;
 	}
+	/**
+	 * getUser: returns the member object
+	 * @return
+	 */
 
 	public Member getUser() {
 		return user;
 	}
+	/**
+	 * getRecords: returns the records
+	 * @return
+	 */
 
 	public static Object getRecords() {
 		return serviceRecords;
 	}
+	/**
+	 * setDateTime: sets the date and time
+	 * @param newDate
+	 */
 
 	// sets the date and time for the record
 	public void setDateTime(String newDate) {
 		date = newDate;
 
 	}
+	/**
+	 * setDateProvided: sets the date the service was provided
+	 * @param providedDate
+	 */
 
 	// sets the date of services provided for the record
 	public void setDateProvided(String providedDate) {
 		dateOfServices = providedDate;
 
 	}
+	/**
+	 * setPNumber: sets the provider number
+	 * @param provider
+	 */
 
 	// sets the provider number for the record
 	public void setPNumber(int provider) {
 		providerNumber = provider;
 	}
+	/**
+	 * setUNumber: sets the member number
+	 * @param member
+	 */
 
 	// sets the member number for the record
 	public void setUNumber(int member) {
 		memberNumber = member;
 	}
+	/**
+	 * setServiceCode: sets the service code
+	 * @param code
+	 */
 
 	// sets the service code of the services provided
 	public void setServiceCode(int code) {
 		serviceCode = code;
 	}
+	/**
+	 * setComments: sets the comments for the record
+	 * @param notes
+	 */
 
 	// sets the comments for the record
 	public void setComments(String notes) {
 		comments = notes;
 	}
+	/**
+	 * selectUser: selects the user for the record
+	 * @param person
+	 */
 
 	// sets the selected user to the member object that is passed in
 	public void selectUser(Member person) {
 		user = person;
 
 	}
+	/**
+	 * loadUser: loads the user based on their number
+	 */
 
 	// loads the selected user, and sets the member number
 	public void loadUser() {
