@@ -22,7 +22,7 @@ public class Database implements java.io.Serializable {
 	private static final String strRecordSavePath = isWindows()? strSavePath
 			+ "\\record.sav" : strSavePath + "/record.sav";
 
-	// hashed on member number
+	/// hashed on member number
 	static Map<Integer, Member> members = new HashMap<Integer, Member>();
 	// Hashed on provider number
 	static Map<Integer, Provider> providers = new HashMap<Integer, Provider>();
