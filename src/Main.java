@@ -81,10 +81,67 @@ public class Main {
 		case "1":
 		case "member":
 			// do sign-out
+			print("Signing out member:\nEnter member number: ");
+			String strMemberNumber = _co.readLine();
+			checkUserNumberLength(strMemberNumber);
+			Integer memberNumber = 0;
+			try {
+				memberNumber = Integer.parseInt(strMemberNumber);
+			} catch (Exception e) {
+				println("Member number format not valid.");
+				displaySignOutMenu();
+			}
+			println("Finding member in database...");
+			Member member = _db.getMember(memberNumber);
+			if (member != null) {
+				// if member not signed in
+				if (member.isSignedIn()) {
+					println("Sign out successful!\nGood-bye, "
+							+ member.getName() + ".");
+					member.signOut();
+					_db.saveDb();
+					displayMainMenu();
+				} else {
+					println("Member, " + member.getName()
+							+ " is already signed out.");
+					displayMainMenu();
+				}
+			} else {
+				println("Member could not be found.");
+				displaySignOutMenu();
+			}
 			break;
 		case "2":
 		case "provider":
 			// do sign-out
+			print("Signing out provider:\nEnter in provider number: ");
+			String strProviderNumber = _co.readLine();
+			checkUserNumberLength(strProviderNumber);
+			Integer providerNumber = 0;
+			try {
+				providerNumber = Integer.parseInt(strProviderNumber);
+			} catch (Exception e) {
+				println("Provider number format not valid.");
+				displaySignOutMenu();
+			}
+			println("Finding provider in database...");
+			Provider provider = _db.getProvider(providerNumber);
+			if (provider != null) {
+				if (!provider.isSignedIn()) {
+					println("Sign out successful!\nGoodbye, "
+							+ provider.getName() + ".");
+					provider.signOut();
+					_db.saveDb();
+					displayMainMenu();
+				} else {
+					println("Provider, " + provider.getName()
+							+ " already signed out.");
+					displayMainMenu();
+				}
+			} else {
+				println("Provider could not be found.");
+				displaySignOutMenu();
+			}
 			break;
 		case "3":
 		case "back":
@@ -93,6 +150,8 @@ public class Main {
 			break;
 		case "default":
 			// correct the user
+			println("Your input was invalid.");
+			displaySignOutMenu();
 			break;
 		}
 	}
@@ -180,7 +239,7 @@ public class Main {
 		print("Signing in member:\nEnter member number: ");
 		String strMemberNumber = _co.readLine();
 		checkUserNumberLength(strMemberNumber);
-		Integer memberNumber = null;
+		Integer memberNumber = 0;
 		try {
 			memberNumber = Integer.parseInt(strMemberNumber);
 		} catch (Exception e) {
@@ -228,7 +287,7 @@ public class Main {
 				displayMainMenu();
 			} else {
 				println("Provider, " + provider.getName()
-						+ " already signed int.");
+						+ " already signed in.");
 				displayMainMenu();
 			}
 		} else {
