@@ -45,16 +45,54 @@ public class Main {
 		displayMainMenu();
 	}
 
+	// Region MENU_DISPLAYS
 	/**
 	 * Display's ChocAn's sign-in menu for signing in a member or provider.
 	 */
-	public static void displayMainMenu() {
+	private static void displayMainMenu() {
 		System.out
-				.println("Welcome to ChocAn!\nMenu:\n\t1) sign-in\n\tn) exit");
+				.print("Welcome to ChocAn!\nMenu:\n\t1) sign-in\n\t2) sign-out\n\tn) exit\nchocAn>");
 		// read the user's choice from command line
 		String choice = _co.readLine();
 		handleMainMenuChoice(choice);
 	}
+
+	/**
+	 * Display's ChocAn's sign-in menu for signing in a member or provider.
+	 */
+	private static void displaySigninMenu() {
+		print("Signing in:\n\tMenu:\n\t\t1) member\n\t\t2) provider\n\t\t3) back\nchocAn>");
+		// read in sign-in sub option
+		String signInChoice = _co.readLine();
+		handleSigninChoice(signInChoice);
+	}
+
+	private static void displaySignOutMenu() {
+		print("Signing out:\nMenu:\n\t1) member\n\t2) provider\n\t3) back\n\nchocAn>");
+		// read in sign-out option
+		String signOutChoice = _co.readLine();
+		// handle choice
+		switch (signOutChoice) {
+		case "1":
+		case "member":
+			// do sign-out
+			break;
+		case "2":
+		case "provider":
+			// do sign-out
+			break;
+		case "3":
+		case "back":
+			// go back to main menu
+			displayMainMenu();
+			break;
+		case "default":
+			// correct the user
+			break;
+		}
+	}
+
+	// EndRegion
 
 	/**
 	 * Uses the user's input at the Main menu to help navigate through ChocAn.
@@ -62,16 +100,16 @@ public class Main {
 	 * @param choice
 	 *            the user's input at the main-menu
 	 */
-	public static void handleMainMenuChoice(String choice) {
+	private static void handleMainMenuChoice(String choice) {
 		switch (choice) {
 		case "1":
 		case "sign-in":
-			System.out
-					.println("Signing in:\nMenu:\n\t1) member\n\t2) provider\n\t3) back");
-			// read in sign-in sub option
-			String signInChoice = _co.readLine();
-			handleSigninChoice(signInChoice);
+			displaySigninMenu();
 			break;
+		case "2":
+		case "sign-out":
+			// display sign-out menu
+			displaySignOutMenu();
 		case "n":
 		case "exit":
 			// Print exit message
@@ -95,7 +133,7 @@ public class Main {
 	 * @param strUserNumber
 	 *            the user number read from the command line as a string
 	 */
-	public static void checkUserNumberLength(String strUserNumber) {
+	private static void checkUserNumberLength(String strUserNumber) {
 		int numberLength = strUserNumber.trim().length();
 		// if number too short or too long
 		if (numberLength != _userNumberLength) {
@@ -105,63 +143,21 @@ public class Main {
 	}
 
 	/**
-	 * Display's ChocAn's sign-in menu for signing in a member or provider.
-	 */
-	public static void displaySigninMenu() {
-		System.out
-				.println("\tSigning in:\n\tMenu:\n\t\t1) member\n\t\t2) provider\n\t\t3) back");
-		// read in sign-in sub option
-		String signInChoice = _co.readLine();
-		handleSigninChoice(signInChoice);
-	}
-
-	/**
 	 * Uses the user input at the sign-in menu and tries to begin the sign-in
 	 * process.
 	 * 
 	 * @param signInChoice
 	 *            The user's command line input from the sign-in menu
 	 */
-	public static void handleSigninChoice(String signInChoice) {
+	private static void handleSigninChoice(String signInChoice) {
 		switch (signInChoice) {
 		case "1":
 		case "member":
-			// handle member sign in
-			println("Signing in member:\n\t\t Enter member number.");
-			String strMemberNumber = _co.readLine();
-			checkUserNumberLength(strMemberNumber);
-			Integer memberNumber = null;
-			try {
-				memberNumber = Integer.parseInt(strMemberNumber);
-			} catch (Exception e) {
-				println("Member number format not valid.");
-				displaySigninMenu();
-			}
-			println("Finding member in database...");
-			// TODO: Need to bounce memberNumber off of database here
-			System.out.println("Signing in member:\n\t\t Enter member number.");
-			Member member = _db.getMember(memberNumber);
-			if (member != null) {
-				println("Signin successful!\nWelcome, " + member.getName());
-			}
+			handleMemberSignin();
 			break;
 		case "2":
 		case "provider":
-			// handle provider sign in
-			println("Signing in provider:\n\t\t Enter in provider number. ");
-			String strProviderNumber = _co.readLine();
-			checkUserNumberLength(strProviderNumber);
-			Integer providerNumber;
-			try {
-				providerNumber = Integer.parseInt(strProviderNumber);
-			} catch (Exception e) {
-				println("Provider number format not valid.");
-				displaySigninMenu();
-			}
-			println("Finding provider in database...");
-			// TODO: Need to bounce providerNumber off of database here
-			System.out
-					.println("Signing in provider:\n\t\t Enter in provider number. ");
+			handleProviderSignin();
 			break;
 		case "3":
 		case "back":
@@ -172,11 +168,66 @@ public class Main {
 			println("Your choice was invalid. Please try again.");
 			displaySigninMenu();
 		}
-
 	}
 
+	private static void handleMemberSignin() {
+		// handle member sign in
+		print("Signing in member:\nEnter member number: ");
+		String strMemberNumber = _co.readLine();
+		checkUserNumberLength(strMemberNumber);
+		Integer memberNumber = null;
+		try {
+			memberNumber = Integer.parseInt(strMemberNumber);
+		} catch (Exception e) {
+			println("Member number format not valid.");
+			displaySigninMenu();
+		}
+		println("Finding member in database...");
+		Member member = _db.getMember(memberNumber);
+		if (member != null) {
+			println("Signin successful!\nWelcome, " + member.getName());
+			member.signIn();
+			_db.saveDb();
+			displayMainMenu();
+		} else {
+			println("Member could not be found.");
+			displaySigninMenu();
+		}
+	}
+
+	private static void handleProviderSignin() {
+		// handle provider sign in
+		print("Signing in provider:\nEnter in provider number: ");
+		String strProviderNumber = _co.readLine();
+		checkUserNumberLength(strProviderNumber);
+		Integer providerNumber = 0;
+		try {
+			providerNumber = Integer.parseInt(strProviderNumber);
+		} catch (Exception e) {
+			println("Provider number format not valid.");
+			displaySigninMenu();
+		}
+		println("Finding provider in database...");
+		Provider provider = _db.getProvider(providerNumber);
+		if (provider != null) {
+			println("Signin successful!\nWelcome, " + provider.getName());
+			provider.signIn();
+			_db.saveDb();
+			displayMainMenu();
+		} else {
+			println("Provider could not be found.");
+			displaySigninMenu();
+		}
+	}
+
+	// Region HELPERS
 	private static void println(String message) {
 		System.out.println(message);
 	}
+
+	private static void print(String message) {
+		System.out.print(message);
+	}
+	// EndRegion
 
 }

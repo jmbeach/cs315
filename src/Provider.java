@@ -14,6 +14,7 @@ public class Provider implements Serializable {
 	private String state;
 	private String zipCode;
 	private float moneyEarned;
+	private boolean isSignedIn;
 	ArrayList<Record> servicesProvided = new ArrayList<Record>();
 
 	public Provider(String name, int number, String address, String city,
@@ -34,6 +35,18 @@ public class Provider implements Serializable {
 
 	public String getName() { // Returns the User's Name
 		return name;
+	}
+
+	public boolean isSignedIn() {
+		return isSignedIn;
+	}
+
+	public void signIn() {
+		isSignedIn = true;
+	}
+
+	public void signOut() {
+		isSignedIn = false;
 	}
 
 	public void addServices(Record serv) {
