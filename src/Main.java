@@ -251,15 +251,22 @@ public class Main {
 		if (member != null) {
 			// if member not signed in
 			if (!member.isSignedIn()) {
-				println("Signin successful!\nWelcome, " + member.getName());
-				member.signIn();
-				_db.saveDb();
-				displayMainMenu();
+				if (!member.isSuspended()) {
+					println("VALID");
+					println("Signin successful!\nWelcome, " + member.getName());
+					member.signIn();
+					_db.saveDb();
+					displayMainMenu();
+				} else {
+					println("SUSPENDED");
+					println("Member is suspended. can't sign in.");
+				}
 			} else {
 				println("Member, " + member.getName() + " is already signed.");
 				displayMainMenu();
 			}
 		} else {
+			println("INVALID");
 			println("Member could not be found.");
 			displaySigninMenu();
 		}
