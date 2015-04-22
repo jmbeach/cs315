@@ -1,14 +1,23 @@
 // written by Matt Williams
 
-
+/**
+ * Provider Directory class that holds the information of Services, Service Code, and Service prices
+ * @author Matt
+ *
+ */
 public class ProviderDirectory {
 	
-	
+	/**
+	 * Constructor for the Provider Directory
+	 */
 	public ProviderDirectory(){
 		returnInfo();
 		
 	}
 	
+	/**
+	 * returnInfo method: prints the information of all of the services, their service code, and their prices
+	 */
 	public void returnInfo(){
 		System.out.println("Diet Consultation"+", "+ "666665"+", "+ "50.45");
 		System.out.println("Excercise Sesssion"+", "+ "4519568"+", "+ "12.99");
