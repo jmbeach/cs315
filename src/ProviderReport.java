@@ -88,7 +88,10 @@ public class ProviderReport extends Database {
 	// submits the Member report record
 	public void displayRecord(){
 		//System.out.println(getDateProvided() + "\n" + getProviderName(getProviderNumber()) + "\n" + super.getServiceName(getServiceCode()) );
-		System.out.println("Date of Service: " + getDateOfService() + "\n" + "Date and Time: " + getDateTime() + "\n" + "Member Name: " + getMemberName(getMemberNumber()) + "\n" + "Member Number: " + getMemberNumber() + "\n" + "Service Code: " + getServiceCode() + "\n" + "Service Fee: " + "$" + getServiceFee());
+		System.out.println("Date of Service: " + getDateOfService() + "\n" + "Date and Time: " 
+		+ getDateTime() + "\n" + "Member Name: " + getMemberName(getMemberNumber()) + "\n" 
+				+ "Member Number: " + getMemberNumber() + "\n" + "Service Code: " 
+		+ getServiceCode() + "\n" + "Service Fee: " + "$" + getServiceFee());
 	}
 	
 }

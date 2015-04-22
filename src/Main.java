@@ -34,11 +34,22 @@ public class Main {
 		switch (choice) {
 		case "sign-in":
 			System.out
-					.println("\tSigning in:\n\tMenu:\n\t\t1) member\n\t\t2) provider\n\t\t3) back");
+					.println("Signing in:\nMenu:\n\t1) member\n\t2) provider\n\t3) back");
 			// read in sign-in sub option
 			String signInChoice = _co.readLine();
 			handleSigninChoice(signInChoice);
 			break;
+		case "1":
+			System.out.println("Signing in:\nMenu:\n\t1) member\n\t2) provider\n\t3) back");
+			// read in sign-in sub option
+			signInChoice = _co.readLine();
+			handleSigninChoice(signInChoice);
+			break;
+		case "n":
+			// Print exit message
+			System.out.println("Bye!");
+			// end the program
+			return;
 		case "exit":
 			// Print exit message
 			System.out.println("Bye!");
@@ -59,12 +70,24 @@ public class Main {
 		case "member":
 			// handle member sign in
 			System.out
-					.println("\tSigning in member:\n\t\t Enter member number.");
+					.println("Signing in member:\n\t\t Enter member number.");
+			break;
+		case "1":
+			// handle member sign in
+			System.out.println("Signing in member:\n\t\t Enter member number.");
+			break;
+		case "2":
+			// handle provider sign in
+			System.out.println("Signing in provider:\n\t\t Enter in provider number. ");
+			break;
+		case "3":
+			// return back to main menu
+			displayMainMenu();
 			break;
 		case "provider":
 			// handle provider sign in
 			System.out
-					.println("\tSigning in provider:\n\t\t Enter in provider number. ");
+					.println("Signing in provider:\n\t\t Enter in provider number. ");
 			break;
 		case "back":
 			// return back to main menu
