@@ -1,6 +1,6 @@
 /*
  * CS315 Assignment 4, EFTReport class
- * Hannah Hoover
+ * Hannah Hoover 
  */
 public class EFTReport {
 	private Provider person;
@@ -10,6 +10,9 @@ public class EFTReport {
 		generateReport();
 	}
 	
+	/**
+	 * Generates the EFT Report
+	 */
 	public void generateReport(){
 		System.out.println("Provider Name: " + person.getName());
 		System.out.println("Provider Number: " +  person.getNumber());
