@@ -2,8 +2,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 // written by Matt Willams -
-public class Database {
+public class Database implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// hashed on member number
 	static Map<Integer, Member> members = new HashMap<Integer, Member>();
 	// Hashed on provider number

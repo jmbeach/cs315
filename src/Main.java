@@ -114,35 +114,33 @@ public class Main {
 		case "1":
 		case "member":
 			// handle member sign in
-			System.out
-					.println("\tSigning in member:\n\t\t Enter member number.");
+			println("Signing in member:\n\t\t Enter member number.");
 			String strMemberNumber = _co.readLine();
 			checkUserNumberLength(strMemberNumber);
 			Integer memberNumber;
 			try {
 				memberNumber = Integer.parseInt(strMemberNumber);
 			} catch (Exception e) {
-				System.out.println("Member number format not valid.");
+				println("Member number format not valid.");
 				displaySigninMenu();
 			}
-			println("\tFinding member in database...");
+			println("Finding member in database...");
 			// TODO: Need to bounce memberNumber off of database here
 			break;
 		case "2":
 		case "provider":
 			// handle provider sign in
-			System.out
-					.println("\tSigning in provider:\n\t\t Enter in provider number. ");
+			println("Signing in provider:\n\t\t Enter in provider number. ");
 			String strProviderNumber = _co.readLine();
 			checkUserNumberLength(strProviderNumber);
 			Integer providerNumber;
 			try {
 				providerNumber = Integer.parseInt(strProviderNumber);
 			} catch (Exception e) {
-				System.out.println("Provider number format not valid.");
+				println("Provider number format not valid.");
 				displaySigninMenu();
 			}
-			println("\tFinding provider in database...");
+			println("Finding provider in database...");
 			// TODO: Need to bounce providerNumber off of database here
 			break;
 		case "3":
@@ -151,7 +149,7 @@ public class Main {
 			displayMainMenu();
 			break;
 		default:
-			System.out.println("Your choice was invalid. Please try again.");
+			println("Your choice was invalid. Please try again.");
 			displaySigninMenu();
 		}
 	}
