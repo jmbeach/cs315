@@ -87,7 +87,7 @@ public class Record implements Serializable {
 		return 0.00;
 	}
 	/**
-	 * createRecord: creates a record for the info passed in
+	 * creates a record for the info passed in
 	 */
 
 	// generates the bill report record
@@ -105,7 +105,7 @@ public class Record implements Serializable {
 
 	}
 	/**
-	 * getDate: returns the date
+	 * returns the date
 	 * @return  date
 	 */
 
@@ -119,7 +119,7 @@ public class Record implements Serializable {
 	 */
 
 	/**
-	 * getTime: returns the time.
+	 * returns the time.
 	 * @return time
 	 */
 	public String getTime() {
@@ -195,7 +195,7 @@ public class Record implements Serializable {
 		return serviceRecords;
 	}
 	/**
-	 * setDateTime: sets the date and time
+	 * sets the date and time
 	 * @param newDate
 	 */
 
@@ -208,7 +208,7 @@ public class Record implements Serializable {
 
 	}
 	/**
-	 * setDateProvided: sets the date the service was provided
+	 * sets the date the service was provided
 	 * @param providedDate
 	 */
 
@@ -221,7 +221,7 @@ public class Record implements Serializable {
 
 	}
 	/**
-	 * setPNumber: sets the provider number
+	 * sets the provider number
 	 * @param provider
 	 */
 
@@ -233,7 +233,7 @@ public class Record implements Serializable {
 		providerNumber = provider;
 	}
 	/**
-	 * setUNumber: sets the member number
+	 * sets the member number
 	 * @param member
 	 */
 
@@ -245,7 +245,7 @@ public class Record implements Serializable {
 		memberNumber = member;
 	}
 	/**
-	 * setServiceCode: sets the service code
+	 * sets the service code
 	 * @param code
 	 */
 
@@ -257,7 +257,7 @@ public class Record implements Serializable {
 		serviceCode = code;
 	}
 	/**
-	 * setComments: sets the comments for the record
+	 * sets the comments for the record
 	 * @param notes
 	 */
 
@@ -269,7 +269,7 @@ public class Record implements Serializable {
 		comments = notes;
 	}
 	/**
-	 * selectUser: selects the user for the record
+	 * selects the user for the record
 	 * @param person
 	 */
 
@@ -282,7 +282,7 @@ public class Record implements Serializable {
 
 	}
 	/**
-	 * loadUser: loads the user based on their number
+	 * loads the user based on their number
 	 */
 
 	/**
