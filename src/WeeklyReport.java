@@ -1,6 +1,6 @@
 /*
  * CS315 Assignment 4, WeekleyReport class
- * Hannah Hoover
+ * Author & Documentation: Hannah Hoover
  */
 
 import java.util.ArrayList;
