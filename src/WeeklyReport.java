@@ -1,10 +1,11 @@
-/*
- * CS315 Assignment 4, WeekleyReport class
- * Author & Documentation: Hannah Hoover
- */
+
 
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author Jared
+ *
+ */
 
 public class WeeklyReport extends Database{
 	private double overallFee;
