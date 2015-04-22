@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 
-/* 
- * CS315 Assignment 4, MemberReport class
- * Author: Hannah Hoover
+/**
+ * 
+ * @author Matt
+ *
  */
 public class MemberReport extends Database {
 	private Member person;
@@ -94,7 +95,7 @@ public class MemberReport extends Database {
     // returns the comments
     /**
      * getComments method: returns the comments from record that the class is currently looking at
-     * @return comments
+     * @return comments 
      */
 	public String getComments(){
 		return currentRecord.getComments();
