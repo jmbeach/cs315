@@ -1,6 +1,6 @@
 /*
  * CS315 Assignment 4, WeekleyReport class
- * Hannah Hoover
+ * Author & Documentation: Hannah Hoover
  */
 
 import java.util.ArrayList;
@@ -12,6 +12,10 @@ public class WeeklyReport extends Database{
 	//private ArrayList<Provider> person = new ArrayList<Provider>();
 	private ArrayList<Provider> activePeople = new ArrayList<Provider>();
 	
+	/**
+	 * Constructor for Weekly Report; initializes variables
+	 * 
+	 */
 	public WeeklyReport(){
 		overallFee = 0;
 		totalProviders = 0;
@@ -19,6 +23,9 @@ public class WeeklyReport extends Database{
 		//person = super.getProviders();
 	}
 	
+	/**
+	 * Generates the Weekly Report
+	 */
 	public void generateReport(){
 		System.out.println(" --- Begin Weekly report ---");
 		getActives();
@@ -36,6 +43,9 @@ public class WeeklyReport extends Database{
 		System.out.println("Overall total fee: " + overallFee);
 	}
 	
+	/**
+	 * Gets active members
+	 */
 	public void getActives(){
 		for (int i=0; i<providers.size();i++){
 			if (providers.get(i).getServices().size() > 0){
