@@ -16,7 +16,7 @@ public class ProviderDirectory {
 	}
 	
 	/**
-	 * returnInfo method: prints the information of all of the services, their service code, and their prices
+	 * prints the information of all of the services, their service code, and their prices
 	 */
 	public void returnInfo(){
 		System.out.println("Diet Consultation"+", "+ "666665"+", "+ "50.45");

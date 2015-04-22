@@ -54,15 +54,15 @@ public class ProviderReport extends Database {
     }
 	
 	/**
-	 * getDateTime method: returns the current date and time from record that the class is currently looking at
-	 * @return date + time
+	 * returns the current date and time from record that the class is currently looking at
+	 * @return date + time (current)
 	 */
 	public String getDateTime(){
 		return currentRecord.getDate() + " " + currentRecord.getTime();
 	}
 	
 	/**
-	 * getDateOfService method: returns the date of service from record that the class is currently looking at
+	 * returns the date of service from record that the class is currently looking at
 	 * @return dateOfService
 	 */
 	public String getDateOfService(){
@@ -71,7 +71,7 @@ public class ProviderReport extends Database {
 	
     //returns the member number
 	/**
-	 * getMemberNumber method: returns the member number from record that the class is currently looking at
+	 * returns the member number from record that the class is currently looking at
 	 * @return memberNumber
 	 */
     public int getMemberNumber(){
@@ -80,7 +80,7 @@ public class ProviderReport extends Database {
     }
     
     /**
-     * getMemberName method: returns the member name from record that the class is currently looking at
+     * returns the member name from record that the class is currently looking at
      * @param number
      * @return memberName
      */
@@ -103,7 +103,7 @@ public class ProviderReport extends Database {
     }
     
     /**
-     * getServiceFee method: returns the service fee from record that the class is currently looking at
+     * returns the service fee from record that the class is currently looking at
      * @return serviceFee
      */
     public double getServiceFee(){
@@ -113,7 +113,7 @@ public class ProviderReport extends Database {
     
     //return current date and time
     /**
-     * getDateProvided method: returns the date provided from record that the class is currently looking at
+     * returns the date provided from record that the class is currently looking at
      * @return dateProvided
      */
     public String getDateProvided(){
@@ -122,7 +122,7 @@ public class ProviderReport extends Database {
     
     // returns the comments
     /**
-     * getComments method: returns the comments from record that the class is currently looking at
+     * returns the comments from record that the class is currently looking at
      * @return comments
      */
 	public String getComments(){
@@ -131,7 +131,7 @@ public class ProviderReport extends Database {
     
 	// submits the Member report record
 	/**
-	 * displayRecord method: prints all of the information for one record that goes on the total report
+	 * prints all of the information for one record that goes on the total report
 	 * 
 	 */
 	public void displayRecord(){
