@@ -3,6 +3,7 @@ import java.io.Console;
 public class Main {
 	private static Console _co;
 // test
+	//test2
 	// open console to bin folder and run "java Main"
 	public static void main(String[] args) {
 		_co = System.console();
