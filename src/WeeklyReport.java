@@ -14,6 +14,7 @@ public class WeeklyReport extends Database{
 	
 	/**
 	 * Constructor for Weekly Report; initializes variables
+	 * 
 	 */
 	public WeeklyReport(){
 		overallFee = 0;
