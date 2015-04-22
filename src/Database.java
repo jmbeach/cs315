@@ -14,12 +14,12 @@ public class Database implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final String strSavePath = System.getProperty("user.dir");
-	private static final String strMemberSavePath = strSavePath
-			+ "\\member.sav";
-	private static final String strProviderSavePath = strSavePath
-			+ "\\provider.sav";
-	private static final String strRecordSavePath = strSavePath
-			+ "\\record.sav";
+	private static final String strMemberSavePath = isWindows()? strSavePath
+			+ "\\member.sav" : strSavePath + "/member.sav";
+	private static final String strProviderSavePath = isWindows()? strSavePath
+			+ "\\provider.sav" : strSavePath + "/provider.sav";
+	private static final String strRecordSavePath = isWindows()? strSavePath
+			+ "\\record.sav" : strSavePath + "/record.sav";
 
 	// hashed on member number
 	static Map<Integer, Member> members = new HashMap<Integer, Member>();
@@ -29,6 +29,7 @@ public class Database implements java.io.Serializable {
 	static Map<Integer, Record> providerBillRecords = new HashMap<Integer, Record>();
 
 	public Database() {
+		System.out.println(strMemberSavePath);
 		members = loadMembers();
 		providers = loadProviders();
 		providerBillRecords = loadProviderBillRecords();
@@ -154,5 +155,8 @@ public class Database implements java.io.Serializable {
 					.println("Could not load database. Are you running the program from the correct location?");
 		}
 		return null;
+	}
+	private static boolean isWindows() {
+		return System.getProperty("os.name").toLowerCase().indexOf("win") > 0;
 	}
 }
