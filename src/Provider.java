@@ -46,37 +46,37 @@ public class Provider implements Serializable {
 	}
 
 	/**
-	 * getName method: returns the name of the provider
-	 * @return
+	 * method to obtain the name of the provider
+	 * @return the name of the provider
 	 */
 	public String getName() { // Returns the User's Name
 		return name;
 	}
 
 	/**
-	 * isSignedIn method: returns if a provider is signed in or not
-	 * @return
+	 * detects if a member is signed in.
+	 * @return true or false: if a provider is signed in or not
 	 */
 	public boolean isSignedIn() {
 		return isSignedIn;
 	}
 
 	/**
-	 * signIN method: sets the provider's sign in status to true
+	 * sets the provider's sign in status to true
 	 */
 	public void signIn() {
 		isSignedIn = true;
 	}
 
 	/**
-	 * signOut method: sets the provider's sing in status to false
+	 * sets the provider's sing in status to false
 	 */
 	public void signOut() {
 		isSignedIn = false;
 	}
 
 	/**
-	 * addServices method: adds a record of a service that a provider has provided to a member
+	 * adds a record of a service that a provider has provided to a member
 	 * @param serv
 	 */
 	public void addServices(Record serv) {
@@ -84,15 +84,15 @@ public class Provider implements Serializable {
 	}
 
 	/**
-	 * getServices method: returns an arraylist of all of the services that a provider has provided to its members
-	 * @return
+	 * obtains the list of services a provider has provided
+	 * @return the services that the provider has provided
 	 */
 	public ArrayList<Record> getServices() {
 		return servicesProvided;
 	}
 
 	/**
-	 * addMoneyEarned method: adds money to the total amount that the provider needs to be paid
+	 * adds money to the total amount that the provider needs to be paid
 	 * @param money
 	 */
 	public void addMoneyEarned(float money) {
@@ -100,22 +100,22 @@ public class Provider implements Serializable {
 	}
 
 	/**
-	 * getMoneyEarned method: returns the total amount the provider needs to be paid base on the services they provided
-	 * @return
+	 * obtains the total amount of money the provider has earned
+	 * @return the total amount the provider needs based on the services they provided
 	 */
 	public float getMoneyEarned() {
 		return moneyEarned;
 	}
 
 	/**
-	 * clearFees method: sets the money the provider to be paid to $0
+	 * sets the money the provider to be paid to $0
 	 */
 	public void clearFees() {
 		moneyEarned = 0;
 	}
 
 	/**
-	 * setName method: sets the provider's name
+	 * sets the provider's name
 	 * @param name
 	 */
 	public void setName(String name) { // Sets the User's Name
@@ -123,15 +123,15 @@ public class Provider implements Serializable {
 	}
 
 	/**
-	 * getNumber method: returns the provider's 9 digit provider number
-	 * @return
+	 * obtains the provider's 9 digit number
+	 * @return the provider's 9 digit provider number
 	 */
 	public int getNumber() { // Returns the user's 9 digit member number
 		return number;
 	}
 
 	/**
-	 * setNumber method: sets the provider's 9 digit member number
+	 * sets the provider's 9 digit member number
 	 * @param number
 	 */
 	public void setNumber(int number) { // Sets the user's 9 digit member number
@@ -139,15 +139,15 @@ public class Provider implements Serializable {
 	}
 
 	/**
-	 * getAddress method: returns the provider's address
-	 * @return
+	 * obtains the address the provider has set as their own
+	 * @return the provider's address
 	 */
 	public String getAddress() { // returns the user's address
 		return address;
 	}
 
 	/**
-	 * setAddress method: sets the provider's address
+	 * sets the provider's address
 	 * @param address
 	 */
 	public void setAddress(String address) { // sets the user's address
@@ -155,15 +155,15 @@ public class Provider implements Serializable {
 	}
 
 	/**
-	 * getCity method: returns the provider's city
-	 * @return
+	 * obtains the provider's city they have set as their own.
+	 * @return the provider's city
 	 */
 	public String getCity() { // returns the user's city
 		return city;
 	}
 
 	/**
-	 * setCity method: sets the provider's city
+	 * sets the provider's city
 	 * @param city
 	 */
 	public void setCity(String city) { // sets the user's city
@@ -171,15 +171,15 @@ public class Provider implements Serializable {
 	}
 
 	/**
-	 * getZipCode method: returns the provider's zip code
-	 * @return
+	 * obtains the provider's zip code they have set as their own
+	 * @return the provider's zip code
 	 */
 	public String getZipCode() { // returns the user's zip code
 		return zipCode;
 	}
 
 	/**
-	 * setZipCode method: sets the provider's zip code
+	 * sets the provider's zip code
 	 * @param zipCode
 	 */
 	public void setZipCode(String zipCode) { // sets the user's zip code
@@ -187,15 +187,15 @@ public class Provider implements Serializable {
 	}
 
 	/**
-	 * getState method: returns the provider's state (location)
-	 * @return
+	 * obtains the provider's state they have set as their own
+	 * @return the provider's state (location)
 	 */
 	public String getState() { // returns the user's state
 		return state;
 	}
 
 	/**
-	 * setState method: sets the provider's state (location)
+	 * sets the provider's state (location)
 	 * @param state
 	 */
 	public void setState(String state) { // sets the user's state

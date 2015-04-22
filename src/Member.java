@@ -54,24 +54,24 @@ public class Member implements Serializable {
 	
 	/**
 	 * 
-	 * @return isSignedIn
+	 * @return  the member's signed in status
 	 * 
 	 * boolean class that checks to see if a member is signed in or not
-	 * if the member is signed in, returns true, else it returns false
+	 * if the member is signed in,  true, else it  false
 	 */
 	public boolean isSignedIn() {
 		return isSignedIn;
 	}
 
 	/**
-	 * Sign in method that sets the member sign-in status to true
+	 * sets the member sign-in status to true
 	 */
 	public void signIn() {
 		isSignedIn = true;
 	}
 
 	/**
-	 * Sign-out method that sets the member sing-in status to false
+	 * sets the member sing-in status to false
 	 */
 	public void signOut() {
 		isSignedIn = false;
@@ -81,7 +81,7 @@ public class Member implements Serializable {
 	 * 
 	 * @param additionalFunding
 	 * 
-	 * addFunds method that adds additional funding to the member's accounts
+	 * adds additional funding to the member's accounts
 	 */
 	public void addFunds(float additionalFunding) {
 		accountFunds += additionalFunding;
@@ -91,15 +91,15 @@ public class Member implements Serializable {
 	 * 
 	 * @param amountToTake
 	 * 
-	 * subtractFunds method that removes funds from the member's account
+	 * removes funds from the member's account
 	 */
 	public void subtractFunds(float amountToTake) {
 		accountFunds -= amountToTake;
 	}
 
 	/**
-	 * getAccountFunds method that returns the amount of funds that the member has in their account
-	 * @return accountFunds
+	 *  the amount of funds that the member has in their account
+	 * @return  the funds in the member's account
 	 */
 	public float getAccountFunds() {
 		return accountFunds;
@@ -107,7 +107,7 @@ public class Member implements Serializable {
 
 
 	/**
-	 *setStatusToValid method that sets the member status to valid
+	 *  sets the member status to valid
 	 */
 	public void Suspend() {
 		isMemberSuspended = true;
@@ -135,23 +135,23 @@ public class Member implements Serializable {
 	}
 	
 	/**
-	 * getServicesReceived method that returns an ArrayList of all of the services that the member has previously recieved
-	 * @return servicesReceived
+	 *  an ArrayList of all of the services that the member has previously received
+	 * @return  an ArrayList of all of the services that the member has previously received
 	 */
 	public ArrayList<Record> getServicesReceived() {
 		return servicesReceived;
 	}
 
 	/**
-	 * getName class: that returns the name of the member
-	 * @return name
+	 *  the name of the member
+	 * @return  the name of the member
 	 */
-	public String getName() { // Returns the User's Name
+	public String getName() { //  the User's Name
 		return name;
 	}
 
 	/**
-	 * setName method: sets the name of a user to the passed in parameter
+	 * sets the name of a user to the passed in parameter
 	 * @param name
 	 */
 	public void setName(String name) { // Sets the User's Name
@@ -159,15 +159,15 @@ public class Member implements Serializable {
 	}
 
 	/**
-	 * getNumber method: returns the member's 9 digit member number
-	 * @return number
+	 *  the member's 9 digit member number
+	 * @return  the member's 9-digit number
 	 */
-	public int getNumber() { // Returns the user's 9 digit member number
+	public int getNumber() { //  the user's 9 digit member number
 		return number;
 	}
 
 	/**
-	 * setNumber method: sets the member's 9 digit member number
+	 * sets the member's 9 digit member number
 	 * @param number
 	 */
 	public void setNumber(int number) { // Sets the user's 9 digit member number
@@ -175,15 +175,15 @@ public class Member implements Serializable {
 	}
 
 	/**
-	 * getAddress method: returns the member's address
-	 * @return address
+	 * the member's address
+	 * @return  the member's address
 	 */
-	public String getAddress() { // returns the user's address
+	public String getAddress() { //  the user's address
 		return address;
 	}
 
 	/**
-	 * setAddress method: sets the member's address
+	 * sets the member's address
 	 * @param address
 	 */
 	public void setAddress(String address) { // sets the user's address
@@ -191,15 +191,15 @@ public class Member implements Serializable {
 	}
 
 	/**
-	 * getCity method: returns the member's city (location)
+	 * the member's city (location)
 	 * @return city
 	 */
-	public String getCity() { // returns the user's city
+	public String getCity() { //  the user's city
 		return city;
 	}
 
 	/**
-	 * setCity method: sets the member's city
+	 * sets the member's city
 	 * @param city
 	 */
 	public void setCity(String city) { // sets the user's city
@@ -207,15 +207,15 @@ public class Member implements Serializable {
 	}
 
 	/**
-	 * getzipCode method: returns the member's zip code
-	 * @return zipCode
+	 * the member's zip code
+	 * @return member's zipCode
 	 */
-	public String getzipCode() { // returns the user's zip code
+	public String getzipCode() { //  the user's zip code
 		return zipCode;
 	}
 
 	/**
-	 * setZip_Code method: sets the member's zip code
+	 * sets the member's zip code
 	 * @param zipCode
 	 */
 	public void setZip_Code(String zipCode) { // sets the user's zip code
@@ -223,15 +223,15 @@ public class Member implements Serializable {
 	}
 
 	/**
-	 * getState method: returns the member's state (location)
-	 * @return state
+	 * the member's state (location)
+	 * @return member's state (Location)
 	 */
-	public String getState() { // returns the user's state
+	public String getState() { //  the user's state
 		return state;
 	}
 
 	/**
-	 * setState method: sets the member's state (location)
+	 * sets the member's state (location)
 	 * @param state
 	 */
 	public void setState(String state) { // sets the user's state
