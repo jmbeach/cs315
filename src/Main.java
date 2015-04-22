@@ -2,11 +2,11 @@ import java.io.Console;
 
 public class Main {
 	private static Console _co;
-	static Database d = new Database();
+// test
 	// open console to bin folder and run "java Main"
 	public static void main(String[] args) {
 		_co = System.console();
-		//Database d = new Database();
+		Database d = new Database();
 		Provider p = new Provider("Octavius", 123456, "345 anus avenue",
 				"Tuscaloosa", "AL", "35404");
 		d.addProvider(p);
@@ -70,21 +70,15 @@ public class Main {
 		case "member":
 			// handle member sign in
 			System.out
-					.println("Signing in member:\n Enter member number.");
-			String member = _co.readLine();
-			validateUser(member);
+					.println("Signing in member:\n\t\t Enter member number.");
 			break;
 		case "1":
 			// handle member sign in
-			System.out.println("Signing in member:\n Enter member number.");
-			String member1 = _co.readLine();
-			validateUser(member1);
+			System.out.println("Signing in member:\n\t\t Enter member number.");
 			break;
 		case "2":
 			// handle provider sign in
-			System.out.println("Signing in provider:\n Enter in provider number. ");
-			String provider = _co.readLine();
-			validateProvider(provider);
+			System.out.println("Signing in provider:\n\t\t Enter in provider number. ");
 			break;
 		case "3":
 			// return back to main menu
@@ -92,45 +86,15 @@ public class Main {
 			break;
 		case "provider":
 			// handle provider sign in
-			System.out.println("Signing in provider:\n Enter in provider number. ");
-			String provider1 = _co.readLine();
-			validateProvider(provider1);
+			System.out
+					.println("Signing in provider:\n\t\t Enter in provider number. ");
 			break;
 		case "back":
 			// return back to main menu
 			displayMainMenu();
 			break;
 		}
-	}
-	public static void validateUser(String memberNumber){
-		int memNum = Integer.parseInt(memberNumber);
-		if (d.getMember(memNum)!= null){
-			Member member = d.getMember(memNum);
-			verifyUser status = new verifyUser(member);
-			System.out.println(status.verifyMember());
-		}
-		else{
-			System.out.println("INVALID");
-		}
-	}
-		
-		
-	
-	public static void validateProvider(String providerNumber){
-		int provNum = Integer.parseInt(providerNumber);
-		if (d.getProvider(provNum)!= null){
-			System.out.println("Validated");
-		}
-		else{
-			System.out.println("INVALID");
-		}
-	}
-	public static void providerMenu(String provChoice){
-		System.out
-		.println("Provider Home:\nMenu:\n\t1) Bill for Service\n\t2) Request Provider Directory\n\t3) Add Member\n\t4) Delete Member\n\t5) Update Member");
-	}
-	
 
 	}
 
-
+}
