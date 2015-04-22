@@ -1,6 +1,6 @@
 /*
  * CS315 Assignment 4, EFTReport class
- * Hannah Hoover 
+ * Author and Documentation: Hannah Hoover 
  */
 public class EFTReport {
 	private Provider person;
