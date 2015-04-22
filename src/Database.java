@@ -1,3 +1,8 @@
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +13,14 @@ public class Database implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static final String strSavePath = System.getProperty("user.dir");
+	private static final String strMemberSavePath = strSavePath
+			+ "\\member.sav";
+	private static final String strProviderSavePath = strSavePath
+			+ "\\provider.sav";
+	private static final String strRecordSavePath = strSavePath
+			+ "\\record.sav";
+
 	// hashed on member number
 	static Map<Integer, Member> members = new HashMap<Integer, Member>();
 	// Hashed on provider number
@@ -16,7 +29,9 @@ public class Database implements java.io.Serializable {
 	static Map<Integer, Record> providerBillRecords = new HashMap<Integer, Record>();
 
 	public Database() {
-
+		members = loadMembers();
+		providers = loadProviders();
+		providerBillRecords = loadProviderBillRecords();
 	}
 
 	public void addMember(Member person) {
@@ -71,4 +86,73 @@ public class Database implements java.io.Serializable {
 		return providerBillRecords.get(providerNumber);
 	}
 
+	public void saveDb() {
+		saveMembers();
+		saveProviderRecords();
+		saveProviders();
+	}
+
+	private void saveMembers() {
+		saveObject(strMemberSavePath, members);
+	}
+
+	private Map<Integer, Member> loadMembers() {
+		Map<Integer, Member> members = (Map<Integer, Member>) loadObject(strMemberSavePath);
+		if (members == null) {
+			return new HashMap<Integer, Member>();
+		}
+		return members;
+	}
+
+	private void saveProviders() {
+		saveObject(strProviderSavePath, providers);
+	}
+
+	private Map<Integer, Provider> loadProviders() {
+		Map<Integer, Provider> providers = (Map<Integer, Provider>) loadObject(strProviderSavePath);
+		if (providers == null) {
+			return new HashMap<Integer, Provider>();
+		}
+		return providers;
+	}
+
+	private void saveProviderRecords() {
+		saveObject(strRecordSavePath, providerBillRecords);
+	}
+
+	private Map<Integer, Record> loadProviderBillRecords() {
+		Map<Integer, Record> providerBillRecords = (Map<Integer, Record>) loadObject(strRecordSavePath);
+		if (providerBillRecords == null) {
+			return new HashMap<Integer, Record>();
+		}
+		return providerBillRecords;
+	}
+
+	private void saveObject(String path, Object toSave) {
+		try {
+			FileOutputStream stream = new FileOutputStream(path);
+			ObjectOutputStream objectStream = new ObjectOutputStream(stream);
+			objectStream.writeObject(toSave);
+			objectStream.close();
+			stream.close();
+		} catch (IOException e) {
+			System.out
+					.println("The database could not be found. Are you running the program from the correct location?");
+		}
+	}
+
+	private static Object loadObject(String path) {
+		try {
+			FileInputStream stream = new FileInputStream(path);
+			ObjectInputStream objectStream = new ObjectInputStream(stream);
+			Object obj = objectStream.readObject();
+			objectStream.close();
+			stream.close();
+			return obj;
+		} catch (IOException | ClassNotFoundException e) {
+			System.out
+					.println("Could not load database. Are you running the program from the correct location?");
+		}
+		return null;
+	}
 }

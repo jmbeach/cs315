@@ -8,7 +8,11 @@ import java.io.Console;
 public class Main {
 	private static Console _co;
 	private static final int _userNumberLength = 6;
+	// load db from db.sav file
+	// Creating a new db will overwrite this file.
 	private static Database _db = new Database();
+
+	// private static Database _db = Database.loadDb();
 
 	/**
 	 * Starts the ChocAn terminal
@@ -20,18 +24,24 @@ public class Main {
 	public static void main(String[] args) {
 		_co = System.console();
 		// Hard-coded members and providers
-		Provider p = new Provider("Octavius", 123456, "345 anus avenue",
-				"Tuscaloosa", "AL", "35404");
-		Member m = new Member("Dillon", 356661, "417 Prince Acres",
-				"Tuscaloosa", "AL", "35404");
-		Member o = new Member("Matt", 236544, "417 Prince Acres", "Tuscaloosa",
-				"AL", "35404");
-		_db.addMember(m);
-		_db.addMember(o);
-		_db.addProvider(p);
-		// Member mem = d.getMember(o.getNumber());
-		// System.out.println(mem.getName());
-		// System.out.println(d.getProviders());
+
+		// Made Database class write to db.sav file so these hardcoded values
+		// are already in database, but don't delete code in case we need to
+		// start over.
+
+		// Provider p = new Provider("Octavius", 123456, "345 anus avenue",
+		// "Tuscaloosa", "AL", "35404");
+		// Member m = new Member("Dillon", 356661, "417 Prince Acres",
+		// "Tuscaloosa", "AL", "35404");
+		// Member o = new Member("Matt", 236544, "417 Prince Acres",
+		// "Tuscaloosa",
+		// "AL", "35404");
+		// _db.addMember(m);
+		// _db.addMember(o);
+		// _db.addProvider(p);
+		// _db.saveDb();
+
+		// end Hard-coded members and providers
 		displayMainMenu();
 	}
 
@@ -120,7 +130,7 @@ public class Main {
 			println("Signing in member:\n\t\t Enter member number.");
 			String strMemberNumber = _co.readLine();
 			checkUserNumberLength(strMemberNumber);
-			Integer memberNumber;
+			Integer memberNumber = null;
 			try {
 				memberNumber = Integer.parseInt(strMemberNumber);
 			} catch (Exception e) {
@@ -130,6 +140,10 @@ public class Main {
 			println("Finding member in database...");
 			// TODO: Need to bounce memberNumber off of database here
 			System.out.println("Signing in member:\n\t\t Enter member number.");
+			Member member = _db.getMember(memberNumber);
+			if (member != null) {
+				println("Signin successful!\nWelcome, " + member.getName());
+			}
 			break;
 		case "2":
 		case "provider":
