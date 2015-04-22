@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Provider Report Class that prints a report for the provider each week
- * @author Matt
+ * @author hananh
  *
  */
 public class ProviderReport extends Database {
