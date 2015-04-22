@@ -54,7 +54,7 @@ public class Member implements Serializable {
 	
 	/**
 	 * 
-	 * @return
+	 * @return isSignedIn
 	 * 
 	 * boolean class that checks to see if a member is signed in or not
 	 * if the member is signed in, returns true, else it returns false
@@ -99,7 +99,7 @@ public class Member implements Serializable {
 
 	/**
 	 * getAccountFunds method that returns the amount of funds that the member has in their account
-	 * @return
+	 * @return accountFunds
 	 */
 	public float getAccountFunds() {
 		return accountFunds;
@@ -136,7 +136,7 @@ public class Member implements Serializable {
 	
 	/**
 	 * getServicesReceived method that returns an ArrayList of all of the services that the member has previously recieved
-	 * @return
+	 * @return servicesReceived
 	 */
 	public ArrayList<Record> getServicesReceived() {
 		return servicesReceived;
@@ -144,7 +144,7 @@ public class Member implements Serializable {
 
 	/**
 	 * getName class: that returns the name of the member
-	 * @return
+	 * @return name
 	 */
 	public String getName() { // Returns the User's Name
 		return name;
@@ -160,7 +160,7 @@ public class Member implements Serializable {
 
 	/**
 	 * getNumber method: returns the member's 9 digit member number
-	 * @return
+	 * @return number
 	 */
 	public int getNumber() { // Returns the user's 9 digit member number
 		return number;
@@ -176,7 +176,7 @@ public class Member implements Serializable {
 
 	/**
 	 * getAddress method: returns the member's address
-	 * @return
+	 * @return address
 	 */
 	public String getAddress() { // returns the user's address
 		return address;
@@ -192,7 +192,7 @@ public class Member implements Serializable {
 
 	/**
 	 * getCity method: returns the member's city (location)
-	 * @return
+	 * @return city
 	 */
 	public String getCity() { // returns the user's city
 		return city;
@@ -208,7 +208,7 @@ public class Member implements Serializable {
 
 	/**
 	 * getzipCode method: returns the member's zip code
-	 * @return
+	 * @return zipCode
 	 */
 	public String getzipCode() { // returns the user's zip code
 		return zipCode;
@@ -224,7 +224,7 @@ public class Member implements Serializable {
 
 	/**
 	 * getState method: returns the member's state (location)
-	 * @return
+	 * @return state
 	 */
 	public String getState() { // returns the user's state
 		return state;

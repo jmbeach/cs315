@@ -64,7 +64,8 @@ public class Record implements Serializable {
 	/**
 	 * calculateFee: calculates fees for different services based on their code
 	 * @param servCode
-	 * @return
+	 * @return totalFees
+	 *
 	 */
 
 	public double calculateFee(int servCode) {
@@ -101,7 +102,7 @@ public class Record implements Serializable {
 	}
 	/**
 	 * getDate: returns the date
-	 * @return
+	 * @return  date
 	 */
 
 	public String getDate() {
@@ -110,12 +111,12 @@ public class Record implements Serializable {
 	
 	/**
 	 * 
-	 * @return returns time
+	 * @return  time
 	 */
 
 	/**
 	 * getTime: returns the time.
-	 * @return
+	 * @return time
 	 */
 	public String getTime() {
 		return time;
@@ -124,7 +125,7 @@ public class Record implements Serializable {
 	
 	/**
 	 * 
-	 * @return returns date of services
+	 * @return  date of services
 	 */
 
 	public String getDateOfServices() {
@@ -133,7 +134,7 @@ public class Record implements Serializable {
 
 	/**
 	 * returns the provider number
-	 * @return
+	 * @return provider number
 
 	 */
 
@@ -143,7 +144,7 @@ public class Record implements Serializable {
 
 	/**
 	 * returns the member number
-	 * @return
+	 * @return memberNumber
 
 	 */
 
@@ -153,7 +154,7 @@ public class Record implements Serializable {
 
 	/**
 	 * returns the service code
-	 * @return
+	 * @return serviceCode
 	 */
 
 	public int getServiceCode() {
@@ -162,7 +163,7 @@ public class Record implements Serializable {
 
 	/**
 	 * returns the comments of the record
-	 * @return
+	 * @return comments
 
 	 */
 
@@ -172,7 +173,7 @@ public class Record implements Serializable {
 
 	/**
 	 * returns the member object
-	 * @return
+	 * @return member
 
 	 */
 
@@ -182,7 +183,7 @@ public class Record implements Serializable {
 	/**
 
 	 * returns the records
-	 * @return
+	 * @return records
 
 	 */
 

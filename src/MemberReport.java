@@ -43,7 +43,7 @@ public class MemberReport extends Database {
 	
 	/**
 	 * getDateTime method: return
-	 * @return
+	 * @return date
 	 */
 	public String getDateTime(){
 		return currentRecord.getDate() + " " + currentRecord.getTime();
@@ -52,7 +52,7 @@ public class MemberReport extends Database {
     //returns the member number
 	/**
 	 * getProviderNumber method: returns the Provider Number from record that the class is currently looking at
-	 * @return
+	 * @return providerNumber
 	 */
     public int getProviderNumber(){
         return currentRecord.getProviderNumber();
@@ -62,7 +62,7 @@ public class MemberReport extends Database {
     /**
      * getProviderName method: returns the provider name from record that the class is currently looking at
      * @param number
-     * @return
+     * @return providerName
      */
     public String getProviderName(int number){
     	for (int i=0; i<Database.providers.size();i++){
@@ -76,7 +76,7 @@ public class MemberReport extends Database {
     //returns service
     /**
      * getServiceCode method: returns the service code from record that the class is currently looking at
-     * @return
+     * @return serviceCode
      */
     public int getServiceCode(){
         return currentRecord.getServiceCode();
@@ -85,7 +85,7 @@ public class MemberReport extends Database {
     //return current date and time
     /**
      * getDateProvided method: returns the Date a service was provided from record that the class is currently looking at
-     * @return
+     * @return dateProvided
      */
     public String getDateProvided(){
         return currentRecord.getDateOfServices();
@@ -94,7 +94,7 @@ public class MemberReport extends Database {
     // returns the comments
     /**
      * getComments method: returns the comments from record that the class is currently looking at
-     * @return
+     * @return comments
      */
 	public String getComments(){
 		return currentRecord.getComments();

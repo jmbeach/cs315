@@ -55,7 +55,7 @@ public class ProviderReport extends Database {
 	
 	/**
 	 * getDateTime method: returns the current date and time from record that the class is currently looking at
-	 * @return
+	 * @return date + time
 	 */
 	public String getDateTime(){
 		return currentRecord.getDate() + " " + currentRecord.getTime();
@@ -63,7 +63,7 @@ public class ProviderReport extends Database {
 	
 	/**
 	 * getDateOfService method: returns the date of service from record that the class is currently looking at
-	 * @return
+	 * @return dateOfService
 	 */
 	public String getDateOfService(){
 		return currentRecord.getDateOfServices();
@@ -72,7 +72,7 @@ public class ProviderReport extends Database {
     //returns the member number
 	/**
 	 * getMemberNumber method: returns the member number from record that the class is currently looking at
-	 * @return
+	 * @return memberNumber
 	 */
     public int getMemberNumber(){
         return currentRecord.getMemberNumber();
@@ -82,7 +82,7 @@ public class ProviderReport extends Database {
     /**
      * getMemberName method: returns the member name from record that the class is currently looking at
      * @param number
-     * @return
+     * @return memberName
      */
     public String getMemberName(int number){
     	for (int i=0; i<Database.members.size();i++){
@@ -96,7 +96,7 @@ public class ProviderReport extends Database {
     //returns service
     /**
      * getServiceCode method: returns the service code from record that the class is currently looking at
-     * @return
+     * @return serviceCode
      */
     public int getServiceCode(){
         return currentRecord.getServiceCode();
@@ -104,7 +104,7 @@ public class ProviderReport extends Database {
     
     /**
      * getServiceFee method: returns the service fee from record that the class is currently looking at
-     * @return
+     * @return serviceFee
      */
     public double getServiceFee(){
     	totalFees += currentRecord.calculateFee(getServiceCode());
@@ -114,7 +114,7 @@ public class ProviderReport extends Database {
     //return current date and time
     /**
      * getDateProvided method: returns the date provided from record that the class is currently looking at
-     * @return
+     * @return dateProvided
      */
     public String getDateProvided(){
         return currentRecord.getDateOfServices();
@@ -123,7 +123,7 @@ public class ProviderReport extends Database {
     // returns the comments
     /**
      * getComments method: returns the comments from record that the class is currently looking at
-     * @return
+     * @return comments
      */
 	public String getComments(){
 		return currentRecord.getComments();
