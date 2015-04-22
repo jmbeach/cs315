@@ -1,8 +1,20 @@
 import java.io.Console;
 
+/**
+ * 
+ * @author Team8
+ * 
+ */
 public class Main {
 	private static Console _co;
 
+	// open console to bin folder and run "java Main"
+	/**
+	 * Starts the ChocAn terminal
+	 * 
+	 * @param args
+	 *            There are no command line arguments
+	 */
 	// open console to bin folder and run "java Main"
 	public static void main(String[] args) {
 		_co = System.console();
@@ -22,6 +34,9 @@ public class Main {
 		displayMainMenu();
 	}
 
+	/**
+	 * Display's ChocAn's main menu
+	 */
 	public static void displayMainMenu() {
 		System.out
 				.println("Welcome to ChocAn!\nMenu:\n\t1) sign-in\n\tn) exit");
@@ -30,26 +45,46 @@ public class Main {
 		handleMainMenuChoice(choice);
 	}
 
+	/**
+	 * Display's ChocAn's sign-in menu for signing in a member or provider.
+	 */
+	public static void displaySigninMenu() {
+		System.out
+				.println("Signing in:\nMenu:\n\t1) member\n\t2) provider\n\t3) back");
+		// read in sign-in sub option
+		String signInChoice = _co.readLine();
+		handleSigninChoice(signInChoice);
+	}
+
+	/**
+	 * Checks to make sure the passed in user number is the right length. If
+	 * not, displays sign-in menu
+	 * 
+	 * @param strUserNumber
+	 *            the user number read from the command line as a string
+	 */
+	public static void checkUserNumberLength(String strUserNumber) {
+		int numberLength = strUserNumber.trim().length();
+		// if number too short or too long
+		if (numberLength != _userNumberLength) {
+			System.out.println("Member number invalid");
+			displaySigninMenu();
+		}
+	}
+
+	/**
+	 * Uses the user's input at the Main menu to help navigate through ChocAn.
+	 * 
+	 * @param choice
+	 *            the user's input at the main-menu
+	 */
 	public static void handleMainMenuChoice(String choice) {
 		switch (choice) {
-		case "sign-in":
-			System.out
-					.println("Signing in:\nMenu:\n\t1) member\n\t2) provider\n\t3) back");
-			// read in sign-in sub option
-			String signInChoice = _co.readLine();
-			handleSigninChoice(signInChoice);
-			break;
 		case "1":
-			System.out.println("Signing in:\nMenu:\n\t1) member\n\t2) provider\n\t3) back");
-			// read in sign-in sub option
-			signInChoice = _co.readLine();
-			handleSigninChoice(signInChoice);
+		case "sign-in":
+			displaySigninMenu();
 			break;
 		case "n":
-			// Print exit message
-			System.out.println("Bye!");
-			// end the program
-			return;
 		case "exit":
 			// Print exit message
 			System.out.println("Bye!");
@@ -65,36 +100,61 @@ public class Main {
 		}
 	}
 
+	/**
+	 * Checks to make sure the passed in user number is the right length. If
+	 * not, displays sign-in menu
+	 * 
+	 * @param strUserNumber
+	 *            the user number read from the command line as a string
+	 */
 	public static void handleSigninChoice(String signInChoice) {
 		switch (signInChoice) {
+		case "1":
 		case "member":
 			// handle member sign in
 			System.out
-					.println("Signing in member:\n\t\t Enter member number.");
-			break;
-		case "1":
-			// handle member sign in
-			System.out.println("Signing in member:\n\t\t Enter member number.");
+					.println("\tSigning in member:\n\t\t Enter member number.");
+			String strMemberNumber = _co.readLine();
+			checkUserNumberLength(strMemberNumber);
+			Integer memberNumber;
+			try {
+				memberNumber = Integer.parseInt(strMemberNumber);
+			} catch (Exception e) {
+				System.out.println("Member number format not valid.");
+				displaySigninMenu();
+			}
+			println("\tFinding member in database...");
+			// TODO: Need to bounce memberNumber off of database here
 			break;
 		case "2":
-			// handle provider sign in
-			System.out.println("Signing in provider:\n\t\t Enter in provider number. ");
-			break;
-		case "3":
-			// return back to main menu
-			displayMainMenu();
-			break;
 		case "provider":
 			// handle provider sign in
 			System.out
-					.println("Signing in provider:\n\t\t Enter in provider number. ");
+					.println("\tSigning in provider:\n\t\t Enter in provider number. ");
+			String strProviderNumber = _co.readLine();
+			checkUserNumberLength(strProviderNumber);
+			Integer providerNumber;
+			try {
+				providerNumber = Integer.parseInt(strProviderNumber);
+			} catch (Exception e) {
+				System.out.println("Provider number format not valid.");
+				displaySigninMenu();
+			}
+			println("\tFinding provider in database...");
+			// TODO: Need to bounce providerNumber off of database here
 			break;
+		case "3":
 		case "back":
 			// return back to main menu
 			displayMainMenu();
 			break;
+		default:
+			System.out.println("Your choice was invalid. Please try again.");
+			displaySigninMenu();
 		}
 
+		private static void println(String message) {
+			System.out.println(message);
+		}
 	}
-
 }
