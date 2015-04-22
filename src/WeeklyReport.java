@@ -1,3 +1,8 @@
+/*
+ * CS315 Assignment 4, WeekleyReport class
+ * Hannah Hoover
+ */
+
 import java.util.ArrayList;
 
 

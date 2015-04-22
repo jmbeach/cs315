@@ -1,4 +1,7 @@
-
+/*
+ * CS315 Assignment 4, EFTReport class
+ * Hannah Hoover
+ */
 public class EFTReport {
 	private Provider person;
 	
