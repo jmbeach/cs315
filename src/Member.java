@@ -18,7 +18,7 @@ public class Member implements Serializable {
 	private String city;
 	private String state;
 	private String zipCode;
-	private String memberStatus;
+	private boolean isMemberSuspended;
 	private boolean isSignedIn;
 	private float accountFunds;
 	ArrayList<Record> servicesReceived = new ArrayList<Record>();
@@ -31,7 +31,7 @@ public class Member implements Serializable {
 		this.city = city;
 		this.state = state;
 		this.zipCode = zipCode;
-		memberStatus = "VALID";
+		isMemberSuspended = false;
 		this.isSignedIn = false;
 		accountFunds = 0f;
 	}
@@ -64,20 +64,16 @@ public class Member implements Serializable {
 		return accountFunds;
 	}
 
-	public void setStatusToValid() {
-		memberStatus = "VALID";
+	public void Suspend() {
+		isMemberSuspended = true;
 	}
 
-	public void setStatusToInvalid() {
-		memberStatus = "INVALID";
+	public void UnSuspend() {
+		isMemberSuspended = false;
 	}
 
-	public void setStatusToSuspended() {
-		memberStatus = "SUSPENDED";
-	}
-
-	public String getStatus() {
-		return memberStatus;
+	public boolean isSuspended() {
+		return isMemberSuspended;
 	}
 
 	public void addServiceReceived(Record serv) {
