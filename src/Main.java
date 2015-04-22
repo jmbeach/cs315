@@ -10,7 +10,6 @@ public class Main {
 	private static final int _userNumberLength = 6;
 	private static Database _db = new Database();
 
-	// open console to bin folder and run "java Main"
 	/**
 	 * Starts the ChocAn terminal
 	 * 
@@ -37,7 +36,7 @@ public class Main {
 	}
 
 	/**
-	 * Display's ChocAn's main menu
+	 * Display's ChocAn's sign-in menu for signing in a member or provider.
 	 */
 	public static void displayMainMenu() {
 		System.out
@@ -45,33 +44,6 @@ public class Main {
 		// read the user's choice from command line
 		String choice = _co.readLine();
 		handleMainMenuChoice(choice);
-	}
-
-	/**
-	 * Display's ChocAn's sign-in menu for signing in a member or provider.
-	 */
-	public static void displaySigninMenu() {
-		System.out
-				.println("Signing in:\nMenu:\n\t1) member\n\t2) provider\n\t3) back");
-		// read in sign-in sub option
-		String signInChoice = _co.readLine();
-		handleSigninChoice(signInChoice);
-	}
-
-	/**
-	 * Checks to make sure the passed in user number is the right length. If
-	 * not, displays sign-in menu
-	 * 
-	 * @param strUserNumber
-	 *            the user number read from the command line as a string
-	 */
-	public static void checkUserNumberLength(String strUserNumber) {
-		int numberLength = strUserNumber.trim().length();
-		// if number too short or too long
-		if (numberLength != _userNumberLength) {
-			System.out.println("Member number invalid");
-			displaySigninMenu();
-		}
 	}
 
 	/**
@@ -84,7 +56,11 @@ public class Main {
 		switch (choice) {
 		case "1":
 		case "sign-in":
-			displaySigninMenu();
+			System.out
+					.println("Signing in:\nMenu:\n\t1) member\n\t2) provider\n\t3) back");
+			// read in sign-in sub option
+			String signInChoice = _co.readLine();
+			handleSigninChoice(signInChoice);
 			break;
 		case "n":
 		case "exit":
@@ -109,6 +85,33 @@ public class Main {
 	 * @param strUserNumber
 	 *            the user number read from the command line as a string
 	 */
+	public static void checkUserNumberLength(String strUserNumber) {
+		int numberLength = strUserNumber.trim().length();
+		// if number too short or too long
+		if (numberLength != _userNumberLength) {
+			System.out.println("Member number invalid");
+			displaySigninMenu();
+		}
+	}
+
+	/**
+	 * Display's ChocAn's sign-in menu for signing in a member or provider.
+	 */
+	public static void displaySigninMenu() {
+		System.out
+				.println("\tSigning in:\n\tMenu:\n\t\t1) member\n\t\t2) provider\n\t\t3) back");
+		// read in sign-in sub option
+		String signInChoice = _co.readLine();
+		handleSigninChoice(signInChoice);
+	}
+
+	/**
+	 * Uses the user input at the sign-in menu and tries to begin the sign-in
+	 * process.
+	 * 
+	 * @param signInChoice
+	 *            The user's command line input from the sign-in menu
+	 */
 	public static void handleSigninChoice(String signInChoice) {
 		switch (signInChoice) {
 		case "1":
@@ -126,6 +129,7 @@ public class Main {
 			}
 			println("Finding member in database...");
 			// TODO: Need to bounce memberNumber off of database here
+			System.out.println("Signing in member:\n\t\t Enter member number.");
 			break;
 		case "2":
 		case "provider":
@@ -142,6 +146,8 @@ public class Main {
 			}
 			println("Finding provider in database...");
 			// TODO: Need to bounce providerNumber off of database here
+			System.out
+					.println("Signing in provider:\n\t\t Enter in provider number. ");
 			break;
 		case "3":
 		case "back":
@@ -152,9 +158,11 @@ public class Main {
 			println("Your choice was invalid. Please try again.");
 			displaySigninMenu();
 		}
+
 	}
 
 	private static void println(String message) {
 		System.out.println(message);
 	}
+
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * Dillon Wastrack 
  */
 
-public class Member extends verifyUser {
+public class Member  {
 
 	private String name;
 	private int number;
