@@ -5,7 +5,10 @@
  */
 public class EFTReport {
 	private Provider person;
-	
+	/**
+	 * constructor for EFTReport, takes in a Provider object
+	 * @param person
+	 */
 	public EFTReport(Provider person) {
 		this.person = person;
 		generateReport();
