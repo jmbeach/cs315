@@ -109,7 +109,7 @@ public class Member implements Serializable {
 	/**
 	 *  sets the member status to valid
 	 */
-	public void Suspend() {
+	public void suspend() {
 		isMemberSuspended = true;
 	}
 
@@ -117,7 +117,7 @@ public class Member implements Serializable {
 	/**
 	 * setStatusToInvalid method that sets the member status to Invalid
 	 */
-	public void UnSuspend() {
+	public void unSuspend() {
 		isMemberSuspended = false;
 
 	}
@@ -210,7 +210,7 @@ public class Member implements Serializable {
 	 * the member's zip code
 	 * @return member's zipCode
 	 */
-	public String getzipCode() { //  the user's zip code
+	public String getZipCode() { //  the user's zip code
 		return zipCode;
 	}
 
@@ -218,7 +218,7 @@ public class Member implements Serializable {
 	 * sets the member's zip code
 	 * @param zipCode
 	 */
-	public void setZip_Code(String zipCode) { // sets the user's zip code
+	public void setZipCode(String zipCode) { // sets the user's zip code
 		this.zipCode = zipCode;
 	}
 
