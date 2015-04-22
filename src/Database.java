@@ -257,6 +257,8 @@ public class Database implements java.io.Serializable {
 		}
 		return null;
 	}
+	
+	
 	private static boolean isWindows() {
 		return System.getProperty("os.name").toLowerCase().indexOf("win") > 0;
 	}

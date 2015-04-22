@@ -1,6 +1,17 @@
 import java.util.Date;
 
+/**
+ * 
+ * @author Kalyn-Wright 
+ *
+ */
+
 public class Report {
+	
+	/**
+	 * Fields for date and comments 
+	 */
+	
 	private Date _currentDate;
 	private String _comments;
 	public void generateReports() {

@@ -24,7 +24,16 @@ public class Record implements Serializable {
 																						// Master
 																						// ArrayList
 
-	// constructor
+	/**
+	 * 
+	 * @param dateTime date and time provided
+	 * @param dateOfServices date of services provided
+	 * @param providerNumber input of the provider number
+	 * @param memberNumber input of the member number
+	 * @param serviceCode input of the service code for service provided
+	 * @param comments input of comments associated for service provided
+	 * @param user input for member associated with record
+	 */
 	public Record(String dateTime, String dateOfServices, int providerNumber,
 			int memberNumber, int serviceCode, String comments, Member user) {
 		this.date = dateTime;
@@ -41,6 +50,12 @@ public class Record implements Serializable {
 	public Record() {
 		// constructor with no arguments
 	}
+	
+	/**
+	 * 
+	 * @param servCode 
+	 * @return
+	 */
 
 	public double calculateFee(int servCode) {
 		if (servCode == 6666665) {
@@ -108,45 +123,68 @@ public class Record implements Serializable {
 		return serviceRecords;
 	}
 
-	// sets the date and time for the record
+	/**
+	 * 
+	 * @param newDate sets the date and time for the record
+	 */
 	public void setDateTime(String newDate) {
 		date = newDate;
 
 	}
 
-	// sets the date of services provided for the record
+	/**
+	 * 
+	 * @param providedDate sets the date of services provided for the record
+	 */
 	public void setDateProvided(String providedDate) {
 		dateOfServices = providedDate;
 
 	}
 
-	// sets the provider number for the record
+	/**
+	 * 
+	 * @param provider sets the provider number for the record
+	 */
 	public void setPNumber(int provider) {
 		providerNumber = provider;
 	}
 
-	// sets the member number for the record
+	/**
+	 * 
+	 * @param member sets the member number for the record
+	 */
 	public void setUNumber(int member) {
 		memberNumber = member;
 	}
 
-	// sets the service code of the services provided
+	/**
+	 * 
+	 * @param code sets the service code of the services provided
+	 */
 	public void setServiceCode(int code) {
 		serviceCode = code;
 	}
 
-	// sets the comments for the record
+	/**
+	 * 
+	 * @param notes sets the comments for the record
+	 */
 	public void setComments(String notes) {
 		comments = notes;
 	}
 
-	// sets the selected user to the member object that is passed in
+	/**
+	 * 
+	 * @param person sets the selected user to the member object that is passed in
+	 */
 	public void selectUser(Member person) {
 		user = person;
 
 	}
 
-	// loads the selected user, and sets the member number
+	/**
+	 *  loads the selected user, and sets the member number
+	 */
 	public void loadUser() {
 		memberNumber = user.getNumber();
 	}
