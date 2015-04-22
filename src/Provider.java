@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 
-public class Provider extends verifyUser {
+public class Provider  {
 	
 	private String name;
 	private int number;
@@ -13,6 +13,7 @@ public class Provider extends verifyUser {
 	ArrayList<Record> servicesProvided = new ArrayList<Record>();
 
 	public Provider(String name, int number, String address, String city, String state, String zipCode){
+		super();
 		this.name = name;
 		this.number = number;
 		this.address = address;
