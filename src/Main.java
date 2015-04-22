@@ -7,6 +7,8 @@ import java.io.Console;
  */
 public class Main {
 	private static Console _co;
+	private static final int _userNumberLength = 6;
+	private static Database _db = new Database();
 
 	// open console to bin folder and run "java Main"
 	/**
@@ -18,17 +20,17 @@ public class Main {
 	// open console to bin folder and run "java Main"
 	public static void main(String[] args) {
 		_co = System.console();
-		Database d = new Database();
+		// Hard-coded members and providers
 		Provider p = new Provider("Octavius", 123456, "345 anus avenue",
 				"Tuscaloosa", "AL", "35404");
-		d.addProvider(p);
 		Member m = new Member("Dillon", 356661, "417 Prince Acres",
 				"Tuscaloosa", "AL", "35404");
 		Member o = new Member("Matt", 236544, "417 Prince Acres", "Tuscaloosa",
 				"AL", "35404");
-		d.addMember(m);
-		d.addMember(o);
-		Member mem = d.getMember(o.getNumber());
+		_db.addMember(m);
+		_db.addMember(o);
+		_db.addProvider(p);
+		// Member mem = d.getMember(o.getNumber());
 		// System.out.println(mem.getName());
 		// System.out.println(d.getProviders());
 		displayMainMenu();
@@ -152,9 +154,9 @@ public class Main {
 			System.out.println("Your choice was invalid. Please try again.");
 			displaySigninMenu();
 		}
+	}
 
-		private static void println(String message) {
-			System.out.println(message);
-		}
+	private static void println(String message) {
+		System.out.println(message);
 	}
 }
