@@ -2,7 +2,7 @@ import java.io.Console;
 
 /**
  * 
- * @author Team8
+ * @author Jared
  * 
  */
 
