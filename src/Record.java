@@ -86,38 +86,81 @@ public class Record implements Serializable {
 		serviceRecords.add(record);
 
 	}
+	/**
+	 * 
+	 * @return returns date
+	 */
 
 	public String getDate() {
 		return date;
 	}
+	
+	/**
+	 * 
+	 * @return returns time
+	 */
 
 	public String getTime() {
 		return time;
 	}
+	
+	/**
+	 * 
+	 * @return returns date of services
+	 */
 
 	public String getDateOfServices() {
 		return dateOfServices;
 	}
+	
+	/**
+	 * 
+	 * @return returns provider number
+	 */
 
 	public int getProviderNumber() {
 		return providerNumber;
 	}
+	
+	/**
+	 * 
+	 * @return returns member number
+	 */
 
 	public int getMemberNumber() {
 		return memberNumber;
 	}
+	
+	/**
+	 * 
+	 * @return returns service code
+	 */
 
 	public int getServiceCode() {
 		return serviceCode;
 	}
+	
+	/**
+	 * 
+	 * @return returns comments
+	 */
 
 	public String getComments() {
 		return comments;
 	}
+	
+	/**
+	 * 
+	 * @return returns user
+	 */
 
 	public Member getUser() {
 		return user;
 	}
+	/**
+	 * 
+	 * @return returns service records
+	 */
 
 	public static Object getRecords() {
 		return serviceRecords;
