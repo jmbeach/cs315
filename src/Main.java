@@ -5,6 +5,8 @@ import java.io.Console;
  * @author Team8
  * 
  */
+
+// comment here
 public class Main {
 	private static Console _co;
 	private static final int _userNumberLength = 6;
