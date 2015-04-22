@@ -1,9 +1,10 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/*
- * CS315 Assignment 4, Member class
- * Dillon Wastrack 
+/**
+ * 
+ * @author dillonwastrack
+ * Class to represent a single member
  */
 
 public class Member implements Serializable {

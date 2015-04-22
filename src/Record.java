@@ -1,6 +1,10 @@
 import java.io.Serializable;
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author hannah
+ *
+ */
 public class Record implements Serializable {
 	protected String date;
 	protected String time;
