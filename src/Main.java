@@ -42,6 +42,9 @@ public class Main {
 		// _db.saveDb();
 
 		// end Hard-coded members and providers
+
+		// display welcome message
+		println("Welcome to ChocAn!");
 		displayMainMenu();
 	}
 
@@ -51,7 +54,7 @@ public class Main {
 	 */
 	private static void displayMainMenu() {
 		System.out
-				.print("Welcome to ChocAn!\nMenu:\n\t1) sign-in\n\t2) sign-out\n\tn) exit\nchocAn>");
+				.print("Menu:\n\t1) sign-in\n\t2) sign-out\n\tn) exit\nchocAn>");
 		// read the user's choice from command line
 		String choice = _co.readLine();
 		handleMainMenuChoice(choice);
@@ -185,10 +188,16 @@ public class Main {
 		println("Finding member in database...");
 		Member member = _db.getMember(memberNumber);
 		if (member != null) {
-			println("Signin successful!\nWelcome, " + member.getName());
-			member.signIn();
-			_db.saveDb();
-			displayMainMenu();
+			// if member not signed in
+			if (!member.isSignedIn()) {
+				println("Signin successful!\nWelcome, " + member.getName());
+				member.signIn();
+				_db.saveDb();
+				displayMainMenu();
+			} else {
+				println("Member, " + member.getName() + " is already signed.");
+				displayMainMenu();
+			}
 		} else {
 			println("Member could not be found.");
 			displaySigninMenu();
@@ -210,10 +219,16 @@ public class Main {
 		println("Finding provider in database...");
 		Provider provider = _db.getProvider(providerNumber);
 		if (provider != null) {
-			println("Signin successful!\nWelcome, " + provider.getName());
-			provider.signIn();
-			_db.saveDb();
-			displayMainMenu();
+			if (!provider.isSignedIn()) {
+				println("Signin successful!\nWelcome, " + provider.getName());
+				provider.signIn();
+				_db.saveDb();
+				displayMainMenu();
+			} else {
+				println("Provider, " + provider.getName()
+						+ " already signed int.");
+				displayMainMenu();
+			}
 		} else {
 			println("Provider could not be found.");
 			displaySigninMenu();
