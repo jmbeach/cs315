@@ -213,8 +213,17 @@ public class Main {
 		switch (choice) {
 		case "1":
 		case "member":
+			// display add member
 			break;
-		// case "2"
+		case "2":
+		case "provider":
+			break;
+		case "3":
+		case "back":
+			break;
+		default:
+			// correct input
+			break;
 		}
 	}
 
