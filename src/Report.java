@@ -12,6 +12,7 @@ public class Report {
 	 * Fields for date and comments 
 	 */
 	
+	// comment here
 	private Date _currentDate;
 	private String _comments;
 	public void generateReports() {
