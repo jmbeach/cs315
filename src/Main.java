@@ -171,7 +171,7 @@ public class Main {
 	}
 
 	private static void displayProviderMenu() {
-		print("Provider menu:\n\t1) info-update\n\t2) bill\n\t3) add-user\n\t4) delete-user\n\t5) back\n\nchocAn>");
+		print("Provider menu:\n\t1) info-update\n\t2) bill\n\t3) add-user\n\t4) delete-user\n\t5) back\n\t6) request report\n\nchocAn>");
 		String choice = _co.readLine();
 		switch (choice) {
 		case "1":
@@ -507,10 +507,14 @@ public class Main {
 			System.out.println(newRec.getComments());
 			String correctDecision = _co.readLine();
 			if (correctDecision.equals("yes")) {
-				// newRec.createRecord();
+				Member member = _db.getMember(newRec.getMemberNumber());
+				newRec.selectUser(member);
+				newRec.createRecord();
 				System.out.println("Record created, returning to menu");
 				double fee = newRec.calculateFee(newRec.getServiceCode());
 				System.out.println("Total fee: " + fee);
+				provider.addMoneyEarned((float) fee);
+				_db.saveDb();
 				displayProviderMenu();
 			} else {
 				System.out.println("Returning to menu");
