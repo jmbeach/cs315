@@ -60,6 +60,7 @@ public class Database implements java.io.Serializable {
 	}
 
 	public void removeMember(int memberNumber) {
+		// comment test
 		members.remove(memberNumber);
 	}
 
