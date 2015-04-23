@@ -20,10 +20,30 @@ public class ProviderDirectory {
 	 */
 	public void returnInfo(){
 		System.out.println("Diet Consultation"+", "+ "666665"+", "+ "50.45");
-		System.out.println("Excercise Sesssion"+", "+ "4519568"+", "+ "12.99");
+		System.out.println("Exercise Session"+", "+ "4519568"+", "+ "12.99");
 		System.out.println("Massage Session"+", "+ "102865"+", "+ "21.45");
 		System.out.println("Weight-loss Crying Session"+", "+ "551947"+", "+ "349.99");
 		System.out.println("Yoga Session"+", "+ "800085"+", "+ "54.69");
+	}
+	public String returnService(int serviceCode){
+		if (serviceCode == 666665){
+			return ("Diet Consultation");
+		}
+		else if (serviceCode == 4519568){
+			return ("Exercise Session");
+		}
+		else if (serviceCode == 102865){
+			return ("Massage Session");
+		}
+		else if (serviceCode == 551947){
+			return ("Weight-loss Crying Session");
+		}
+		else if (serviceCode ==800085){
+			return ("Yoga Session");
+		}
+		else{
+			return ("Invalid service code");
+		}
 	}
 	
 	// test

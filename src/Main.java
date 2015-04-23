@@ -1,4 +1,7 @@
 import java.io.Console;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * 
@@ -419,11 +422,56 @@ public class Main {
 		Provider provider = _db.getProvider(providerNumber);
 		if (provider != null) {
 			// provider enters date
-
+			Record newRec = new Record();
+			DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+			Calendar cal = Calendar.getInstance();
+			newRec.setDateTime(dateFormat.format(cal.getTime()));
+			println("Please enter the date service was provided in the form:\nMM-DD-YYY");
+			try {
+				String date  = _co.readLine();
+				newRec.setDateProvided(date);
+			} catch (Exception e) {
+				println("Date format not valid.");
+				displayProviderMenu();
+			}
 			// provider looks up service code
-
+			println("look up the service code in the Provider Directory:");
+			ProviderDirectory provdir = new ProviderDirectory();
+			try {
+				String servCode  = _co.readLine();
+				int intServCode = Integer.parseInt(servCode);
+				newRec.setServiceCode(intServCode);
+				println("Service code correct? enter yes or no");
+				System.out.println(provdir.returnService(intServCode));
+				String agreeIsValid = _co.readLine();
+				if (agreeIsValid == "yes"){
+					newRec.setServiceCode(intServCode);
+					newRec.setPNumber(provider.getNumber());
+					System.out.println("Enter comments? Enter yes or no");
+					String commentDecision = _co.readLine();
+					if (commentDecision == "yes"){
+						System.out.println("enter comments:");
+						String comments = _co.readLine();
+						newRec.setComments(comments);
+					
+					}
+					else{
+						newRec.setComments("");
+					}
+					System.out.println();
+				}
+				else{
+					println("Service Code not Valid");
+					displayProviderMenu();
+				}
+			} catch (Exception e) {
+				println("Service Code not Valid");
+				displayProviderMenu();
+			}
+			System.out.println("Is the record correct?");
+			System.out.println(newRec.getDateOfServices());	
+			System.out.println(newRec.getDateOfServices());
 			// ask for verification of service code
-
 			// optionally enters comments
 
 			// record is submitted and saved with db
