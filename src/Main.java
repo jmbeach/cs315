@@ -171,7 +171,7 @@ public class Main {
 	}
 
 	private static void displayProviderMenu() {
-		print("Provider menu:\n\t1) info-update\n\t2) bill\n\t3) add-user\n\t4) delete-user\n\t5) back\n\t6) request report\n\nchocAn>");
+		print("Provider menu:\n\t1) info-update\n\t2) bill\n\t3) add-user\n\t4) delete-user\n\t5) back\n\t6) request report\n\t7)EFT report\n\nchocAn>");
 		String choice = _co.readLine();
 		switch (choice) {
 		case "1":
@@ -225,6 +225,31 @@ public class Main {
 				else{}
 				
 			}
+		case "7":
+			print("Request Report:\nEnter provider number: ");
+			String strProviderNumber1 = _co.readLine();
+			if (!isNumberLengthValid(strProviderNumber1)) {
+				displayProviderMenu();
+				return;
+			}
+			Integer providerNumber1 = 0;
+			try {
+				providerNumber = Integer.parseInt(strProviderNumber1);
+			} catch (Exception e) {
+				println("Provider number format not valid.");
+				displayProviderMenu();
+			}
+			println("Finding provider in database...");
+			Provider provider1 = _db.getProvider(providerNumber1);
+			if (provider1 != null) {
+				EFTReport provRep = new EFTReport(provider1);
+				System.out.println("Return to Menu? Enter yes");
+				String choice1 = _co.readLine();
+				if (choice1.equals("yes")){
+					displayProviderMenu();
+				}
+				else{}
+		}
 		default:
 			// correct the input
 			println("Input invalid");
