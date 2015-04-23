@@ -168,7 +168,7 @@ public class Main {
 	}
 
 	private static void displayProviderMenu() {
-		print("Provider menu:\n\t1) info-update\n\t2) back\n\nchocAn>");
+		print("Provider menu:\n\t1) info-update\n\t2) bill\n\t3) back\n\nchocAn>");
 		String choice = _co.readLine();
 		switch (choice) {
 		case "1":
@@ -178,6 +178,9 @@ public class Main {
 			displayInfoUpdateMenu();
 			break;
 		case "2":
+		case "bill":
+			// bill chcocAn
+			break;
 		case "back":
 			displayMainMenu();
 			break;
@@ -395,6 +398,41 @@ public class Main {
 			println("\nInput invalid\n");
 			displayMemberSuspensionMenu(member);
 			break;
+		}
+	}
+
+	public static void displayBillChocAnMenu() {
+		print("Billing ChocAn:\nEnter provider number: ");
+		String strProviderNumber = _co.readLine();
+		if (!isNumberLengthValid(strProviderNumber)) {
+			displayProviderMenu();
+			return;
+		}
+		Integer providerNumber = 0;
+		try {
+			providerNumber = Integer.parseInt(strProviderNumber);
+		} catch (Exception e) {
+			println("Provider number format not valid.");
+			displayProviderMenu();
+		}
+		println("Finding provider in database...");
+		Provider provider = _db.getProvider(providerNumber);
+		if (provider != null) {
+			// provider enters date
+
+			// provider looks up service code
+
+			// ask for verification of service code
+
+			// optionally enters comments
+
+			// record is submitted and saved with db
+
+			// software looks up and displays fees
+
+		} else {
+			println("Provider could not be found.");
+			displaySigninMenu();
 		}
 	}
 
