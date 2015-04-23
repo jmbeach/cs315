@@ -183,6 +183,8 @@ public class Main {
 			break;
 		default:
 			// correct the input
+			println("Input invalid");
+			displayProviderMenu();
 			break;
 		}
 	}
@@ -206,6 +208,8 @@ public class Main {
 			break;
 		default:
 			// correct the input
+			println("Input invalid");
+			displayInfoUpdateMenu();
 			break;
 		}
 	}
@@ -299,21 +303,97 @@ public class Main {
 			break;
 		case "4":
 		case "city":
+			print("\nInput new member city or type \"cancel\": ");
+			String newCity = _co.readLine();
+			if (isCanceled(newCity)) {
+				displaySpecificMemberUpdateMenu(member);
+				return;
+			}
+			member.setCity(newCity);
+			_db.saveDb();
+			println("\nSuccessfully saved new city: " + newCity + "\n");
+			displaySpecificMemberUpdateMenu(member);
 			break;
 		case "5":
 		case "state":
+			print("\nInput new member state or type \"cancel\": ");
+			String newState = _co.readLine();
+			if (isCanceled(newState)) {
+				displaySpecificMemberUpdateMenu(member);
+				return;
+			}
+			member.setState(newState);
+			_db.saveDb();
+			println("\nSuccessfully saved new state: " + newState + "\n");
+			displaySpecificMemberUpdateMenu(member);
 			break;
 		case "6":
 		case "zip-code":
+			print("\nInput new member zip-code or type \"cancel\": ");
+			String newZip = _co.readLine();
+			if (isCanceled(newZip)) {
+				displaySpecificMemberUpdateMenu(member);
+				return;
+			}
+			member.setZipCode(newZip);
+			println("\nSuccessfully saved new zip-code: " + newZip + "\n");
+			_db.saveDb();
 			break;
 		case "7":
 		case "suspension":
+			displayMemberSuspensionMenu(member);
 			break;
 		case "8":
 		case "back":
+			displayProviderMenu();
 			break;
 		default:
 			// correct user;
+			println("Input invalid.");
+			displaySpecificMemberUpdateMenu(member);
+			break;
+		}
+	}
+
+	private static void displayMemberSuspensionMenu(Member member) {
+		// display member suspension menu
+		print("\nMember suspension menu:\n\t1) suspend\n\t2) un-suspend\n\t3) check\n\t4) back\n\nchocAn>");
+		String choice = _co.readLine();
+		switch (choice) {
+		case "1":
+		case "suspend":
+			// suspend member
+			member.suspend();
+			_db.saveDb();
+			println("Member suspended.");
+			displaySpecificMemberUpdateMenu(member);
+			break;
+		case "2":
+		case "un-suspend":
+			// unsuspend member
+			member.unSuspend();
+			_db.saveDb();
+			println("Member un-suspended.");
+			displaySpecificMemberUpdateMenu(member);
+			break;
+		case "3":
+		case "check":
+			// check member suspension status
+			if (member.isSuspended()) {
+				println("Member is suspended.");
+			} else {
+				println("Member is not suspended.");
+			}
+			displaySpecificMemberUpdateMenu(member);
+			break;
+		case "4":
+		case "back":
+			displaySpecificMemberUpdateMenu(member);
+			break;
+		default:
+			// correct the user.
+			println("\nInput invalid\n");
+			displayMemberSuspensionMenu(member);
 			break;
 		}
 	}
