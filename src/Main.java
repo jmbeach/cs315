@@ -199,6 +199,32 @@ public class Main {
 		case "back":
 			displayMainMenu();
 			break;
+		case "6":
+			print("Request Report:\nEnter provider number: ");
+			String strProviderNumber = _co.readLine();
+			if (!isNumberLengthValid(strProviderNumber)) {
+				displayProviderMenu();
+				return;
+			}
+			Integer providerNumber = 0;
+			try {
+				providerNumber = Integer.parseInt(strProviderNumber);
+			} catch (Exception e) {
+				println("Provider number format not valid.");
+				displayProviderMenu();
+			}
+			println("Finding provider in database...");
+			Provider provider = _db.getProvider(providerNumber);
+			if (provider != null) {
+				ProviderReport provRep = new ProviderReport(provider);
+				System.out.println("Return to Menu? Enter yes");
+				String choice1 = _co.readLine();
+				if (choice1.equals("yes")){
+					displayProviderMenu();
+				}
+				else{}
+				
+			}
 		default:
 			// correct the input
 			println("Input invalid");
