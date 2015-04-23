@@ -199,6 +199,32 @@ public class Main {
 		case "back":
 			displayMainMenu();
 			break;
+		case "6":
+			print("Request Report:\nEnter provider number: ");
+			String strProviderNumber = _co.readLine();
+			if (!isNumberLengthValid(strProviderNumber)) {
+				displayProviderMenu();
+				return;
+			}
+			Integer providerNumber = 0;
+			try {
+				providerNumber = Integer.parseInt(strProviderNumber);
+			} catch (Exception e) {
+				println("Provider number format not valid.");
+				displayProviderMenu();
+			}
+			println("Finding provider in database...");
+			Provider provider = _db.getProvider(providerNumber);
+			if (provider != null) {
+				ProviderReport provRep = new ProviderReport(provider);
+				System.out.println("Return to Menu? Enter yes");
+				String choice1 = _co.readLine();
+				if (choice1.equals("yes")){
+					displayProviderMenu();
+				}
+				else{}
+				
+			}
 		default:
 			// correct the input
 			println("Input invalid");
@@ -213,9 +239,54 @@ public class Main {
 		switch (choice) {
 		case "1":
 		case "member":
+			// display add member
 			break;
-		// case "2"
+		case "2":
+		case "provider":
+			break;
+		case "3":
+		case "back":
+			break;
+		default:
+			// correct input
+			break;
 		}
+	}
+
+	private static void displayAddMember() {
+		print("Enter (9-digit) member number");
+		String number = _co.readLine();
+		if (!isNumberLengthValid(number)) {
+			displayAddMember();
+			return;
+		}
+		Integer memberNumber = 0;
+		try {
+			memberNumber = Integer.parseInt(number);
+		} catch (Exception e) {
+			println("Member number format not valid.");
+			displayAddMember();
+		}
+		Member newMember = new Member();
+		newMember.setNumber(memberNumber);
+		print("Enter member name: ");
+		String name = _co.readLine();
+		newMember.setName(name);
+		print("Enter member address: ");
+		String address = _co.readLine();
+		newMember.setAddress(address);
+		print("Enter member city: ");
+		String city = _co.readLine();
+		newMember.setAddress(city);
+		print("Enter member state: ");
+		String state = _co.readLine();
+		newMember.setState(state);
+		print("Enter member zip-code: ");
+		String zip = _co.readLine();
+		newMember.setZipCode(zip);
+		_db.addMember(newMember);
+		_db.saveDb();
+		println("New member " + newMember.getName() + " created.");
 	}
 
 	private static void displayInfoUpdateMenu() {
@@ -512,8 +583,8 @@ public class Main {
 				double fee = newRec.calculateFee(newRec.getServiceCode());
 				newRec.createRecord();
 				System.out.println("Record created, returning to menu");
-				//double fee = newRec.calculateFee(newRec.getServiceCode());
-				System.out.println("Total fee: "+ fee);
+				// double fee = newRec.calculateFee(newRec.getServiceCode());
+				System.out.println("Total fee: " + fee);
 				provider.addMoneyEarned((float) fee);
 				_db.saveDb();
 				displayProviderMenu();
