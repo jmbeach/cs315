@@ -190,9 +190,12 @@ public class Main {
 			// add user menu
 
 			break;
+		case "4":
 		case "delete-user":
 			// delte user menu
+			displayBillChocAnMenu();
 			break;
+		case "5":
 		case "back":
 			displayMainMenu();
 			break;
@@ -472,12 +475,12 @@ public class Main {
 				println("Service code correct? enter yes or no");
 				System.out.println(provdir.returnService(intServCode));
 				String agreeIsValid = _co.readLine();
-				if (agreeIsValid == "yes") {
+				if (agreeIsValid.equals("yes")) {
 					newRec.setServiceCode(intServCode);
 					newRec.setPNumber(provider.getNumber());
 					System.out.println("Enter comments? Enter yes or no");
 					String commentDecision = _co.readLine();
-					if (commentDecision == "yes") {
+					if (commentDecision.equals("yes")) {
 						System.out.println("enter comments:");
 						String comments = _co.readLine();
 						newRec.setComments(comments);
@@ -502,7 +505,7 @@ public class Main {
 			System.out.println(newRec.getServiceCode());
 			System.out.println(newRec.getComments());
 			String correctDecision = _co.readLine();
-			if (correctDecision == "yes") {
+			if (correctDecision.equals("yes")) {
 				newRec.createRecord();
 				System.out.println("Record created, returning to menu");
 				double fee = newRec.calculateFee(newRec.getServiceCode());
