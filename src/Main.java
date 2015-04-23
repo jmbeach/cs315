@@ -490,6 +490,8 @@ public class Main {
 				System.out.println("Record created, returning to menu");
 				double fee = newRec.calculateFee(newRec.getServiceCode());
 				System.out.println("Total fee: "+ fee);
+				provider.addMoneyEarned((float) fee);
+				_db.saveDb();
 				displayProviderMenu();
 			}
 			else{
