@@ -452,6 +452,15 @@ public class Main {
 				println("Date format not valid.");
 				displayProviderMenu();
 			}
+			println("Please enter the member number");
+			try {
+				String memNum  = _co.readLine();
+				int intMemNum = Integer.parseInt(memNum);
+				newRec.setUNumber(intMemNum);
+			} catch (Exception e) {
+				println("Date format not valid.");
+				displayProviderMenu();
+			}
 			// provider looks up service code
 			println("look up the service code in the Provider Directory:");
 			ProviderDirectory provdir = new ProviderDirectory();
