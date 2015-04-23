@@ -213,7 +213,8 @@ public class Main {
 		switch (choice) {
 		case "1":
 		case "member":
-
+			break;
+		// case "2"
 		}
 	}
 
@@ -508,9 +509,10 @@ public class Main {
 			if (correctDecision.equals("yes")) {
 				Member member = _db.getMember(newRec.getMemberNumber());
 				newRec.selectUser(member);
+				double fee = newRec.calculateFee(newRec.getServiceCode());
 				newRec.createRecord();
 				System.out.println("Record created, returning to menu");
-				double fee = newRec.calculateFee(newRec.getServiceCode());
+				//double fee = newRec.calculateFee(newRec.getServiceCode());
 				System.out.println("Total fee: "+ fee);
 				provider.addMoneyEarned((float) fee);
 				_db.saveDb();
