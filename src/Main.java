@@ -227,6 +227,42 @@ public class Main {
 		}
 	}
 
+	private static void displayAddMember() {
+		print("Enter (9-digit) member number");
+		String number = _co.readLine();
+		if (!isNumberLengthValid(number)) {
+			displayAddMember();
+			return;
+		}
+		Integer memberNumber = 0;
+		try {
+			memberNumber = Integer.parseInt(number);
+		} catch (Exception e) {
+			println("Member number format not valid.");
+			displayAddMember();
+		}
+		Member newMember = new Member();
+		newMember.setNumber(memberNumber);
+		print("Enter member name: ");
+		String name = _co.readLine();
+		newMember.setName(name);
+		print("Enter member address: ");
+		String address = _co.readLine();
+		newMember.setAddress(address);
+		print("Enter member city: ");
+		String city = _co.readLine();
+		newMember.setAddress(city);
+		print("Enter member state: ");
+		String state = _co.readLine();
+		newMember.setState(state);
+		print("Enter member zip-code: ");
+		String zip = _co.readLine();
+		newMember.setZipCode(zip);
+		_db.addMember(newMember);
+		_db.saveDb();
+		println("New member " + newMember.getName() + " created.");
+	}
+
 	private static void displayInfoUpdateMenu() {
 		print("Info Update Menu:\n\t1) member\n\t2) provider\n\t3) back\n\nchocAn>");
 		String choice = _co.readLine();
@@ -521,8 +557,8 @@ public class Main {
 				double fee = newRec.calculateFee(newRec.getServiceCode());
 				newRec.createRecord();
 				System.out.println("Record created, returning to menu");
-				//double fee = newRec.calculateFee(newRec.getServiceCode());
-				System.out.println("Total fee: "+ fee);
+				// double fee = newRec.calculateFee(newRec.getServiceCode());
+				System.out.println("Total fee: " + fee);
 				provider.addMoneyEarned((float) fee);
 				_db.saveDb();
 				displayProviderMenu();
