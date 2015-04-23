@@ -2,7 +2,7 @@ import java.io.Console;
 
 /**
  * 
- * @author Team8
+ * @author Jared
  * 
  */
 
@@ -63,7 +63,7 @@ public class Main {
 	}
 
 	/**
-	 * Display's ChocAn's sign-in menu for signing in a member or provider.
+	 * Displays ChocAn's sign-in menu for signing in a member or provider.
 	 */
 	private static void displaySigninMenu() {
 		print("Signing in:\n\tMenu:\n\t\t1) member\n\t\t2) provider\n\t\t3) back\nchocAn>");
@@ -71,6 +71,9 @@ public class Main {
 		String signInChoice = _co.readLine();
 		handleSigninChoice(signInChoice);
 	}
+	/**
+	 * Displays ChocAn's sign-out menu for signing out a member or provider
+	 */
 
 	private static void displaySignOutMenu() {
 		print("Signing out:\nMenu:\n\t1) member\n\t2) provider\n\t3) back\n\nchocAn>");
@@ -359,6 +362,9 @@ public class Main {
 			displaySigninMenu();
 		}
 	}
+	/**
+	 * allows the member to enter his/her member number to be validated
+	 */
 
 	private static void handleMemberSignin() {
 		// handle member sign in
@@ -397,6 +403,9 @@ public class Main {
 			displaySigninMenu();
 		}
 	}
+	/**
+	 * allows the provider to enter his/her member number to be validated
+	 */
 
 	private static void handleProviderSignin() {
 		// handle provider sign in
@@ -428,12 +437,18 @@ public class Main {
 			displaySigninMenu();
 		}
 	}
-
+	/**
+	 * helper function to print a message
+	 * @param message
+	 */
 	// Region HELPERS
 	private static void println(String message) {
 		System.out.println(message);
 	}
-
+	/**
+	 * helper function to print a message
+	 * @param message
+	 */
 	private static void print(String message) {
 		System.out.print(message);
 	}

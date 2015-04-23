@@ -6,12 +6,14 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-// written by Matt Willams -
+/**
+ * Database Class
+ * 
+ * @author Matt
+ * 
+ */
 public class Database implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private static final String strSavePath = System.getProperty("user.dir");
 	private static final String strMemberSavePath = isWindows() ? strSavePath
@@ -21,7 +23,7 @@ public class Database implements java.io.Serializable {
 	private static final String strRecordSavePath = isWindows() ? strSavePath
 			+ "\\record.sav" : strSavePath + "/record.sav";
 
-	// hashed on member number
+	// // hashed on member number
 	static Map<Integer, Member> members = new HashMap<Integer, Member>();
 	// Hashed on provider number
 	static Map<Integer, Provider> providers = new HashMap<Integer, Provider>();
@@ -42,7 +44,7 @@ public class Database implements java.io.Serializable {
 	/**
 	 * 
 	 * @param person
-	 *            adds member to system with member number
+	 *            This method adds a member to the hashmap members
 	 */
 
 	public void addMember(Member person) {
@@ -52,7 +54,7 @@ public class Database implements java.io.Serializable {
 	/**
 	 * 
 	 * @param person
-	 *            removes member from system
+	 *            This method removes a member from the hashmap members
 	 */
 
 	public void removeMember(Member person) {
@@ -105,10 +107,10 @@ public class Database implements java.io.Serializable {
 	}
 
 	/**
+	 * This method takes in a member ID number, and returns the member object
 	 * 
 	 * @param memberId
-	 *            retrieves member ID
-	 * @return returns the member ID that was retrived
+	 * @return the member ID that was retrieved
 	 */
 
 	public Member getMember(int memberId) {
@@ -140,10 +142,10 @@ public class Database implements java.io.Serializable {
 	}
 
 	/**
+	 * This method takes in a provider number, and returns a Provider object
 	 * 
 	 * @param providerNumber
-	 *            looks up provider based on supplied provider number
-	 * @return returns the name of the provider number
+	 * @return the selected provider object
 	 */
 
 	public Provider getProvider(int providerNumber) {
@@ -151,7 +153,6 @@ public class Database implements java.io.Serializable {
 	}
 
 	/**
-	 * 
 	 * @param providerNumber
 	 *            uses supplied provider number to look up bill records
 	 * @return returns bill records based on the provider number supplied
@@ -162,7 +163,8 @@ public class Database implements java.io.Serializable {
 	}
 
 	/**
-	 * saves members, providers, and provider records to database
+	 * This method saves the members, providers, and provider bill records to
+	 * the database
 	 */
 
 	public void saveDb() {
@@ -172,7 +174,7 @@ public class Database implements java.io.Serializable {
 	}
 
 	/**
-	 * saves members to database
+	 * This method saves the members to the database
 	 */
 
 	private void saveMembers() {
@@ -180,8 +182,9 @@ public class Database implements java.io.Serializable {
 	}
 
 	/**
+	 * This method loads members in database
 	 * 
-	 * @return loads members in database
+	 * @return a hashmap of members
 	 */
 
 	private Map<Integer, Member> loadMembers() {
@@ -193,7 +196,7 @@ public class Database implements java.io.Serializable {
 	}
 
 	/**
-	 * saves providers to database
+	 * This method saves providers to database
 	 */
 
 	private void saveProviders() {
@@ -201,8 +204,9 @@ public class Database implements java.io.Serializable {
 	}
 
 	/**
+	 * This method loads providers in database
 	 * 
-	 * @return loads providers in database
+	 * @return a hashmap of providers
 	 */
 
 	private Map<Integer, Provider> loadProviders() {
@@ -214,7 +218,7 @@ public class Database implements java.io.Serializable {
 	}
 
 	/**
-	 * saves provider records to database
+	 * This method saves provider records to database
 	 */
 
 	private void saveProviderRecords() {
@@ -222,8 +226,9 @@ public class Database implements java.io.Serializable {
 	}
 
 	/**
+	 * This method loads bill records for provider services
 	 * 
-	 * @return loads bill records for provider services
+	 * @return a hashmap of provider bill records
 	 */
 
 	private Map<Integer, Record> loadProviderBillRecords() {
@@ -235,11 +240,10 @@ public class Database implements java.io.Serializable {
 	}
 
 	/**
+	 * This method determines where to save object provided to save to path
 	 * 
 	 * @param path
-	 *            determines where to save object provided
 	 * @param toSave
-	 *            object provided to be saved at path
 	 */
 
 	private void saveObject(String path, Object toSave) {
@@ -256,7 +260,6 @@ public class Database implements java.io.Serializable {
 	}
 
 	/**
-	 * 
 	 * @param path
 	 *            determines where to load object from
 	 * @return returns object loaded from path, If no path, returns nothing
@@ -277,6 +280,11 @@ public class Database implements java.io.Serializable {
 		return null;
 	}
 
+	/**
+	 * This method determines is the user is using windows or no
+	 * 
+	 * @return true if operating system is windows, false otherwise
+	 */
 	private static boolean isWindows() {
 		return System.getProperty("os.name").toLowerCase().indexOf("win") > 0;
 	}

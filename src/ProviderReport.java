@@ -1,14 +1,22 @@
-// written by Matt Williams
+
 
 import java.util.ArrayList;
 
+/**
+ * Provider Report Class that prints a report for the provider each week
+ * @author hannah
+ *
+ */
 public class ProviderReport extends Database {
 	private Provider person;
 	private Record currentRecord;
 	private int numOfConsultations;
 	private int totalFees;
 	
-	    // constructor with no parameters
+	/**
+	 * Constructor for the Provider Report
+	 * @param p
+	 */
 	public ProviderReport(Provider p){
 		super();
 		this.person = p;
@@ -18,6 +26,9 @@ public class ProviderReport extends Database {
 		p.addMoneyEarned(totalFees);
 	}
 	
+	/**
+	 * generateReport method: prints the weekly report for a provider
+	 */
 	public void generateReport() {
 		System.out.println("Provider Name: " + person.getName());
 		System.out.println("Provider Number: " + person.getNumber());
@@ -42,20 +53,37 @@ public class ProviderReport extends Database {
 		System.out.println("-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/");
     }
 	
+	/**
+	 * returns the current date and time from record that the class is currently looking at
+	 * @return date + time (current)
+	 */
 	public String getDateTime(){
 		return currentRecord.getDate() + " " + currentRecord.getTime();
 	}
 	
+	/**
+	 * returns the date of service from record that the class is currently looking at
+	 * @return dateOfService
+	 */
 	public String getDateOfService(){
 		return currentRecord.getDateOfServices();
 	}
 	
     //returns the member number
+	/**
+	 * returns the member number from record that the class is currently looking at
+	 * @return memberNumber
+	 */
     public int getMemberNumber(){
         return currentRecord.getMemberNumber();
 
     }
     
+    /**
+     * returns the member name from record that the class is currently looking at
+     * @param number
+     * @return memberName
+     */
     public String getMemberName(int number){
     	for (int i=0; i<Database.members.size();i++){
 			if (Database.members.get(i).getNumber() == number){
@@ -66,26 +94,46 @@ public class ProviderReport extends Database {
     }
     
     //returns service
+    /**
+     * getServiceCode method: returns the service code from record that the class is currently looking at
+     * @return serviceCode
+     */
     public int getServiceCode(){
         return currentRecord.getServiceCode();
     }
     
+    /**
+     * returns the service fee from record that the class is currently looking at
+     * @return serviceFee
+     */
     public double getServiceFee(){
     	totalFees += currentRecord.calculateFee(getServiceCode());
     	return currentRecord.calculateFee(getServiceCode());
     }
     
     //return current date and time
+    /**
+     * returns the date provided from record that the class is currently looking at
+     * @return dateProvided
+     */
     public String getDateProvided(){
         return currentRecord.getDateOfServices();
     }
     
     // returns the comments
+    /**
+     * returns the comments from record that the class is currently looking at
+     * @return comments
+     */
 	public String getComments(){
 		return currentRecord.getComments();
 	}
     
 	// submits the Member report record
+	/**
+	 * prints all of the information for one record that goes on the total report
+	 * 
+	 */
 	public void displayRecord(){
 		//System.out.println(getDateProvided() + "\n" + getProviderName(getProviderNumber()) + "\n" + super.getServiceName(getServiceCode()) );
 		System.out.println("Date of Service: " + getDateOfService() + "\n" + "Date and Time: " 
