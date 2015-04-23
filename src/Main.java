@@ -468,9 +468,25 @@ public class Main {
 				println("Service Code not Valid");
 				displayProviderMenu();
 			}
-			System.out.println("Is the record correct?");
-			System.out.println(newRec.getDateOfServices());	
+			System.out.println("Is the record correct? Enter yes or no");
+			System.out.println(newRec.getDate());	
 			System.out.println(newRec.getDateOfServices());
+			System.out.println(newRec.getProviderNumber());
+			System.out.println(newRec.getMemberNumber());
+			System.out.println(newRec.getServiceCode());
+			System.out.println(newRec.getComments());
+			String correctDecision = _co.readLine();
+			if (correctDecision =="yes"){
+				newRec.createRecord();
+				System.out.println("Record created, returning to menu");
+				double fee = newRec.calculateFee(newRec.getServiceCode());
+				System.out.println("Total fee: "+ fee);
+				displayProviderMenu();
+			}
+			else{
+				System.out.println("Returning to menu");
+				displayProviderMenu();
+			}
 			// ask for verification of service code
 			// optionally enters comments
 
