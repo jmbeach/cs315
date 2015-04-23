@@ -335,7 +335,7 @@ public class Main {
 		print("Enter (9-digit) provider number");
 		String number = _co.readLine();
 		if (!isNumberLengthValid(number)) {
-			displayAddProvider();();
+			displayAddProvider();
 			return;
 		}
 		Integer memberNumber = 0;
