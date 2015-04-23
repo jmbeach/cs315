@@ -188,7 +188,7 @@ public class Main {
 		case "3":
 		case "add-user":
 			// add user menu
-
+			displayAddUserMenu();
 			break;
 		case "4":
 		case "delete-user":
@@ -210,14 +210,12 @@ public class Main {
 			if (provider != null) {
 				_db.removeProvider(provider);
 				System.out.println("Provider Removed");
-				
-					displayProviderMenu();
-					
-			
-			
+
+				displayProviderMenu();
+
 			}
 			break;
-			
+
 		case "5":
 		case "back":
 			displayMainMenu();
@@ -269,11 +267,11 @@ public class Main {
 				EFTReport provRep = new EFTReport(provider11);
 				System.out.println("Return to Menu? Enter yes");
 				String choice1 = _co.readLine();
-				if (choice1.equals("yes")){
+				if (choice1.equals("yes")) {
 					displayProviderMenu();
+				} else {
 				}
-				else{}
-		}
+			}
 		default:
 			// correct the input
 			println("Input invalid");
