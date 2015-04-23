@@ -2,7 +2,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
-
+/**
+ * 
+ * @author Matt
+ *
+ */
 
 public class ProviderTest {
 
@@ -21,7 +25,7 @@ public class ProviderTest {
 	public void testAddServices() {
 		assert(p.getServices().size()==0); //asserts that the provider has not yet provided services
 		p.addServices(r); //add the record of service to the provider
-		assert(p.getServices().size()==1); //asserts the service has been added succesfully.
+		assert(p.getServices().size()==1); //asserts the service has been added successfully.
 	}
 
 
