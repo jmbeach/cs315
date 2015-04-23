@@ -192,14 +192,6 @@ public class Main {
 			break;
 		case "4":
 		case "delete-user":
-			// delte user menu
-			displayBillChocAnMenu();
-			break;
-		case "5":
-		case "back":
-			displayMainMenu();
-			break;
-		case "6":
 			print("Request Report:\nEnter provider number: ");
 			String strProviderNumber = _co.readLine();
 			if (!isNumberLengthValid(strProviderNumber)) {
@@ -216,16 +208,21 @@ public class Main {
 			println("Finding provider in database...");
 			Provider provider = _db.getProvider(providerNumber);
 			if (provider != null) {
-				ProviderReport provRep = new ProviderReport(provider);
-				System.out.println("Return to Menu? Enter yes");
-				String choice1 = _co.readLine();
-				if (choice1.equals("yes")){
-					displayProviderMenu();
-				}
-				else{}
+				_db.removeProvider(provider);
+				System.out.println("Provider Removed");
 				
+					displayProviderMenu();
+					
+			
+			
 			}
-		case "7":
+			break;
+			
+		case "5":
+		case "back":
+			displayMainMenu();
+			break;
+		case "6":
 			print("Request Report:\nEnter provider number: ");
 			String strProviderNumber1 = _co.readLine();
 			if (!isNumberLengthValid(strProviderNumber1)) {
@@ -242,7 +239,34 @@ public class Main {
 			println("Finding provider in database...");
 			Provider provider1 = _db.getProvider(providerNumber1);
 			if (provider1 != null) {
-				EFTReport provRep = new EFTReport(provider1);
+				ProviderReport provRep = new ProviderReport(provider1);
+				System.out.println("Return to Menu? Enter yes");
+				String choice1 = _co.readLine();
+				if (choice1.equals("yes")){
+					displayProviderMenu();
+				}
+				else{}
+				
+			}
+			break;
+		case "7":
+			print("Request Report:\nEnter provider number: ");
+			String strProviderNumber11 = _co.readLine();
+			if (!isNumberLengthValid(strProviderNumber11)) {
+				displayProviderMenu();
+				return;
+			}
+			Integer providerNumber11 = 0;
+			try {
+				providerNumber = Integer.parseInt(strProviderNumber11);
+			} catch (Exception e) {
+				println("Provider number format not valid.");
+				displayProviderMenu();
+			}
+			println("Finding provider in database...");
+			Provider provider11 = _db.getProvider(providerNumber11);
+			if (provider11 != null) {
+				EFTReport provRep = new EFTReport(provider11);
 				System.out.println("Return to Menu? Enter yes");
 				String choice1 = _co.readLine();
 				if (choice1.equals("yes")){
