@@ -36,7 +36,7 @@ public class Main {
 		// are already in database, but don't delete code in case we need to
 		// start over.
 
-		// Provider p = new Provider("Octavius", 123456789, "345 anus avenue",
+		// Provider p = new Provider("Octavius", 123456789, "345 avenue",
 		// "Tuscaloosa", "AL", "35404");
 		// Member m = new Member("Dillon", 356661111, "417 Prince Acres",
 		// "Tuscaloosa", "AL", "35404");
@@ -270,11 +270,11 @@ public class Main {
 				ProviderReport provRep = new ProviderReport(provider1);
 				System.out.println("Return to Menu? Enter yes");
 				String choice1 = _co.readLine();
-				if (choice1.equals("yes")){
+				if (choice1.equals("yes")) {
 					displayProviderMenu();
+				} else {
 				}
-				else{}
-				
+
 			}
 			break;
 		case "7":
@@ -317,6 +317,7 @@ public class Main {
 		case "1":
 		case "member":
 			// display add member
+			displayAddMember();
 			break;
 		case "2":
 		case "provider":
@@ -325,7 +326,8 @@ public class Main {
 		case "back":
 			break;
 		default:
-			// correct input
+			println("Input invalid");
+			displayProviderMenu();
 			break;
 		}
 	}
@@ -378,6 +380,7 @@ public class Main {
 		case "2":
 		case "provider":
 			// show provider update menu
+			displayProviderInfoUpdateMenu();
 			break;
 		case "3":
 		case "back":
@@ -388,6 +391,32 @@ public class Main {
 			println("Input invalid");
 			displayInfoUpdateMenu();
 			break;
+		}
+	}
+
+	private static void displayProviderInfoUpdateMenu() {
+		print("Provider lookup:\nEnter provider number: ");
+		String strProviderNumber = _co.readLine();
+		if (!isNumberLengthValid(strProviderNumber)) {
+			displayInfoUpdateMenu();
+			return;
+		}
+		Integer providerNumber = 0;
+		try {
+			providerNumber = Integer.parseInt(strProviderNumber);
+		} catch (Exception e) {
+			println("Provider number format not valid.");
+			displayInfoUpdateMenu();
+		}
+		println("Finding provider in database...");
+		Provider provider = _db.getProvider(providerNumber);
+		if (provider != null) {
+			// display member info update menu
+			displaySpecificProviderUpdateMenu(provider);
+		} else {
+			println("Invalid Number");
+			println("Member could not be found.");
+			displayInfoUpdateMenu();
 		}
 	}
 
@@ -414,6 +443,118 @@ public class Main {
 			println("Invalid Number");
 			println("Member could not be found.");
 			displayInfoUpdateMenu();
+		}
+	}
+
+	private static void displaySpecificProviderUpdateMenu(Provider provider) {
+		print("Editing provider: "
+				+ provider.getName()
+				+ "\nMenu:\n\t1) name\n\t2) number\n\t3) address\n\t4) city\n\t5) state\n\t6) zip-code\n\t7) back\n\nchocAn>");
+		String infoChoice = _co.readLine();
+		switch (infoChoice) {
+		case "1":
+		case "name":
+			// ask for edits or cancel
+			print("\nInput new name or type \"cancel\": ");
+			String newName = _co.readLine();
+			if (newName.equals(strCancel)) {
+				println("Canceled.");
+				displaySpecificProviderUpdateMenu(provider);
+			} else {
+				provider.setName(newName);
+				println("\nNew name set successfully to: " + newName + "\n");
+				displaySpecificProviderUpdateMenu(provider);
+				_db.saveDb();
+			}
+			break;
+		case "2":
+		case "number":
+			print("\nInput new (9-digit) number or type \"cancel\": ");
+			String strInput = _co.readLine();
+			if (isCanceled(strInput)) {
+				displaySpecificProviderUpdateMenu(provider);
+				return;
+			}
+			if (!isNumberLengthValid(strInput)) {
+				displaySpecificProviderUpdateMenu(provider);
+				return;
+			}
+			Integer newNumber = 0;
+			try {
+				newNumber = Integer.parseInt(strInput);
+			} catch (Exception e) {
+				println("\nUser number format not valid.");
+				displaySpecificProviderUpdateMenu(provider);
+			}
+			int oldNumber = provider.getNumber();
+			provider.setNumber(newNumber);
+			_db.removeProvider(oldNumber);
+			_db.addProvider(provider);
+			_db.saveDb();
+			println("\nProvider number successfully set to " + newNumber + "\n");
+			displaySpecificProviderUpdateMenu(provider);
+			break;
+		case "3":
+		case "address":
+			print("\nInput new provider address or type \"cancel\": ");
+			String newAddress = _co.readLine();
+			if (isCanceled(newAddress)) {
+				displaySpecificProviderUpdateMenu(provider);
+				return;
+			}
+			provider.setAddress(newAddress);
+			_db.saveDb();
+			println("\nSuccessfully saved new address: " + newAddress + "\n");
+			displaySpecificProviderUpdateMenu(provider);
+			break;
+		case "4":
+		case "city":
+			print("\nInput new city or type \"cancel\": ");
+			String newCity = _co.readLine();
+			if (isCanceled(newCity)) {
+				displaySpecificProviderUpdateMenu(provider);
+				return;
+			}
+			provider.setCity(newCity);
+			_db.saveDb();
+			println("\nSuccessfully saved new city: " + newCity + "\n");
+			displaySpecificProviderUpdateMenu(provider);
+			break;
+		case "5":
+		case "state":
+			print("\nInput new state or type \"cancel\": ");
+			String newState = _co.readLine();
+			if (isCanceled(newState)) {
+				displaySpecificProviderUpdateMenu(provider);
+				return;
+			}
+			provider.setState(newState);
+			_db.saveDb();
+			println("\nSuccessfully saved new state: " + newState + "\n");
+			displaySpecificProviderUpdateMenu(provider);
+			break;
+		case "6":
+		case "zip-code":
+			print("\nInput new zip-code or type \"cancel\": ");
+			String newZip = _co.readLine();
+			if (isCanceled(newZip)) {
+				displaySpecificProviderUpdateMenu(provider);
+				return;
+			}
+			provider.setZipCode(newZip);
+			println("\nSuccessfully saved new zip-code: " + newZip + "\n");
+			_db.saveDb();
+			displaySpecificProviderUpdateMenu(provider);
+			break;
+		case "7":
+		case "back":
+			displayProviderMenu();
+			break;
+		default:
+			// correct user;
+			println("Input invalid.");
+			displaySpecificProviderUpdateMenu(provider);
+			break;
 		}
 	}
 
@@ -515,6 +656,7 @@ public class Main {
 			member.setZipCode(newZip);
 			println("\nSuccessfully saved new zip-code: " + newZip + "\n");
 			_db.saveDb();
+			displaySpecificMemberUpdateMenu(member);
 			break;
 		case "7":
 		case "suspension":
