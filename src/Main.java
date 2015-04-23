@@ -168,7 +168,7 @@ public class Main {
 	}
 
 	private static void displayProviderMenu() {
-		print("Provider menu:\n\t1) info-update\n\t2) bill\n\t3) back\n\nchocAn>");
+		print("Provider menu:\n\t1) info-update\n\t2) bill\n\t3) add-user\n\t4) delete-user\n\t5) back\n\nchocAn>");
 		String choice = _co.readLine();
 		switch (choice) {
 		case "1":
@@ -181,6 +181,14 @@ public class Main {
 		case "bill":
 			// bill chcocAn
 			break;
+		case "3":
+		case "add-user":
+			// add user menu
+
+			break;
+		case "delete-user":
+			// delte user menu
+			break;
 		case "back":
 			displayMainMenu();
 			break;
@@ -189,6 +197,16 @@ public class Main {
 			println("Input invalid");
 			displayProviderMenu();
 			break;
+		}
+	}
+
+	private static void displayAddUserMenu() {
+		print("Add user menu:\n\t1) member\n\t2) provider\n\t3) back\n\nchockAn>");
+		String choice = _co.readLine();
+		switch (choice) {
+		case "1":
+		case "member":
+
 		}
 	}
 
