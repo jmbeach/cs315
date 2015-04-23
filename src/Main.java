@@ -171,7 +171,7 @@ public class Main {
 	}
 
 	private static void displayProviderMenu() {
-		print("Provider menu:\n\t1) info-update\n\t2) bill\n\t3) add-user\n\t4) delete-user\n\t5) back\n\t6) request report\n\nchocAn>");
+		print("Provider menu:\n\t1) info-update\n\t2) bill\n\t3) add-user\n\t4) delete-user\n\t5) back\n\t6) request report\n\t7)EFT report\n\nchocAn>");
 		String choice = _co.readLine();
 		switch (choice) {
 		case "1":
@@ -192,14 +192,6 @@ public class Main {
 			break;
 		case "4":
 		case "delete-user":
-			// delte user menu
-			displayBillChocAnMenu();
-			break;
-		case "5":
-		case "back":
-			displayMainMenu();
-			break;
-		case "6":
 			print("Request Report:\nEnter provider number: ");
 			String strProviderNumber = _co.readLine();
 			if (!isNumberLengthValid(strProviderNumber)) {
@@ -216,7 +208,38 @@ public class Main {
 			println("Finding provider in database...");
 			Provider provider = _db.getProvider(providerNumber);
 			if (provider != null) {
-				ProviderReport provRep = new ProviderReport(provider);
+				_db.removeProvider(provider);
+				System.out.println("Provider Removed");
+				
+					displayProviderMenu();
+					
+			
+			
+			}
+			break;
+			
+		case "5":
+		case "back":
+			displayMainMenu();
+			break;
+		case "6":
+			print("Request Report:\nEnter provider number: ");
+			String strProviderNumber1 = _co.readLine();
+			if (!isNumberLengthValid(strProviderNumber1)) {
+				displayProviderMenu();
+				return;
+			}
+			Integer providerNumber1 = 0;
+			try {
+				providerNumber = Integer.parseInt(strProviderNumber1);
+			} catch (Exception e) {
+				println("Provider number format not valid.");
+				displayProviderMenu();
+			}
+			println("Finding provider in database...");
+			Provider provider1 = _db.getProvider(providerNumber1);
+			if (provider1 != null) {
+				ProviderReport provRep = new ProviderReport(provider1);
 				System.out.println("Return to Menu? Enter yes");
 				String choice1 = _co.readLine();
 				if (choice1.equals("yes")) {
@@ -225,6 +248,32 @@ public class Main {
 				}
 
 			}
+			break;
+		case "7":
+			print("Request Report:\nEnter provider number: ");
+			String strProviderNumber11 = _co.readLine();
+			if (!isNumberLengthValid(strProviderNumber11)) {
+				displayProviderMenu();
+				return;
+			}
+			Integer providerNumber11 = 0;
+			try {
+				providerNumber = Integer.parseInt(strProviderNumber11);
+			} catch (Exception e) {
+				println("Provider number format not valid.");
+				displayProviderMenu();
+			}
+			println("Finding provider in database...");
+			Provider provider11 = _db.getProvider(providerNumber11);
+			if (provider11 != null) {
+				EFTReport provRep = new EFTReport(provider11);
+				System.out.println("Return to Menu? Enter yes");
+				String choice1 = _co.readLine();
+				if (choice1.equals("yes")){
+					displayProviderMenu();
+				}
+				else{}
+		}
 		default:
 			// correct the input
 			println("Input invalid");
