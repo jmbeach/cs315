@@ -192,30 +192,57 @@ public class Main {
 			break;
 		case "4":
 		case "delete-user":
-			print("Request Report:\nEnter provider number: ");
-			String strProviderNumber = _co.readLine();
-			if (!isNumberLengthValid(strProviderNumber)) {
-				displayProviderMenu();
-				return;
-			}
-			Integer providerNumber = 0;
-			try {
-				providerNumber = Integer.parseInt(strProviderNumber);
-			} catch (Exception e) {
-				println("Provider number format not valid.");
-				displayProviderMenu();
-			}
-			println("Finding provider in database...");
-			Provider provider = _db.getProvider(providerNumber);
-			if (provider != null) {
-				_db.removeProvider(provider);
-				System.out.println("Provider Removed");
+			System.out
+					.println("Delete Member or Provider? Enter member or provider");
+			String memProvChoice = _co.readLine();
+			if (memProvChoice.equals("member")) {
+				print("Request Report:\nEnter member number: ");
+				String strMemberNumber = _co.readLine();
+				if (!isNumberLengthValid(strMemberNumber)) {
+					displayProviderMenu();
+					return;
+				}
+				Integer memberNumber = 0;
+				try {
+					memberNumber = Integer.parseInt(strMemberNumber);
+				} catch (Exception e) {
+					println("Member number format not valid.");
+					displayProviderMenu();
+				}
+				println("Finding member in database...");
+				Member member = _db.getMember(memberNumber);
+				if (member != null) {
+					_db.removeMember(member);
+					System.out.println("Member Removed");
 
-				displayProviderMenu();
+					displayProviderMenu();
+				} else {
+					print("Request Report:\nEnter provider number: ");
+					String strProviderNumber = _co.readLine();
+					if (!isNumberLengthValid(strProviderNumber)) {
+						displayProviderMenu();
+						return;
+					}
+					Integer providerNumber = 0;
+					try {
+						providerNumber = Integer.parseInt(strProviderNumber);
+					} catch (Exception e) {
+						println("Provider number format not valid.");
+						displayProviderMenu();
+					}
+					println("Finding provider in database...");
+					Provider provider = _db.getProvider(providerNumber);
+					if (provider != null) {
+						_db.removeProvider(provider);
+						System.out.println("Provider Removed");
 
+						displayProviderMenu();
+
+					}
+
+				}
 			}
 			break;
-
 		case "5":
 		case "back":
 			displayMainMenu();
@@ -229,7 +256,7 @@ public class Main {
 			}
 			Integer providerNumber1 = 0;
 			try {
-				providerNumber = Integer.parseInt(strProviderNumber1);
+				providerNumber1 = Integer.parseInt(strProviderNumber1);
 			} catch (Exception e) {
 				println("Provider number format not valid.");
 				displayProviderMenu();
@@ -256,7 +283,7 @@ public class Main {
 			}
 			Integer providerNumber11 = 0;
 			try {
-				providerNumber = Integer.parseInt(strProviderNumber11);
+				providerNumber11 = Integer.parseInt(strProviderNumber11);
 			} catch (Exception e) {
 				println("Provider number format not valid.");
 				displayProviderMenu();
@@ -291,15 +318,53 @@ public class Main {
 			break;
 		case "2":
 		case "provider":
+			displayAddProvider();
 			break;
 		case "3":
 		case "back":
+			displayProviderMenu();
 			break;
 		default:
 			println("Input invalid");
 			displayProviderMenu();
 			break;
 		}
+	}
+
+	private static void displayAddProvider() {
+		print("Enter (9-digit) provider number");
+		String number = _co.readLine();
+		if (!isNumberLengthValid(number)) {
+			displayAddProvider();();
+			return;
+		}
+		Integer memberNumber = 0;
+		try {
+			memberNumber = Integer.parseInt(number);
+		} catch (Exception e) {
+			println("Number format not valid.");
+			displayAddMember();
+		}
+		Provider newMember = new Provider();
+		newMember.setNumber(memberNumber);
+		print("Enter name: ");
+		String name = _co.readLine();
+		newMember.setName(name);
+		print("Enter address: ");
+		String address = _co.readLine();
+		newMember.setAddress(address);
+		print("Enter city: ");
+		String city = _co.readLine();
+		newMember.setAddress(city);
+		print("Enter state: ");
+		String state = _co.readLine();
+		newMember.setState(state);
+		print("Enter zip-code: ");
+		String zip = _co.readLine();
+		newMember.setZipCode(zip);
+		_db.addProvider(newMember);
+		_db.saveDb();
+		println("New provider " + newMember.getName() + " created.");
 	}
 
 	private static void displayAddMember() {
