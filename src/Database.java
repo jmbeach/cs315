@@ -14,11 +14,11 @@ public class Database implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final String strSavePath = System.getProperty("user.dir");
-	private static final String strMemberSavePath = isWindows()? strSavePath
+	private static final String strMemberSavePath = isWindows() ? strSavePath
 			+ "\\member.sav" : strSavePath + "/member.sav";
-	private static final String strProviderSavePath = isWindows()? strSavePath
+	private static final String strProviderSavePath = isWindows() ? strSavePath
 			+ "\\provider.sav" : strSavePath + "/provider.sav";
-	private static final String strRecordSavePath = isWindows()? strSavePath
+	private static final String strRecordSavePath = isWindows() ? strSavePath
 			+ "\\record.sav" : strSavePath + "/record.sav";
 
 	// hashed on member number
@@ -31,17 +31,18 @@ public class Database implements java.io.Serializable {
 	/**
 	 * Database loads members, providers, and the provider's bill records
 	 */
-	
+
 	public Database() {
 		System.out.println(strMemberSavePath);
 		members = loadMembers();
 		providers = loadProviders();
 		providerBillRecords = loadProviderBillRecords();
 	}
-	
+
 	/**
 	 * 
-	 * @param person adds member to system with member number
+	 * @param person
+	 *            adds member to system with member number
 	 */
 
 	public void addMember(Member person) {
@@ -50,62 +51,74 @@ public class Database implements java.io.Serializable {
 
 	/**
 	 * 
-	 * @param person removes member from system
+	 * @param person
+	 *            removes member from system
 	 */
-	
+
 	public void removeMember(Member person) {
 		members.remove(person.getNumber());
 	}
-	
+
+	public void removeMember(int memberNumber) {
+		members.remove(memberNumber);
+	}
+
 	/**
 	 * 
-	 * @param person adds provider to system with provider number
+	 * @param person
+	 *            adds provider to system with provider number
 	 */
 
 	public void addProvider(Provider person) {
 		providers.put(person.getNumber(), person);
 	}
-	
+
 	/**
 	 * 
-	 * @param person removes provider from system based on provider number
+	 * @param person
+	 *            removes provider from system based on provider number
 	 */
 
 	public void removeProvider(Provider person) {
 		providers.remove(person.getNumber());
 	}
-	
+
 	/**
 	 * 
-	 * @param report adds billing records from provider based on provider number
+	 * @param report
+	 *            adds billing records from provider based on provider number
 	 */
 
 	public void addProviderBillRecord(Record report) {
 		providerBillRecords.put(report.providerNumber, report);
 	}
-	
+
 	/**
 	 * 
-	 * @param report removes bill records based on provider number
+	 * @param report
+	 *            removes bill records based on provider number
 	 */
 
 	public void removeBillRecord(Record report) {
 		providerBillRecords.remove(report.providerNumber);
 	}
-	
+
 	/**
 	 * 
-	 * @param memberId retrieves member ID
+	 * @param memberId
+	 *            retrieves member ID
 	 * @return returns the member ID that was retrived
 	 */
 
 	public Member getMember(int memberId) {
 		return members.get(memberId);
 	}
-	
+
 	/**
 	 * 
-	 * @param serviceCode uses service code provided to check against listed service codes
+	 * @param serviceCode
+	 *            uses service code provided to check against listed service
+	 *            codes
 	 * @return if service code matches, returns the provided service name
 	 */
 
@@ -124,27 +137,29 @@ public class Database implements java.io.Serializable {
 		return "Incorrect Code";
 
 	}
-	
+
 	/**
 	 * 
-	 * @param providerNumber looks up provider based on supplied provider number
+	 * @param providerNumber
+	 *            looks up provider based on supplied provider number
 	 * @return returns the name of the provider number
 	 */
 
 	public Provider getProvider(int providerNumber) {
 		return providers.get(providerNumber);
 	}
-	
+
 	/**
 	 * 
-	 * @param providerNumber uses supplied provider number to look up bill records
+	 * @param providerNumber
+	 *            uses supplied provider number to look up bill records
 	 * @return returns bill records based on the provider number supplied
 	 */
 
 	public Record getProviderBillRecord(int providerNumber) {
 		return providerBillRecords.get(providerNumber);
 	}
-	
+
 	/**
 	 * saves members, providers, and provider records to database
 	 */
@@ -154,7 +169,7 @@ public class Database implements java.io.Serializable {
 		saveProviderRecords();
 		saveProviders();
 	}
-	
+
 	/**
 	 * saves members to database
 	 */
@@ -162,7 +177,7 @@ public class Database implements java.io.Serializable {
 	private void saveMembers() {
 		saveObject(strMemberSavePath, members);
 	}
-	
+
 	/**
 	 * 
 	 * @return loads members in database
@@ -175,7 +190,7 @@ public class Database implements java.io.Serializable {
 		}
 		return members;
 	}
-	
+
 	/**
 	 * saves providers to database
 	 */
@@ -183,7 +198,7 @@ public class Database implements java.io.Serializable {
 	private void saveProviders() {
 		saveObject(strProviderSavePath, providers);
 	}
-	
+
 	/**
 	 * 
 	 * @return loads providers in database
@@ -196,7 +211,7 @@ public class Database implements java.io.Serializable {
 		}
 		return providers;
 	}
-	
+
 	/**
 	 * saves provider records to database
 	 */
@@ -204,7 +219,7 @@ public class Database implements java.io.Serializable {
 	private void saveProviderRecords() {
 		saveObject(strRecordSavePath, providerBillRecords);
 	}
-	
+
 	/**
 	 * 
 	 * @return loads bill records for provider services
@@ -217,11 +232,13 @@ public class Database implements java.io.Serializable {
 		}
 		return providerBillRecords;
 	}
-	
+
 	/**
 	 * 
-	 * @param path determines where to save object provided
-	 * @param toSave object provided to be saved at path
+	 * @param path
+	 *            determines where to save object provided
+	 * @param toSave
+	 *            object provided to be saved at path
 	 */
 
 	private void saveObject(String path, Object toSave) {
@@ -236,10 +253,11 @@ public class Database implements java.io.Serializable {
 					.println("The database could not be found. Are you running the program from the correct location?");
 		}
 	}
-	
+
 	/**
 	 * 
-	 * @param path determines where to load object from
+	 * @param path
+	 *            determines where to load object from
 	 * @return returns object loaded from path, If no path, returns nothing
 	 */
 
@@ -257,6 +275,7 @@ public class Database implements java.io.Serializable {
 		}
 		return null;
 	}
+
 	private static boolean isWindows() {
 		return System.getProperty("os.name").toLowerCase().indexOf("win") > 0;
 	}

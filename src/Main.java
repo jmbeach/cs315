@@ -9,7 +9,7 @@ import java.io.Console;
 // comment here
 public class Main {
 	private static Console _co;
-	private static final int _userNumberLength = 6;
+	private static final int _userNumberLength = 9;
 	// load db from db.sav file
 	// Creating a new db will overwrite this file.
 	private static Database _db = new Database();
@@ -25,25 +25,25 @@ public class Main {
 	// open console to bin folder and run "java Main"
 	public static void main(String[] args) {
 		_co = System.console();
-		// Hard-coded members and providers
+
+		// Region Hard-coded members and providers
 
 		// Made Database class write to db.sav file so these hardcoded values
 		// are already in database, but don't delete code in case we need to
 		// start over.
 
-		// Provider p = new Provider("Octavius", 123456, "345 anus avenue",
+		// Provider p = new Provider("Octavius", 123456789, "345 anus avenue",
 		// "Tuscaloosa", "AL", "35404");
-		// Member m = new Member("Dillon", 356661, "417 Prince Acres",
+		// Member m = new Member("Dillon", 356661111, "417 Prince Acres",
 		// "Tuscaloosa", "AL", "35404");
-		// Member o = new Member("Matt", 236544, "417 Prince Acres",
-		// "Tuscaloosa",
-		// "AL", "35404");
+		// Member o = new Member("Matt", 236544444, "417 Prince Acres",
+		// "Tuscaloosa", "AL", "35404");
 		// _db.addMember(m);
 		// _db.addMember(o);
 		// _db.addProvider(p);
 		// _db.saveDb();
 
-		// end Hard-coded members and providers
+		// EndRegion Hard-coded members and providers
 
 		// display welcome message
 		println("Welcome to ChocAn!");
@@ -56,7 +56,7 @@ public class Main {
 	 */
 	private static void displayMainMenu() {
 		System.out
-				.print("Menu:\n\t1) sign-in\n\t2) sign-out\n\tn) exit\nchocAn>");
+				.print("Menu:\n\t1) sign-in\n\t2) sign-out\n\t3) provider-menu\n\tn) exit\n\nchocAn>");
 		// read the user's choice from command line
 		String choice = _co.readLine();
 		handleMainMenuChoice(choice);
@@ -148,7 +148,7 @@ public class Main {
 			// go back to main menu
 			displayMainMenu();
 			break;
-		case "default":
+		default:
 			// correct the user
 			println("Your input was invalid.");
 			displaySignOutMenu();
@@ -156,8 +156,130 @@ public class Main {
 		}
 	}
 
-	// EndRegion
+	private static void displayProviderMenu() {
+		print("Provider menu:\n\t1) info-update\n\t2) back\n\nchocAn>");
+		String choice = _co.readLine();
+		switch (choice) {
+		case "1":
+		case "info-update":
+			// do info update
+			// display info update menu
+			displayInfoUpdateMenu();
+			break;
+		case "2":
+		case "back":
+			displayMainMenu();
+			break;
+		default:
+			// correct the input
+			break;
+		}
+	}
 
+	private static void displayInfoUpdateMenu() {
+		print("Info Update Menu:\n\t1) member\n\t2) provider\n\t3) back\n\nchocAn>");
+		String choice = _co.readLine();
+		switch (choice) {
+		case "1":
+		case "member":
+			// show member update menu
+			print("Member lookup:\nEnter member number: ");
+			String strMemberNumber = _co.readLine();
+			checkUserNumberLength(strMemberNumber);
+			Integer memberNumber = 0;
+			try {
+				memberNumber = Integer.parseInt(strMemberNumber);
+			} catch (Exception e) {
+				println("Member number format not valid.");
+				displayInfoUpdateMenu();
+			}
+			println("Finding member in database...");
+			Member member = _db.getMember(memberNumber);
+			if (member != null) {
+				print("Editing member: "
+						+ member.getName()
+						+ "\nMenu:\n\t1) name\n\t2) number\n\t3) address\n\t4) city\n\t5) state\n\t6) zip-code\n\t7) suspension\n\nchocAn>");
+				String infoChoice = _co.readLine();
+				String strCancel = "cancel";
+				switch (infoChoice) {
+				case "1":
+				case "name":
+					// ask for edits or cancel
+					print("Input new name or type \"cancel\": ");
+					String newName = _co.readLine();
+					if (newName.equals(strCancel)) {
+						println("Canceled.");
+						displayProviderMenu();
+					} else {
+						member.setName(newName);
+						println("New name set successfully to: " + newName);
+						displayProviderMenu();
+						_db.saveDb();
+					}
+					break;
+				case "2":
+				case "number":
+					print("Input new (9-digit) number or type \"cancel\": ");
+					String strNewNumber = _co.readLine();
+					checkUserNumberLength(strNewNumber);
+					Integer newNumber = 0;
+					try {
+						newNumber = Integer.parseInt(strNewNumber);
+					} catch (Exception e) {
+						println("Member number format not valid.");
+						displayInfoUpdateMenu();
+					}
+					int oldNumber = member.getNumber();
+					member.setNumber(newNumber);
+					_db.removeMember(oldNumber);
+					_db.addMember(member);
+					_db.saveDb();
+					println("Member number successfully set to " + newNumber);
+					displayProviderMenu();
+					break;
+				case "3":
+				case "address":
+					break;
+				case "4":
+				case "city":
+					break;
+				case "5":
+				case "state":
+					break;
+				case "6":
+				case "zip-code":
+					break;
+				case "7":
+				case "suspension":
+					break;
+				case "8":
+				case "back":
+					break;
+				default:
+					// correct user;
+					break;
+				}
+			} else {
+				println("Invalid Number");
+				println("Member could not be found.");
+				displayInfoUpdateMenu();
+			}
+			break;
+		case "2":
+		case "provider":
+			// show provider update menu
+			break;
+		case "3":
+		case "back":
+			displayProviderMenu();
+			break;
+		default:
+			// correct the input
+			break;
+		}
+	}
+
+	// EndRegion
 	/**
 	 * Uses the user's input at the Main menu to help navigate through ChocAn.
 	 * 
@@ -174,6 +296,10 @@ public class Main {
 		case "sign-out":
 			// display sign-out menu
 			displaySignOutMenu();
+		case "3":
+		case "provider-menu":
+			displayProviderMenu();
+			break;
 		case "n":
 		case "exit":
 			// Print exit message
@@ -258,7 +384,7 @@ public class Main {
 					_db.saveDb();
 					displayMainMenu();
 				} else {
-					println("SUSPENDED");
+					println("Member Suspended");
 					println("Member is suspended. can't sign in.");
 				}
 			} else {
@@ -266,7 +392,7 @@ public class Main {
 				displayMainMenu();
 			}
 		} else {
-			println("INVALID");
+			println("Invalid Number");
 			println("Member could not be found.");
 			displaySigninMenu();
 		}
