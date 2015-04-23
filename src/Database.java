@@ -86,6 +86,10 @@ public class Database implements java.io.Serializable {
 		providers.remove(person.getNumber());
 	}
 
+	public void removeProvider(int providerNumber) {
+		providers.remove(providerNumber);
+	}
+
 	/**
 	 * 
 	 * @param report
