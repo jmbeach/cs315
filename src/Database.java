@@ -35,7 +35,7 @@ public class Database implements java.io.Serializable {
 	 */
 
 	public Database() {
-		System.out.println(strMemberSavePath);
+		// System.out.println(strMemberSavePath);
 		members = loadMembers();
 		providers = loadProviders();
 		providerBillRecords = loadProviderBillRecords();

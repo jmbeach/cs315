@@ -10,6 +10,7 @@ import java.io.Console;
 public class Main {
 	private static Console _co;
 	private static final int _userNumberLength = 9;
+	private static final String strCancel = "cancel";
 	// load db from db.sav file
 	// Creating a new db will overwrite this file.
 	private static Database _db = new Database();
@@ -71,6 +72,7 @@ public class Main {
 		String signInChoice = _co.readLine();
 		handleSigninChoice(signInChoice);
 	}
+
 	/**
 	 * Displays ChocAn's sign-out menu for signing out a member or provider
 	 */
@@ -86,7 +88,10 @@ public class Main {
 			// do sign-out
 			print("Signing out member:\nEnter member number: ");
 			String strMemberNumber = _co.readLine();
-			checkUserNumberLength(strMemberNumber);
+			if (!isNumberLengthValid(strMemberNumber)) {
+				displaySignOutMenu();
+				return;
+			}
 			Integer memberNumber = 0;
 			try {
 				memberNumber = Integer.parseInt(strMemberNumber);
@@ -119,7 +124,10 @@ public class Main {
 			// do sign-out
 			print("Signing out provider:\nEnter in provider number: ");
 			String strProviderNumber = _co.readLine();
-			checkUserNumberLength(strProviderNumber);
+			if (!isNumberLengthValid(strProviderNumber)) {
+				displaySignOutMenu();
+				return;
+			}
 			Integer providerNumber = 0;
 			try {
 				providerNumber = Integer.parseInt(strProviderNumber);
@@ -186,87 +194,7 @@ public class Main {
 		case "1":
 		case "member":
 			// show member update menu
-			print("Member lookup:\nEnter member number: ");
-			String strMemberNumber = _co.readLine();
-			checkUserNumberLength(strMemberNumber);
-			Integer memberNumber = 0;
-			try {
-				memberNumber = Integer.parseInt(strMemberNumber);
-			} catch (Exception e) {
-				println("Member number format not valid.");
-				displayInfoUpdateMenu();
-			}
-			println("Finding member in database...");
-			Member member = _db.getMember(memberNumber);
-			if (member != null) {
-				print("Editing member: "
-						+ member.getName()
-						+ "\nMenu:\n\t1) name\n\t2) number\n\t3) address\n\t4) city\n\t5) state\n\t6) zip-code\n\t7) suspension\n\nchocAn>");
-				String infoChoice = _co.readLine();
-				String strCancel = "cancel";
-				switch (infoChoice) {
-				case "1":
-				case "name":
-					// ask for edits or cancel
-					print("Input new name or type \"cancel\": ");
-					String newName = _co.readLine();
-					if (newName.equals(strCancel)) {
-						println("Canceled.");
-						displayProviderMenu();
-					} else {
-						member.setName(newName);
-						println("New name set successfully to: " + newName);
-						displayProviderMenu();
-						_db.saveDb();
-					}
-					break;
-				case "2":
-				case "number":
-					print("Input new (9-digit) number or type \"cancel\": ");
-					String strNewNumber = _co.readLine();
-					checkUserNumberLength(strNewNumber);
-					Integer newNumber = 0;
-					try {
-						newNumber = Integer.parseInt(strNewNumber);
-					} catch (Exception e) {
-						println("Member number format not valid.");
-						displayInfoUpdateMenu();
-					}
-					int oldNumber = member.getNumber();
-					member.setNumber(newNumber);
-					_db.removeMember(oldNumber);
-					_db.addMember(member);
-					_db.saveDb();
-					println("Member number successfully set to " + newNumber);
-					displayProviderMenu();
-					break;
-				case "3":
-				case "address":
-					break;
-				case "4":
-				case "city":
-					break;
-				case "5":
-				case "state":
-					break;
-				case "6":
-				case "zip-code":
-					break;
-				case "7":
-				case "suspension":
-					break;
-				case "8":
-				case "back":
-					break;
-				default:
-					// correct user;
-					break;
-				}
-			} else {
-				println("Invalid Number");
-				println("Member could not be found.");
-				displayInfoUpdateMenu();
-			}
+			displayMemberInfoUpdateMenu();
 			break;
 		case "2":
 		case "provider":
@@ -282,7 +210,116 @@ public class Main {
 		}
 	}
 
+	public static void displayMemberInfoUpdateMenu() {
+		print("Member lookup:\nEnter member number: ");
+		String strMemberNumber = _co.readLine();
+		if (!isNumberLengthValid(strMemberNumber)) {
+			displayInfoUpdateMenu();
+			return;
+		}
+		Integer memberNumber = 0;
+		try {
+			memberNumber = Integer.parseInt(strMemberNumber);
+		} catch (Exception e) {
+			println("Member number format not valid.");
+			displayInfoUpdateMenu();
+		}
+		println("Finding member in database...");
+		Member member = _db.getMember(memberNumber);
+		if (member != null) {
+			// display member info update menu
+			displaySpecificMemberUpdateMenu(member);
+		} else {
+			println("Invalid Number");
+			println("Member could not be found.");
+			displayInfoUpdateMenu();
+		}
+	}
+
+	private static void displaySpecificMemberUpdateMenu(Member member) {
+		print("Editing member: "
+				+ member.getName()
+				+ "\nMenu:\n\t1) name\n\t2) number\n\t3) address\n\t4) city\n\t5) state\n\t6) zip-code\n\t7) suspension\n\t8) back\n\nchocAn>");
+		String infoChoice = _co.readLine();
+		switch (infoChoice) {
+		case "1":
+		case "name":
+			// ask for edits or cancel
+			print("\nInput new name or type \"cancel\": ");
+			String newName = _co.readLine();
+			if (newName.equals(strCancel)) {
+				println("Canceled.");
+				displaySpecificMemberUpdateMenu(member);
+			} else {
+				member.setName(newName);
+				println("\nNew name set successfully to: " + newName + "\n");
+				displaySpecificMemberUpdateMenu(member);
+				_db.saveDb();
+			}
+			break;
+		case "2":
+		case "number":
+			print("\nInput new (9-digit) number or type \"cancel\": ");
+			String strInput = _co.readLine();
+			if (isCanceled(strInput)) {
+				displaySpecificMemberUpdateMenu(member);
+				return;
+			}
+			if (!isNumberLengthValid(strInput)) {
+				displaySpecificMemberUpdateMenu(member);
+				return;
+			}
+			Integer newNumber = 0;
+			try {
+				newNumber = Integer.parseInt(strInput);
+			} catch (Exception e) {
+				println("\nMember number format not valid.");
+				displaySpecificMemberUpdateMenu(member);
+			}
+			int oldNumber = member.getNumber();
+			member.setNumber(newNumber);
+			_db.removeMember(oldNumber);
+			_db.addMember(member);
+			_db.saveDb();
+			println("\nMember number successfully set to " + newNumber + "\n");
+			displaySpecificMemberUpdateMenu(member);
+			break;
+		case "3":
+		case "address":
+			print("\nInput new member address or type \"cancel\": ");
+			String newAddress = _co.readLine();
+			if (isCanceled(newAddress)) {
+				displaySpecificMemberUpdateMenu(member);
+				return;
+			}
+			member.setAddress(newAddress);
+			_db.saveDb();
+			println("\nSuccessfully saved new address: " + newAddress + "\n");
+			displaySpecificMemberUpdateMenu(member);
+			break;
+		case "4":
+		case "city":
+			break;
+		case "5":
+		case "state":
+			break;
+		case "6":
+		case "zip-code":
+			break;
+		case "7":
+		case "suspension":
+			break;
+		case "8":
+		case "back":
+			break;
+		default:
+			// correct user;
+			break;
+		}
+	}
+
 	// EndRegion
+
 	/**
 	 * Uses the user's input at the Main menu to help navigate through ChocAn.
 	 * 
@@ -326,13 +363,14 @@ public class Main {
 	 * @param strUserNumber
 	 *            the user number read from the command line as a string
 	 */
-	private static void checkUserNumberLength(String strUserNumber) {
+	private static boolean isNumberLengthValid(String strUserNumber) {
 		int numberLength = strUserNumber.trim().length();
 		// if number too short or too long
 		if (numberLength != _userNumberLength) {
-			System.out.println("Member number invalid");
-			displaySigninMenu();
+			System.out.println("\nMember number invalid\n");
+			return false;
 		}
+		return true;
 	}
 
 	/**
@@ -362,6 +400,7 @@ public class Main {
 			displaySigninMenu();
 		}
 	}
+
 	/**
 	 * allows the member to enter his/her member number to be validated
 	 */
@@ -370,7 +409,10 @@ public class Main {
 		// handle member sign in
 		print("Signing in member:\nEnter member number: ");
 		String strMemberNumber = _co.readLine();
-		checkUserNumberLength(strMemberNumber);
+		if (!isNumberLengthValid(strMemberNumber)) {
+			displaySigninMenu();
+			return;
+		}
 		Integer memberNumber = 0;
 		try {
 			memberNumber = Integer.parseInt(strMemberNumber);
@@ -403,6 +445,7 @@ public class Main {
 			displaySigninMenu();
 		}
 	}
+
 	/**
 	 * allows the provider to enter his/her member number to be validated
 	 */
@@ -411,7 +454,10 @@ public class Main {
 		// handle provider sign in
 		print("Signing in provider:\nEnter in provider number: ");
 		String strProviderNumber = _co.readLine();
-		checkUserNumberLength(strProviderNumber);
+		if (!isNumberLengthValid(strProviderNumber)) {
+			displaySigninMenu();
+			return;
+		}
 		Integer providerNumber = 0;
 		try {
 			providerNumber = Integer.parseInt(strProviderNumber);
@@ -437,20 +483,32 @@ public class Main {
 			displaySigninMenu();
 		}
 	}
+
 	/**
 	 * helper function to print a message
+	 * 
 	 * @param message
 	 */
 	// Region HELPERS
 	private static void println(String message) {
 		System.out.println(message);
 	}
+
 	/**
 	 * helper function to print a message
+	 * 
 	 * @param message
 	 */
 	private static void print(String message) {
 		System.out.print(message);
+	}
+
+	private static boolean isCanceled(String strInput) {
+		if (strInput.equals(strCancel)) {
+			println("\nCanceled.\n");
+			return true;
+		}
+		return false;
 	}
 	// EndRegion
 
