@@ -171,7 +171,7 @@ public class Main {
 	}
 
 	private static void displayProviderMenu() {
-		print("Provider menu:\n\t1) info-update\n\t2) bill\n\t3) back\n\nchocAn>");
+		print("Provider menu:\n\t1) info-update\n\t2) bill\n\t3) add-user\n\t4) delete-user\n\t5) back\n\nchocAn>");
 		String choice = _co.readLine();
 		switch (choice) {
 		case "1":
@@ -182,8 +182,20 @@ public class Main {
 			break;
 		case "2":
 		case "bill":
+			// bill chcocAn
 			displayBillChocAnMenu();
 			break;
+		case "3":
+		case "add-user":
+			// add user menu
+
+			break;
+		case "4":
+		case "delete-user":
+			// delte user menu
+			displayBillChocAnMenu();
+			break;
+		case "5":
 		case "back":
 			displayMainMenu();
 			break;
@@ -192,6 +204,16 @@ public class Main {
 			println("Input invalid");
 			displayProviderMenu();
 			break;
+		}
+	}
+
+	private static void displayAddUserMenu() {
+		print("Add user menu:\n\t1) member\n\t2) provider\n\t3) back\n\nchockAn>");
+		String choice = _co.readLine();
+		switch (choice) {
+		case "1":
+		case "member":
+
 		}
 	}
 
@@ -428,7 +450,7 @@ public class Main {
 			newRec.setDateTime(dateFormat.format(cal.getTime()));
 			println("Please enter the date service was provided in the form:\nMM-DD-YYYY");
 			try {
-				String date  = _co.readLine();
+				String date = _co.readLine();
 				newRec.setDateProvided(date);
 			} catch (Exception e) {
 				println("Date format not valid.");
@@ -436,7 +458,7 @@ public class Main {
 			}
 			println("Please enter the member number");
 			try {
-				String memNum  = _co.readLine();
+				String memNum = _co.readLine();
 				int intMemNum = Integer.parseInt(memNum);
 				newRec.setUNumber(intMemNum);
 			} catch (Exception e) {
@@ -447,29 +469,27 @@ public class Main {
 			println("look up the service code in the Provider Directory:");
 			ProviderDirectory provdir = new ProviderDirectory();
 			try {
-				String servCode  = _co.readLine();
+				String servCode = _co.readLine();
 				int intServCode = Integer.parseInt(servCode);
 				newRec.setServiceCode(intServCode);
 				println("Service code correct? enter yes or no");
 				System.out.println(provdir.returnService(intServCode));
 				String agreeIsValid = _co.readLine();
-				if (agreeIsValid.equals("yes")){
+				if (agreeIsValid.equals("yes")) {
 					newRec.setServiceCode(intServCode);
 					newRec.setPNumber(provider.getNumber());
 					System.out.println("Enter comments? Enter yes or no");
 					String commentDecision = _co.readLine();
-					if (commentDecision.equals("yes")){
+					if (commentDecision.equals("yes")) {
 						System.out.println("enter comments:");
 						String comments = _co.readLine();
 						newRec.setComments(comments);
-					
-					}
-					else{
+
+					} else {
 						newRec.setComments("");
 					}
 					System.out.println();
-				}
-				else{
+				} else {
 					println("Service Code not Valid");
 					displayProviderMenu();
 				}
@@ -478,14 +498,14 @@ public class Main {
 				displayProviderMenu();
 			}
 			System.out.println("Is the record correct? Enter yes or no");
-			System.out.println(newRec.getDate());	
+			System.out.println(newRec.getDate());
 			System.out.println(newRec.getDateOfServices());
 			System.out.println(newRec.getProviderNumber());
 			System.out.println(newRec.getMemberNumber());
 			System.out.println(newRec.getServiceCode());
 			System.out.println(newRec.getComments());
 			String correctDecision = _co.readLine();
-			if (correctDecision.equals("yes")){
+			if (correctDecision.equals("yes")) {
 				newRec.createRecord();
 				System.out.println("Record created, returning to menu");
 				double fee = newRec.calculateFee(newRec.getServiceCode());
@@ -493,8 +513,7 @@ public class Main {
 				provider.addMoneyEarned((float) fee);
 				_db.saveDb();
 				displayProviderMenu();
-			}
-			else{
+			} else {
 				System.out.println("Returning to menu");
 				displayProviderMenu();
 			}
