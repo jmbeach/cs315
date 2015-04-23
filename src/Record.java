@@ -73,7 +73,7 @@ public class Record implements Serializable {
 	 */
 
 	public double calculateFee(int servCode) {
-		if (servCode == 6666665) {
+		if (servCode == 666665) {
 			return 50.45;
 		} else if (servCode == 4519568) {
 			return 12.99;
