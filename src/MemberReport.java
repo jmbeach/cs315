@@ -29,7 +29,7 @@ public class MemberReport extends Database {
 		System.out.println("Member Address: " + person.getAddress());
 		System.out.println("Member City: " + person.getCity());
 		System.out.println("Member State: " + person.getState());
-		System.out.println("Member Zip Code: " + person.getzipCode());
+		System.out.println("Member Zip Code: " + person.getZipCode());
 		System.out.println();
 		System.out.println("Services Received:");
 		System.out.println();
